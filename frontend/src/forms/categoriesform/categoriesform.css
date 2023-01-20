@@ -1,0 +1,18 @@
+.category-line {
+	border-bottom: 2px solid rgba(100, 100, 100, 1);
+	border-radius: 5%;
+	height: 60px;
+}
+.category-text {
+	padding-top: 20px;
+	text-align: center;
+	padding-bottom: 20px;
+}
+.category-element {
+	padding-left: 20px;
+	padding-bottom: 5px;
+}
+.TCButton {
+	width: 50%;
+  margin-left: 25%;
+}

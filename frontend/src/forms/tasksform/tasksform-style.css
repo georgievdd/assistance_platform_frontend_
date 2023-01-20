@@ -1,0 +1,89 @@
+.tasks-search-header {
+	display: inline-block;
+	padding-left: 15px;
+	padding-top: 5px;
+}
+
+.tasks-search-header-button {
+	border: none;
+  background: rgba(19,87,102, 1);
+  color: rgba(245, 245, 245, 1);
+  padding: 5px;
+  font-size: 13px;
+  border-radius: 7px;
+  position: relative;
+  box-sizing: border-box;
+  transition: all 500ms ease; 
+}
+
+.tasks-search-header-button:hover {
+  background: rgba(0,0,0,0);
+  color: rgba(0,0,0,1);
+  box-shadow: inset 0 0 0 3px rgba(0,0,0,1);
+}
+
+
+
+.search-header-img {
+	margin-top: 10%;
+	width: 40px;
+	height: 40px;
+  transition: all 0.5s;
+}
+
+.search-header-img:hover {
+	transform: scale(1.2);
+}
+
+@keyframes scale {
+  from {
+  -webkit-transform: scale(1.0);
+  -ms-transform: scale(1.0);
+      transform: scale(1.0);
+}
+50% {
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+      transform: scale(1.2);
+}
+to { 
+ -webkit-transform: scale(1.03);
+  -ms-transform: scale(1.03);
+      transform: scale(1.03);
+}
+}
+
+.search-input {
+	background-color: rgba(240, 240, 240, 1);
+	height: 50px;
+	border-radius: 10px;
+	color: rgba(0, 0, 0, 1);
+	text-decoration:overline;
+	font-size: 20px;
+	padding-left: 25px;
+	width: 100%;
+
+	-webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+	-moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+	box-shadow: 4px 4px 10px 0px rgba(34, 60, 80, 0.2), 
+							4px -4px 10px 0px rgba(34, 60, 80, 0.2),
+							-4px 4px 10px 0px rgba(34, 60, 80, 0.2);
+
+	transition: all 0.05s;
+}
+
+.search-input:hover {
+  animation: anim--one 0.2s ease-out forwards;
+}
+
+@keyframes anim--one {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.01);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

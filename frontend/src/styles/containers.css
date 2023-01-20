@@ -1,0 +1,65 @@
+.main-container {
+	max-width: 1600px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 190px;
+	padding-right: 190px;
+	margin: 0 auto;
+}
+
+.carousel-container {
+	padding-left: 200px;
+	padding-right: 200px;
+}
+
+.shadow {
+	-webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+	-moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+	box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.container-element {
+	width: auto;
+	height: auto;
+	border-radius: 10px;
+	background-color: rgba(245,245,245, 1);
+}
+
+.container-element-white {
+	width: auto;
+	height: auto;
+	border-radius: 10px;
+	background-color: rgba(255, 255, 255, 1);
+}
+
+.logform-container {
+	margin: auto;
+	width: 30%;
+}
+
+.regform-container {
+	margin: auto;
+	width: 35%;
+}
+
+.log-reg-header-container {
+	text-align: center;
+	height: 50px;
+	margin-bottom: 30px;
+	color: black;
+	padding-top: 12px;
+	padding-left: 10px;
+}
+
+input { border: none; outline: none; }
+
+.prioritystack-element {
+	width: auto;
+	height: 25px;
+	padding: 1px;
+	text-align: center;
+	border: 1px solid  rgba(14, 204, 43, 1);
+  color: rgba(0, 0, 0, 1);
+  font-size: 14px;
+  border-radius: 7px;
+}

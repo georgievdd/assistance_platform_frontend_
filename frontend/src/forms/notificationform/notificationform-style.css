@@ -1,0 +1,8 @@
+.application-container {
+  width: auto;
+	min-height: 130px;
+	border-radius: 10px;
+	background-color: rgba(4,136,100, 1);
+  border-radius: 5px;
+  padding: 10px;
+}

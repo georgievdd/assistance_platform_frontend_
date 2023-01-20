@@ -1,0 +1,54 @@
+.task-container {
+	width: auto;
+	height: 125px;
+	margin-bottom: 15px;
+
+	transition: all 0.5s;
+}
+
+.task-container:hover {
+	transform: scale(1.05);
+}
+
+@keyframes scale {
+    from {
+    -webkit-transform: scale(1.0);
+    -ms-transform: scale(1.0);
+        transform: scale(1.0);
+  }
+  50% {
+    -webkit-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+        transform: scale(1.2);
+  }
+  to { 
+   -webkit-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+        transform: scale(1.03);
+  }
+}
+
+.task-img {
+	height: 100px;
+  width: 100px;
+	border-radius: 10%;
+}
+
+.middle-block {
+	width: 80%;
+}
+
+.end-block {
+	text-align: center;
+}
+
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.descript {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

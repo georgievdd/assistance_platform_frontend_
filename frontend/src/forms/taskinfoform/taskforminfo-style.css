@@ -1,0 +1,33 @@
+.taskinfoform-container {
+	padding-left: 15px;
+	padding-top: 15px;
+	padding-right: 15px;
+}
+
+.date {
+	width: auto;
+	padding-left: 5px;
+	margin-bottom: 2px;
+	height: auto;
+  color: rgba(80, 80, 80, 1);
+  font-size: 16px;
+}
+
+.price {
+	width: auto;
+	padding-left: 5px;
+	height: auto;
+  color: rgba(80, 80, 80, 1);
+  font-size: 16px;
+	margin-bottom: 25px;
+}
+
+.description {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 5px;
+  font-size: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: black;
+}
