@@ -3,6 +3,10 @@ import '../taskform/taskform-style.css';
 import { useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import DateForm from '../dateform/DateForm';
+import { useNavigate } from 'react-router-dom';
+import { LOGIN, TASKINFO } from '../../components/routes/Routs';
+import { useDispatch } from 'react-redux';
+import { setTaskInfo } from '../../store/slices/actionCreators';
 
 const getImgPath = type => {
 	if (typeof type === undefined) type = 'default';
@@ -12,42 +16,36 @@ const getImgPath = type => {
 
 const Task = props => {
 
-	const [taskInfoShow, setTaskInfoShow] = useState(false);
-	const [finalApplyShow, setFinalApplyShow] = useState(false);
-	const [sendInputValue, setSendInputValue] = useState('');
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const {isAuth} = useAuth();
 
-	const {access} = useAuth();
+	const taskOnClick = () => {
+		switch (props.mod) {
+			case "taskInfo":
+				if (!!!isAuth) {
+					navigate(LOGIN);
+					alert("Need to log in!");
+					break;
+				}
 
-	// const propsData = {
-	// 	...props.data,
-	// 	setTaskInfoShow,
-	// 	setFinalApplyShow,
-	// }
-
-	// const backHandler = () => {
-	// 	setTaskInfoShow(true);
-	// 	setFinalApplyShow(false);
-	// }
-
-	// const sendHandler = () => {
-	// 	const path = HOST + VARIANT + EndPoints.TASKS + props.data.id + EndPoints.APPLY;
-  //   console.log(path);
+				dispatch(setTaskInfo(props.data));
+				navigate(TASKINFO);
+				break;
 		
-	// 	axios.post( 
-	// 		path,
-	// 		{message: sendInputValue},
-	// 		{headers: { Authorization: `Bearer ${access}` }}
-	// 	).then(console.log).catch(console.log);
-	// }
+			default:
+				break;
+		}
+	}
 
 	return (
 		<div 
 			className='shadow container-element task-container'
+			onClick={() => taskOnClick()}
 		>
 			<Row>
 				<Col md="auto" style={{padding: "16px", marginLeft: "15px"}}>
 					<img
-						onClick={() => setTaskInfoShow(true)}
 						className='task-img'
 						alt='load false'
 						src={getImgPath(props.data.imgType)}
@@ -56,7 +54,7 @@ const Task = props => {
 				<Col md="auto" style={{padding: "8px", width: "83%"}}>
 					<div style={{height: "80px"}}>
 						<Row>
-							<Col md="auto"  style={{width: "85%"}} >
+							<Col md="auto"  style={{width: "80%"}} >
 								<div className='mb-2'>
 									<h4 style={{ marginBottom: "0px" }} className='title'>{props.data.title}</h4>
 								</div>
@@ -65,7 +63,7 @@ const Task = props => {
 								</div>
 							</Col>
 							<Col>
-								<DateForm data={props.data.created_at} />
+								<DateForm data={props.data.created_at}/>
 							</Col>
 						</Row>
 					</div>

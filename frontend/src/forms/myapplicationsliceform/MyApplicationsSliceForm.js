@@ -1,13 +1,20 @@
-import React from 'react'
+import './myapplicationssliceform-style.css';
 
 const MyApplicationsSliceForm = props => {
   
-  
+    const {
+      applicationsSlice,
+    } = props.data;
 
   
   return (
     
-    <div>
+    <div className='slicer-scroll'>
+      {
+        applicationsSlice.map(application => (
+          <div>{application.title}</div>
+        ))
+      }
     </div>
 
   )

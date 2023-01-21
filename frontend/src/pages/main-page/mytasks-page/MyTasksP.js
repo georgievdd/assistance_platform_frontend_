@@ -1,6 +1,6 @@
 import './mytasks-page.css';
 import React, { useEffect } from 'react'
-import { Col, Row } from 'react-bootstrap';
+import { Button, Col, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useUserData } from '../../../hooks/useUserData';
@@ -114,20 +114,21 @@ const MyTasksP = () => {
 	}
 
 
+
+
   return (
     <div className='mytasks-container'>
     <Row>
-      <Col style={{width: "9%"}} md="auto">
-        <img
-          src={addLogo}
-          width="100%"
-					onClick={addTask}
-        />
-      </Col>
-      <Col md="auto" style={{width: "65%"}}>
+      <Col md="auto" style={{width: "70%"}}>
         <FormWithTasks data={dataForTasks}/>
       </Col>
-      <Col md="auto"  style={{width: "25%"}}>
+      <Col>
+				<div className='container-element shadow mb-3' style={{padding: "10px", height: "125px"}}>
+					<h5 style={{marginBottom: "28px"}}>Создать публикацию</h5>
+					<Button style={{width: "100%", height: "50px"}} variant="success" onClick={addTask}>
+						Новое задание
+					</Button>
+				</div>
         <CategoriesForm data={dataForCategories}/>
       </Col>
     </Row>

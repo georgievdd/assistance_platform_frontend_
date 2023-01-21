@@ -1,25 +1,7 @@
 .taskinfoform-container {
-	padding-left: 15px;
-	padding-top: 15px;
-	padding-right: 15px;
-}
-
-.date {
-	width: auto;
-	padding-left: 5px;
-	margin-bottom: 2px;
-	height: auto;
-  color: rgba(80, 80, 80, 1);
-  font-size: 16px;
-}
-
-.price {
-	width: auto;
-	padding-left: 5px;
-	height: auto;
-  color: rgba(80, 80, 80, 1);
-  font-size: 16px;
-	margin-bottom: 25px;
+	padding: 20px;
+	width: 1000px;
+	margin: 0 auto;
 }
 
 .description {
@@ -30,4 +12,40 @@
 	padding-left: 10px;
 	padding-right: 10px;
 	color: black;
+	border-radius: 10px;
+	border: 1px rgba(19,87,102, 1) solid;
+	min-height: 200px;
+	word-wrap: break-word;
+}
+
+.file {
+	width: 70px;
+	transition: all 0.5s;
+}
+
+.file:hover {
+	transform: scale(1.05);
+}
+
+@keyframes scale {
+	from {
+	-webkit-transform: scale(1.0);
+	-ms-transform: scale(1.0);
+			transform: scale(1.0);
+}
+50% {
+	-webkit-transform: scale(1.2);
+	-ms-transform: scale(1.2);
+			transform: scale(1.2);
+}
+to { 
+ -webkit-transform: scale(1.03);
+	-ms-transform: scale(1.03);
+			transform: scale(1.03);
+}
+}
+
+.borderTopBottom {
+	border-top: 1px solid rgba(19,87,102, 1);
+	border-bottom: 1px solid rgba(19,87,102, 1);
 }

@@ -5,6 +5,7 @@ import { setMyTasks } from './myTasksSlice';
 import { setProfile_choices_info, setFilters_info, setSubjects_info, setTags_info } from './informational_endpointSlice';
 import { setTODOtasks } from './todoTasksSlice';
 import { putNotifications } from './notificationsSlice';
+import { putTaskInfo } from './taskInfoSlice';
 
 export const loginUser = data =>
 	async (dispatch) => {
@@ -78,4 +79,10 @@ export const setNotifications = acces =>
 			.then(data => data.data);
 		dispatch(putNotifications(res));
 		console.log("res: ", res);
+	}
+
+
+export const setTaskInfo = info =>
+	dispatch => {
+		dispatch(putTaskInfo(info));
 	}

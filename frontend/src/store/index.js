@@ -5,6 +5,7 @@ import informational_endpointReducer from './slices/informational_endpointSlice'
 import myTasksReducer from './slices/myTasksSlice';
 import todoTasksReducer from './slices/todoTasksSlice';
 import notificationsReducer from './slices/notificationsSlice';
+import taskInfoReducer from './slices/taskInfoSlice';
 import {
 	persistReducer,
 	persistStore,
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   tasks: tasksReduser,
   informational_endpoint: informational_endpointReducer,
   notifications: notificationsReducer,
+  taskinfo: taskInfoReducer,
 });
 
 const persistConfig = {

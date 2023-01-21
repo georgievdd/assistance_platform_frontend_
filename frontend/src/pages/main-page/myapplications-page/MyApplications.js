@@ -13,6 +13,15 @@ const MyApplications = () => {
     },
     {
       title: "wrverv",
+    },
+    {
+      title: "wrverv",
+    },
+    {
+      title: "wrverv",
+    },
+    {
+      title: "wrverv",
     }
   ];
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Container, Nav, Dropdown, Offcanvas } from 'react-bootstrap';
+import { Button, Container, Nav, Dropdown, Offcanvas, Badge } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './style.css';
 import profileImgDefault from '../../res/img/profileScreenDefault.png';
@@ -64,6 +64,7 @@ const LoginTrueForm = props => {
 					height="40px"
 					src={bellImg}
 					onClick={openShowNotifications}
+					
 				/>
 				<div style={{position: "absolute", marginLeft: "400px"}}>
 					<div style={{width: "25px", color: "white", position: "absolute", marginRight: "10px"}}>

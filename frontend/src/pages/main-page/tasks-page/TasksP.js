@@ -64,6 +64,7 @@ const TasksP = () => {
 		searchValue, setSeacrhValue,
 		searchHandler,
 		searchTitle,
+		taskMod: "taskInfo",
 	}
 	/// вставка в DOM
 	useEffect(() => {

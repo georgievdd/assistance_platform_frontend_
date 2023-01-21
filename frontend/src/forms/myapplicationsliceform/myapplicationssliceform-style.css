@@ -1,0 +1,9 @@
+.slicer-scroll {
+  height: 100px;
+  width: 200px;
+  background: #fff;
+  border: 1px solid #C1C1C1;
+  overflow-y: scroll;
+}
+
+.slicer-scroll::-webkit-scrollbar { width: 0; }

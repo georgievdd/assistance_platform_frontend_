@@ -10,6 +10,7 @@ import MyTasksP from '../../pages/main-page/mytasks-page/MyTasksP';
 import TODOtaskP from '../../pages/main-page/todotasks-page/TODOtasksP';
 import MyApplications from '../../pages/main-page/myapplications-page/MyApplications';
 import NewTaskP from '../../pages/main-page/new_task-page/NewTaskP';
+import TaskInfoP from '../../pages/main-page/taskinfo-page/TaskInfoP';
 
 
 export const HOME           = "/";
@@ -21,6 +22,7 @@ export const MYTASKS        = "/mytasks";
 export const TODOTASKS      = "/todotasks";
 export const MYAPPLICATIONS = "/myapplications";
 export const NEWTASK        = MYTASKS + "/new_task";
+export const TASKINFO       = TASKS + "/info";
 
 const Routs = () => {
 	return (
@@ -34,7 +36,8 @@ const Routs = () => {
 				<Route path=       {MYTASKS}              element={<MyTasksP />} />
 				<Route path=       {TODOTASKS}            element={<TODOtaskP />} />
 				<Route path=       {MYAPPLICATIONS}       element={<MyApplications />} />
-				<Route path=       {NEWTASK}      element={<NewTaskP />} />
+				<Route path=       {NEWTASK}              element={<NewTaskP />} />
+				<Route path=       {TASKINFO}             element={<TaskInfoP />} />
 			</Routes>
 		</div>
 	)

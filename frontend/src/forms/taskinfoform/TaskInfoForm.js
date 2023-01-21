@@ -1,60 +1,149 @@
 import './taskforminfo-style.css';
-import { Row, Col, Button, Modal } from 'react-bootstrap';
+import { Row, Col, Button, Modal, Form, FloatingLabel } from 'react-bootstrap';
+import { parseTime } from '../../datafunc';
+import { useState } from 'react';
+import { HOST, VARIANT } from '../../api/instance';
+import EndPoints from '../../api/endPoints';
 import { useAuth } from '../../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-const toLoginPath = '/comein/';
+
+const IMG = type => {
+	return require('../../res/files/' + type + '.png');
+}
 
 const TaskInfoForm = props => {
 
-	const navigate = useNavigate();
+	const [message, setMessage] = useState('');
+	const {access} = useAuth();
 
-	const {isAuth, access} = useAuth();
+	const date = t => {
+		const {
+			month,
+			day,
+			hour,
+			minutes
+		} = parseTime(t);
+		return month + " " + day + ", " + hour + ":" + minutes;
+	}
 
-	const applyHandler = () => {
-		if (!!!isAuth) {
-			navigate(toLoginPath);
-			alert("Need to log in!");
-			return;
-		}
+	const files = [
+		{
+			type: "pdf",
+		},
+		{
+			type: "word",
+		},
+		{
+			type: "pptx",
+		},
+	];
 
-		props.data.setTaskInfoShow(false);
-		props.data.setFinalApplyShow(true);
+	const buttonHandler = () => {
+		const path = HOST + VARIANT + EndPoints.TASKS + props.data.id + EndPoints.APPLY;
+		console.log(path);
 
+		axios.interceptors.request.use(
+      config => {
+        config.headers.Authorization = "Bearer " + access;
+        return config;
+      });
+
+    axios({
+      method: "post",
+      url: path, 
+      data: {
+        message
+      }
+    })
 	}
 
 	return (
-		<Modal
-      show={props.show}
-			onHide={props.onHide}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          {props.data.title}
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-				<div className='date'>{props.data.created_at}</div>
-				<div className='price'>Price: {props.data.price}</div>
-					<Row style={{width: "60%", paddingLeft: "15px", marginBottom: "25px"}}>
-						{props.data.tags.map(element => 
-							<Col className='prioritystack-element' style={{width: "auto"}}>
-								<p>{ element }</p>
-							</Col>	
-						)}
-					</Row>
-				<div className="description">
-					<p>{ props.data.description }</p>
-					<p>FAILS</p>
+
+		<div className='taskinfoform-container container-element-white shadow'>
+			<Form>
+				<Row style={{marginBottom: "20px"}}>
+					<Col md="auto" style={{width: "30%"}}>
+						<div className='title' style={{fontSize: "20px", paddingLeft: "10px", marginBottom: "15px", fontWeight: 'bold'}}>
+							{props.data.title}
+						</div>
+						<div style={{paddingLeft: "20px", marginBottom: "20px"}}>
+							<div className='date'>{date(props.data.created_at)}</div>
+							<div className='price'>Price: {props.data.price}</div>
+						</div>
+						<div style={{width: "200px", paddingLeft: "15px", marginBottom: "25px"}}>
+							{props.data.tags.map(element => 
+								<div className='prioritystack-element' style={{width: "auto", marginBottom: "10px"}}>
+									<p>{ element }</p>
+								</div>	
+							)}
+						</div>
+					</Col>
+					<Col md="auto" style={{width: "70%"}}>
+						<div className='description'>
+							{props.data.description}
+						</div>
+					</Col>
+				</Row>
+				<div style={{marginBottom: "30px"}}>
+					<div style={{marginLeft: "10px"}}>
+						<h5>Прикрепленные файлы</h5>
+					</div>
+					<div style={{padding: "10px"}} className='borderTopBottom'>{
+						files.map(file => (
+							<img
+								className='file'
+								src={IMG(file.type)}
+							/>))}
+					</div>
 				</div>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={applyHandler}>apply</Button>
-      </Modal.Footer>
-    </Modal>
+				<FloatingLabel
+						label="Сообщение автору"
+						className="mb-4"
+					>
+					<Form.Control
+						type="text"
+						value={message}
+						onChange={e => setMessage(e.target.value)}
+					/>
+				</FloatingLabel>
+				<Button variant="success" style={{width: "16%", marginLeft: "42%"}} onClick={buttonHandler}>
+					Оставить заявку
+				</Button>
+			</Form>
+		</div>
+
+		// <Modal
+    //   show={props.show}
+		// 	onHide={props.onHide}
+    //   size="lg"
+    //   aria-labelledby="contained-modal-title-vcenter"
+    //   centered
+    // >
+    //   <Modal.Header closeButton>
+    //     <Modal.Title id="contained-modal-title-vcenter">
+    //       {props.data.title}
+    //     </Modal.Title>
+    //   </Modal.Header>
+    //   <Modal.Body>
+		// 		<div className='date'>{props.data.created_at}</div>
+		// 		<div className='price'>Price: {props.data.price}</div>
+		// 			<Row style={{width: "60%", paddingLeft: "15px", marginBottom: "25px"}}>
+		// 				{props.data.tags.map(element => 
+		// 					<Col className='prioritystack-element' style={{width: "auto"}}>
+		// 						<p>{ element }</p>
+		// 					</Col>	
+		// 				)}
+		// 			</Row>
+		// 		<div className="description">
+		// 			<p>{ props.data.description }</p>
+		// 			<p>FAILS</p>
+		// 		</div>
+    //   </Modal.Body>
+    //   <Modal.Footer>
+    //     <Button onClick={applyHandler}>apply</Button>
+    //   </Modal.Footer>
+    // </Modal>
 	)
 }
 
