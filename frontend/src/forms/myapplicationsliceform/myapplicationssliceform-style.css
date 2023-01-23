@@ -1,8 +1,6 @@
 .slicer-scroll {
-  height: 100px;
-  width: 200px;
-  background: #fff;
-  border: 1px solid #C1C1C1;
+  max-height: 500px;
+  border-radius: 5px;
   overflow-y: scroll;
 }
 

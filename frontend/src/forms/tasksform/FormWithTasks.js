@@ -21,7 +21,7 @@ const FormWithTasks = props => {
 					<Row style={{width: "100%"}}>
 						<Col style={{width: "100%", paddingLeft: "30px"}}><input
 							id="search"
-							placeholder='input task'
+							placeholder='Введите задание'
 							className='search-input'
 							value={searchValue}
 							onChange={e => searchHandler(e)}

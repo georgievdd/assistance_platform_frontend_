@@ -82,41 +82,41 @@ const RedactAboutMeForm = props => {
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          Redact profile
+          Редактирование профиля
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {/* <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Username</h5>
 				<Form.Control type='text' value={username} onChange={e => setUsername(e.target.value)}/> */}
-        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>First_name</h5>
+        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Имя</h5>
 				<Form.Control type='text' value={first_name} onChange={e => setFirst_name(e.target.value)}/>
-        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Last_name</h5>
+        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Фамилия</h5>
 				<Form.Control type='text' value={last_name} onChange={e => setLast_name(e.target.value)}/>
-        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Stage_of_study</h5>
+        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Этап обучения</h5>
 				<Form.Select aria-label="Default select example">
           {choosesArray.map(iter => <option>{iter}</option>)}
         </Form.Select>
-        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Course_of_study</h5>
+        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Курс обучения</h5>
 				<Form.Control type='text' value={course_of_study} onChange={e => setCourse_of_study(e.target.value)}/>
-        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Contact_phone</h5>
+        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Контактный номер</h5>
 				<Form.Control type='text' value={contact_phone} onChange={e => setContact_phone(e.target.value)}/>
-        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Email</h5>
+        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Почта</h5>
 				<Form.Control type='text' value={email} onChange={e => setContact_phone(e.target.value)}/>
-        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>VK</h5>
+        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>ВК</h5>
 				<Form.Control type='text' value={contact_vk} onChange={e => setContact_vk(e.target.value)}/>
-        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Telegram</h5>
+        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Телеграм</h5>
 				<Form.Control type='text' value={contact_tg} onChange={e => setContact_tg(e.target.value)}/>
-        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Contact email</h5>
+        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Контактная почта</h5>
         <Form.Control type='text' value={contact_email} onChange={e => setContact_email(e.target.value)}/>
-        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Biography</h5>
+        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Биография</h5>
 				<Form.Control as="textarea" value={biography} onChange={e => setBiography(e.target.value)}/>
-        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Change profile image</h5>
+        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Иконка профиля</h5>
 				<Form.Group controlId="formFileLg" className="mb-3">
           <Form.Control type="file" size="lg" />
         </Form.Group>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant='success' onClick={redactHandler}>redact</Button>
+        <Button variant='success' onClick={redactHandler}>Редактировать</Button>
       </Modal.Footer>
     </Modal>
   )

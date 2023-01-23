@@ -4,26 +4,12 @@ import MyApplicationsSliceForm from '../../../forms/myapplicationsliceform/MyApp
 
 const MyApplications = () => {
 
-  const applicationsSlice = [
-    {
-      title: "wrverv",
-    },
-    {
-      title: "wrverv",
-    },
-    {
-      title: "wrverv",
-    },
-    {
-      title: "wrverv",
-    },
-    {
-      title: "wrverv",
-    },
-    {
-      title: "wrverv",
-    }
-  ];
+  let applicationsSlice = [];
+  for (let i = 0; i < 100; ++i) {
+    applicationsSlice.push({
+      title: "title",
+    })
+  }
 
   const data = {
     applicationsSlice
@@ -31,12 +17,8 @@ const MyApplications = () => {
 
   return (
     <div>
-      <div className='main-container '>
-        <Row>
-          <Col>
-          <MyApplicationsSliceForm data={data}/>
-          </Col>
-        </Row>
+      <div className='main-container' style={{marginTop: "120px"}}>
+        <MyApplicationsSliceForm data={data}/>
 		  </div>
     </div>
   )

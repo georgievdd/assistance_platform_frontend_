@@ -55,9 +55,9 @@ const LoginTrueForm = props => {
 	return (
 		<div>
 			<Nav>
-				<Nav.Link style={{paddingRight: "30px"}}><Link className='link-standart' to={MYTASKS}>My tasks</Link></Nav.Link>
+				<Nav.Link style={{paddingRight: "30px"}}><Link className='link-standart' to={MYTASKS}>Мои задания</Link></Nav.Link>
 				<Nav.Link style={{paddingRight: "30px"}}><Link className='link-standart' to={TODOTASKS}>todo tasks</Link></Nav.Link>
-				<Nav.Link style={{paddingRight: "30px"}}><Link className='link-standart' to={MYAPPLICATIONS}>My applications</Link></Nav.Link>
+				<Nav.Link style={{paddingRight: "30px"}}><Link className='link-standart' to={MYAPPLICATIONS}>Мои заявки</Link></Nav.Link>
 				<img
 					style={{marginRight: "10px"}}
 					width="40px"
@@ -82,9 +82,9 @@ const LoginTrueForm = props => {
 				</Dropdown.Toggle>
 
 				<Dropdown.Menu>
-					<Dropdown.Item><Link to={PROFILE} className='nav-how-text'>Profile</Link></Dropdown.Item>
+					<Dropdown.Item><Link to={PROFILE} className='nav-how-text'>Профиль</Link></Dropdown.Item>
 					{/* <Dropdown.Item href="/settings">Settings</Dropdown.Item> */}
-					<Dropdown.Item><Link onClick={handler} to={TASKS} className='nav-how-text'>logout</Link></Dropdown.Item>
+					<Dropdown.Item><Link onClick={handler} to={TASKS} className='nav-how-text'>Выйти</Link></Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
 				<img
@@ -97,7 +97,7 @@ const LoginTrueForm = props => {
 			
 			<Offcanvas placement="end" show={showNotifications} onHide={closeNotifications}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Notifications</Offcanvas.Title>
+          <Offcanvas.Title>Уведомления</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
 					{

@@ -1,6 +1,6 @@
 .task-container {
 	width: auto;
-	height: 125px;
+	height: auto;
 	margin-bottom: 15px;
 
 	transition: all 0.5s;
@@ -43,8 +43,9 @@
 }
 
 .title {
-  overflow: hidden;
-  text-overflow: ellipsis;
+  word-wrap: break-word;
+  /* overflow: hidden;
+  text-overflow: ellipsis; */
 }
 
 .descript {

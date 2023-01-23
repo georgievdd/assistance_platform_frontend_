@@ -9,8 +9,11 @@ import { useDispatch } from 'react-redux';
 import { setTaskInfo } from '../../store/slices/actionCreators';
 
 const getImgPath = type => {
+	// console.log("1", type);
 	if (typeof type === undefined) type = 'default';
-	return require('../../res/task_logo/' + type + '.png');
+	// type = 'default'
+	// console.log("2", type);
+	return require('../../res/task_logo/rus/' + type + '.png');
 	// return require('../../res/task_logo/v2/' + type + '.svg');
 }
 
@@ -52,11 +55,11 @@ const Task = props => {
 					/>
 				</Col>
 				<Col md="auto" style={{padding: "8px", width: "83%"}}>
-					<div style={{height: "80px"}}>
+					<div>
 						<Row>
-							<Col md="auto"  style={{width: "80%"}} >
-								<div className='mb-2'>
-									<h4 style={{ marginBottom: "0px" }} className='title'>{props.data.title}</h4>
+							<Col md="auto"  style={{width: "80%", marginBottom: "10px"}} >
+								<div className='mb-2' style={{ marginBottom: "0px" }}>
+									<h4 className='title'>{props.data.title}</h4>
 								</div>
 								<div className='descript'>
 									{props.data.description}

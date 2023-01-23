@@ -69,7 +69,7 @@ const TaskInfoForm = props => {
 						</div>
 						<div style={{paddingLeft: "20px", marginBottom: "20px"}}>
 							<div className='date'>{date(props.data.created_at)}</div>
-							<div className='price'>Price: {props.data.price}</div>
+							<div className='price'>Вознаграждение: {props.data.price}</div>
 						</div>
 						<div style={{width: "200px", paddingLeft: "15px", marginBottom: "25px"}}>
 							{props.data.tags.map(element => 

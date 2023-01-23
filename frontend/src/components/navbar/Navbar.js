@@ -67,14 +67,14 @@ const Navibar = props => {
 						</Col>
 
 						<Col md="auto" style={{margin: "0 auto"}}><Nav>
-							<Nav.Link><Link className='link-standart' to={TASKS}>Tasks</Link></Nav.Link>
+							<Nav.Link><Link className='link-standart' to={TASKS}>Задания</Link></Nav.Link>
 						</Nav></Col>
 
 						<Col md="auto"><Nav style={{float: "right"}}>
 							{isAuth ? <LoginTrueForm data={loginTrueFormData}/> :
 							<>
-								<Nav.Link><Link className='link-standart' to={LOGIN}>Login</Link></Nav.Link>
-								<Nav.Link><Link className='link-standart' to={REGISTRATION}>Registration</Link></Nav.Link>
+								<Nav.Link><Link className='link-standart' to={LOGIN}>Войти</Link></Nav.Link>
+								<Nav.Link><Link className='link-standart' to={REGISTRATION}>Зарегистрироваться</Link></Nav.Link>
 							</>
 							}
 						</Nav></Col>

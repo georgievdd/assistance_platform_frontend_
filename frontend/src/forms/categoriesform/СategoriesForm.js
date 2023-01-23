@@ -1,7 +1,10 @@
 import '../categoriesform/categoriesform.css';
-import { Form, Row, Col } from 'react-bootstrap';
-import arrowUp from '../../res/img/arrow-up.png';
-import arrowDown from '../../res/img/arrow-down.png';
+import { Form, Row, Col, Dropdown, SplitButton } from 'react-bootstrap';
+import arrowUp from '../../res/img/arrow-up.svg';
+import arrowDown from '../../res/img/arrow-down.svg';
+import { getElById, getKeyByValue } from '../../datafunc';
+
+
 const СategoriesForm = props => {
 		//! ИСПРАВИТЬ
 
@@ -13,16 +16,41 @@ const СategoriesForm = props => {
 		subjectsCheckHandler,
 		sortsParamsCheckHandler,
 		sortDirectionHandler,
+		sortTitle,
 	} = props.data;
 
 
 	return (
 		<div>
+			<div className='mb-3 container-element shadow'>
+				<div style={{width: "100%"}}>
+					<div md="auto"><h5 style={{color: "black", marginLeft: "25px", paddingTop: "10px"}}>Сортировать по</h5></div>
+				</div>
+				<div className="mt-2 mb-2">
+					<Row style={{padding: '10px'}}>
+						<Col md="auto" style={{width: "81%"}}>
+								<SplitButton variant="light"style={{width: "100%"}} title={sortTitle}>
+									{
+										Object.keys(sortsParams).map(key => (
+											<Dropdown.Item id={sortsParams[key]} onClick={e => sortsParamsCheckHandler(e.target.id)}>{sortsParams[key]}</Dropdown.Item>
+										)) 
+									}
+								</SplitButton>
+						</Col>
+						<Col md="auto" style={{width:"17%"}}><img 
+							width="100%"
+							src = {sortDirection === '-' ? arrowUp : arrowDown}
+							style={{border: "1px rgba(19,87,102,1) solid", borderRadius: "5px"}}
+							onClick={() => sortDirectionHandler()}
+						/></Col>
+					</Row>
+				</div>
+			</div>
 			<div className='shadow container-element'>
 				<div id="Subject">
 					<div style={{ paddingLeft: "20px", paddingRight: "20px" }} className="mb-4">
 						<div className='category-line'>
-							<h5 className="category-text">Subjects</h5>
+							<h5 className="category-text">Предметы</h5>
 						</div>
 					</div>
 					<div className='pb-1'>
@@ -43,14 +71,14 @@ const СategoriesForm = props => {
 				<div id="Subject">
 					<div style={{ paddingLeft: "20px", paddingRight: "20px" }} className="mb-3">
 						<div className='category-line'>
-							<h5 className="category-text">Tags</h5>
+							<h5 className="category-text">Теги</h5>
 						</div>
 					</div>
-					<div className='mb-3' style={{width: "100%", marginLeft: "30px"}}>
+					<div className='mb-3' style={{width: "100%", marginLeft: "20px"}}>
 						<Form.Check
 								defaultChecked={true}
 								inline
-								label="At least one"
+								label="Хотя бы один"
 								name="group1"
 								type="radio"
 								onChange={() => {grouping_typeHandler("or")}}
@@ -58,7 +86,7 @@ const СategoriesForm = props => {
 						<Form.Check
 							inline
 							value={true}
-							label="All together"
+							label="Все одновременно"
 							name="group1"
 							type="radio"
 							onChange={() => {grouping_typeHandler("and")}}
@@ -76,27 +104,6 @@ const СategoriesForm = props => {
 							</div>
 						)}
 					</div>
-				</div>
-			</div>
-			<div className='mt-3'>
-				<div style={{width: "100%"}}>
-					<Row>
-						<Col md="auto"><h5 style={{color: "white"}}>Sort by</h5></Col>
-						<Col><img 
-							width="30px"
-							src = {sortDirection === '-' ? arrowUp : arrowDown}
-							onClick={() => sortDirectionHandler()}
-						/></Col>
-					</Row>
-				</div>
-				<div style={{width: "100%"}} className="mt-2">
-					<Form.Select style={{width: "100%", fontSize: "12px"}} size="sm" onClick={e => {sortsParamsCheckHandler(e.target.value)}}>
-						{
-							Object.keys(sortsParams).map(key => (
-								<option>{sortsParams[key]}</option>
-							)) 
-						}
-					</Form.Select>
 				</div>
 			</div>
 		</div>

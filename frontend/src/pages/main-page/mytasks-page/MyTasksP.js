@@ -12,6 +12,7 @@ import { useInformational_endpoint } from '../../../hooks/useInformational_endpo
 import { getKeyByValue, getIdByEl, urlCreatePartOfPath, createTaskObject } from '../../../datafunc';
 import addLogo from '../../../res/img/addLogo.png';
 import { useNavigate } from 'react-router-dom';
+import { NEWTASK } from '../../../components/routes/Routs';
 
 const MyTasksP = () => {
 
@@ -110,14 +111,14 @@ const MyTasksP = () => {
 
 
 	const addTask = () => {
-		navigate('new_task');
+		navigate(NEWTASK);
 	}
 
 
 
 
   return (
-    <div className='mytasks-container'>
+    <div className='main-container'>
     <Row>
       <Col md="auto" style={{width: "70%"}}>
         <FormWithTasks data={dataForTasks}/>

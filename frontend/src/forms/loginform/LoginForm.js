@@ -31,10 +31,10 @@ const Login = () => {
 	return (
 		<div className='logform-container'>
 			<div className='log-reg-header-container container-element-white shadow'>
-				<p style={{display: "inline-block", paddingRight: "5px"}}>Don't have an account yet?</p>
+				<p style={{display: "inline-block", paddingRight: "5px"}}>Ещё нет аккаунта?</p>
 				<Nav.Link style={{ display: "inline-block" }}><Link
 					className='link-default'
-					to={REGISTRATION}>Register</Link>
+					to={REGISTRATION}>Зарегистрируйтесь</Link>
 				</Nav.Link>
 			</div>
 			<div className='login-container container-element-white shadow'>
@@ -49,12 +49,12 @@ const Login = () => {
 				<Form>
 
 					<div>
-						<h6 className="mb-4">log in</h6>
+						<h6 className="mb-4">Вход в аккаунт</h6>
 					</div>
 
 					<FloatingLabel
 						controlId="fromBasicEmail"
-						label="Email address"
+						label="Username"
 						className="mb-4"
 					>
 						<Form.Control
@@ -78,11 +78,11 @@ const Login = () => {
 						/>
 					</FloatingLabel>
 
-					<Nav.Link className='mb-4'><Link className="link-default" to="">Forgot password?</Link></Nav.Link>
+					<Nav.Link className='mb-4'><Link className="link-default" to="">Забыли пароль?</Link></Nav.Link>
 
 					<Button variant="dark" className="login-button mb-5"
 						onClick={handler}
-					>log in</Button>
+					>Войти</Button>
 
 				</Form>
 			</div>

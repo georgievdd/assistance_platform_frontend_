@@ -59,24 +59,24 @@ export const getSumByName = (name, arr) => {
       return element[0];
 }
 
-const months = ["January",
-                "February",
-                "March",
-                "April",
-                "May",
-                "June",
-                "July",
-                "August",
-                "September",
-                "October",
-                "November",
-                "December",]
+const months = ["Январь",
+                "Февраль",
+                "Март",
+                "Апрель",
+                "Май",
+                "Июнь",
+                "Июль",
+                "Август",
+                "Сентябрь",
+                "Октябрь",
+                "Ноябрь",
+                "Декабрь",]
 
 export const parseTime = date => {
   const ymd = date.split('T')[0];
   const time = date.split('T')[1];
   const year = ymd.split('-')[0];
-  const month = months[parseInt(ymd.split('-')[1])];
+  const month = months[parseInt(ymd.split('-')[1] - 1)];
   const day = ymd.split('-')[2];
   const hour = time.split(':')[0];
   const minutes = time.split(':')[1];

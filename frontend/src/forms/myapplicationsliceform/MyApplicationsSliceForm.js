@@ -1,4 +1,5 @@
 import './myapplicationssliceform-style.css';
+import ApplicationForm from '../applicationform/ApplicationForm';
 
 const MyApplicationsSliceForm = props => {
   
@@ -12,7 +13,9 @@ const MyApplicationsSliceForm = props => {
     <div className='slicer-scroll'>
       {
         applicationsSlice.map(application => (
-          <div>{application.title}</div>
+          <div style={{marginBottom: "10px"}}>
+            <ApplicationForm data={application}/>
+          </div>
         ))
       }
     </div>

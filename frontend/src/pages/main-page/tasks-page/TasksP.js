@@ -1,4 +1,4 @@
-import { Col, Row } from 'react-bootstrap';
+import { Col, Row, Button } from 'react-bootstrap';
 import FormWithTasks from '../../../forms/tasksform/FormWithTasks';
 import СategoriesForm from '../../../forms/categoriesform/СategoriesForm';
 import { useEffect } from 'react';
@@ -9,10 +9,13 @@ import { useInformational_endpoint } from '../../../hooks/useInformational_endpo
 import { useState } from 'react';
 import { setTasks } from '../../../store/slices/actionCreators';
 import { getKeyByValue, getIdByEl, urlCreatePartOfPath, createTaskObject } from '../../../datafunc';
+import { useNavigate } from 'react-router-dom';
+import { NEWTASK } from '../../../components/routes/Routs';
 
 const TasksP = () => {
 
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const {subjects, tags, subjects_info, tags_info, sortsParams } = useInformational_endpoint();
 
@@ -33,6 +36,7 @@ const TasksP = () => {
 		)))
 	}
 	const sortsParamsCheckHandler = value => {
+		setSortTitle(value);
 		setSort_type(getKeyByValue(value, sortsParams));
 	}
 	const sortDirectionHandler = () => {
@@ -47,8 +51,9 @@ const TasksP = () => {
 	const [subjectsStateValue, setSubjectsStateValue] = useState(useInformational_endpoint().subjects.map(() => false));
 	const [grouping_type, setGrouping_type] = useState("or");
 	const [sort_type, setSort_type] = useState('');
+	const [sortTitle, setSortTitle] = useState('');
 	const [sortDirection, setSortDirection] = useState('');
-	const searchTitle = 'Tasks';
+	const searchTitle = 'Все задания';
 	const dataForCategories = {
 		informational_endpoint: useInformational_endpoint(),
 		sortDirection,
@@ -57,6 +62,7 @@ const TasksP = () => {
 		subjectsCheckHandler,
 		sortsParamsCheckHandler,
 		sortDirectionHandler,
+		sortTitle,
 	}
 	const dataForTasks = {
 		informational_endpoint: useInformational_endpoint(),
@@ -108,6 +114,13 @@ const TasksP = () => {
 
 	}, [searchValue])
 
+
+	const addTask = () => {
+		navigate(NEWTASK);
+	}
+
+
+
 	return (
 		<div className='main-container'>
 			<Row>
@@ -115,6 +128,12 @@ const TasksP = () => {
 					<FormWithTasks data={dataForTasks}/>
 				</Col>
 				<Col>
+					<div className='container-element shadow mb-3' style={{padding: "10px", height: "125px"}}>
+						<h5 style={{marginBottom: "28px"}}>Создать публикацию</h5>
+						<Button style={{width: "100%", height: "50px"}} variant="success" onClick={addTask}>
+							Новое задание
+						</Button>
+					</div>
 					<СategoriesForm data={dataForCategories}/>
 				</Col>
 			</Row>
