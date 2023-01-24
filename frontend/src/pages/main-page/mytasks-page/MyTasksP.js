@@ -69,6 +69,7 @@ const MyTasksP = () => {
 		searchValue, setSeacrhValue,
 		searchHandler,
     searchTitle,
+		taskMod: "taskRedact",
 	}
 	/// вставка в DOM
   useEffect(() => {

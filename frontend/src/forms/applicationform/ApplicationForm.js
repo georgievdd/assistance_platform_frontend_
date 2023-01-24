@@ -23,9 +23,8 @@ const ApplicationForm = props => {
   } = props.data;
 
   return (
-    <div className="container-element application-container application">
+    <div className="container-element application-container application" style={{width: "96%", margin: "0 auto"}}>
       <Row>
-        <Col md="auto" style={{padding: "8px"}}>
         <Col md="auto" >
           <div className='mb-2' style={{ marginBottom: "0px" }}>
             <h4 className='title'>title</h4>
@@ -36,7 +35,6 @@ const ApplicationForm = props => {
         </Col>
         <Col>
           <DateForm data={props.data.created_at}/>
-        </Col>
         </Col>
       </Row>
     </div>

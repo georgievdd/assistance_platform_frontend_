@@ -32,7 +32,7 @@ const TaskInfoForm = props => {
 			type: "pdf",
 		},
 		{
-			type: "word",
+			type: "doc",
 		},
 		{
 			type: "pptx",

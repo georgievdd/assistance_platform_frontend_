@@ -1,4 +1,5 @@
 import React from 'react'
+import { parseTime } from '../../datafunc';
 
 const RedactMyApplicationsForm = props => {
 
@@ -18,7 +19,27 @@ const RedactMyApplicationsForm = props => {
 
   return (
     <div className='container-element shadow'>
-      {task.title}
+      <div>
+      applicant: {applicant}
+      </div>
+      <div>
+      created_at: {parseTime(created_at).hour}
+      </div>
+      <div>
+      implementer_rating_normalized: {implementer_rating_normalized}
+      </div>
+      <div>
+      message: {message}
+      </div>
+      <div>
+      updated_at: {parseTime(updated_at).day}
+      </div>
+      <div>
+      status: {status}
+      </div>
+      <div>
+      applicant_username: {applicant_username}
+      </div>
     </div>
   )
 }

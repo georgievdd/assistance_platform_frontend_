@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { LOGIN, TASKINFO } from '../../components/routes/Routs';
 import { useDispatch } from 'react-redux';
 import { setTaskInfo } from '../../store/slices/actionCreators';
+import redactImg from '../../res/img/pencil.svg'; 
 
 const getImgPath = type => {
 	if (typeof type == null) type = 'default';
@@ -19,8 +20,10 @@ const Task = props => {
 	const dispatch = useDispatch();
 	const {isAuth} = useAuth();
 
+	const {mod} = props;
+
 	const taskOnClick = () => {
-		switch (props.mod) {
+		switch (mod) {
 			case "taskInfo":
 				if (!!!isAuth) {
 					navigate(LOGIN);
@@ -62,15 +65,29 @@ const Task = props => {
 								</div>
 							</Col>
 							<Col>
-								<DateForm data={props.data.created_at}/>
+								<div>
+									<DateForm data={props.data.created_at}/>
+								</div>
 							</Col>
 						</Row>
 					</div>
-					<Row>
-						{props.data.tags.map(element =>
-							<p className='prioritystack-element' style={{ width: "auto", marginLeft: "10px"}}>{element}</p>
-						)}
-					</Row>
+					<div>
+						<div style={{display: "inline-block"}}>
+							<Row>
+								{props.data.tags.map(element =>
+									<p className='prioritystack-element' style={{ width: "auto", marginLeft: "10px"}}>{element}</p>
+								)}
+							</Row>
+						</div>
+						{mod === "taskRedact" &&
+							<div style={{display: "inline-block", float: "right", paddingRight: "15px"}}>
+								<img
+									src={redactImg}
+									width="50px"
+								/>
+							</div>
+						}
+					</div>
 				</Col>
 			</Row>
 		</div>
