@@ -9,7 +9,8 @@ const EndPoints = {
 	MY_PROFILE: '/users/my_profile/',
 	APPLY: '/apply',
 	NEW_TASK: '/tasks/new_task',
-	NOTIFICATIONS: '/notifications/'
+	NOTIFICATIONS: '/notifications/',
+	MY_APPLICATIONS: '/applications',
 }
 
 export default EndPoints;

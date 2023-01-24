@@ -8,7 +8,7 @@ import ProfileP from '../../pages/main-page/profile-page/ProfileP';
 // import PersonalAriaP from '../../pages/main-page/personalaria-page/PersonalAriaP';
 import MyTasksP from '../../pages/main-page/mytasks-page/MyTasksP';
 import TODOtaskP from '../../pages/main-page/todotasks-page/TODOtasksP';
-import MyApplications from '../../pages/main-page/myapplications-page/MyApplications';
+import MyApplicationsP from '../../pages/main-page/myapplications-page/MyApplicationsP';
 import NewTaskP from '../../pages/main-page/new_task-page/NewTaskP';
 import TaskInfoP from '../../pages/main-page/taskinfo-page/TaskInfoP';
 
@@ -35,7 +35,7 @@ const Routs = () => {
 				<Route path=       {PROFILE}              element={<ProfileP />} />
 				<Route path=       {MYTASKS}              element={<MyTasksP />} />
 				<Route path=       {TODOTASKS}            element={<TODOtaskP />} />
-				<Route path=       {MYAPPLICATIONS}       element={<MyApplications />} />
+				<Route path=       {MYAPPLICATIONS}       element={<MyApplicationsP />} />
 				<Route path=       {NEWTASK}              element={<NewTaskP />} />
 				<Route path=       {TASKINFO}             element={<TaskInfoP />} />
 			</Routes>

@@ -9,12 +9,8 @@ import { useDispatch } from 'react-redux';
 import { setTaskInfo } from '../../store/slices/actionCreators';
 
 const getImgPath = type => {
-	// console.log("1", type);
-	if (typeof type === undefined) type = 'default';
-	// type = 'default'
-	// console.log("2", type);
+	if (typeof type == null) type = 'default';
 	return require('../../res/task_logo/rus/' + type + '.png');
-	// return require('../../res/task_logo/v2/' + type + '.svg');
 }
 
 const Task = props => {

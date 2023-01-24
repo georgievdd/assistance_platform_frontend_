@@ -18,11 +18,11 @@ const RedactAboutMeForm = props => {
 
 
 
-  const usernameNow = useUserData().username;
+  const {username} = useUserData();
   const { id } = useUserData();
   const {access} = useAuth();
 
-  const [username, setUsername] = useState(useUserData().username);
+  // const [username, setUsername] = useState(useUserData().username);
   const [first_name, setFirst_name] = useState(useUserData().first_name);
   const [last_name, setLast_name] = useState(useUserData().last_name);
   const [stage_of_study, setStage_of_study] = useState(useUserData().stage_of_study);
@@ -38,18 +38,8 @@ const RedactAboutMeForm = props => {
   const redactHandler = () => {
     console.log(biography);
 
-    const path = HOST + VARIANT + EndPoints.USERS + usernameNow;
-    
-    axios.interceptors.request.use(
-      config => {
-        config.headers.Authorization = "Bearer " + access;
-        return config;
-      });
-
-    axios({
-      method: "put",
-      url: path, 
-      data: {
+    const res = async () => 
+      redactProfile(username, access, {
         biography,
         contact_email,
         contact_phone,
@@ -63,10 +53,10 @@ const RedactAboutMeForm = props => {
         username,
         contact_vk,
         contact_tg,
-      }
-    })
-      // dispatch(getUserData({username}));
-      window.location.reload();
+      })
+  
+    // dispatch(getUserData({username}));
+    window.location.reload();
   }
 
   const choosesArray = useInformational_endpoint().stage_of_study_choices;

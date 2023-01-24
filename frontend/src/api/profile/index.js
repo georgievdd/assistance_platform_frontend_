@@ -1,11 +1,5 @@
 import EndPoints from "../endPoints";
-import { axiosInstance } from "../instance";
+import { axiosAccessRequest, axiosInstance } from "../instance";
 
-export const redactProfile = (username, access, params) =>
-	axiosInstance.put(EndPoints.USERS + username, {
-		headers: new Headers({
-			'Authorization': 'Bearer ' + access,
-			'Content-Type': 'application/json'
-		}),
-		params
-	});
+export const redactProfile = (username, access, data) =>
+	axiosAccessRequest("put", EndPoints.USERS + username, access, data);

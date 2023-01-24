@@ -1,11 +1,12 @@
 import api from '../../api';
 import { setUser, setUserInfo } from './userSlice';
-import { getTasks } from './tasksSlice';
+import { getTasks, putTask } from './tasksSlice';
 import { setMyTasks } from './myTasksSlice';
 import { setProfile_choices_info, setFilters_info, setSubjects_info, setTags_info } from './informational_endpointSlice';
 import { setTODOtasks } from './todoTasksSlice';
 import { putNotifications } from './notificationsSlice';
 import { putTaskInfo } from './taskInfoSlice';
+import { putMyApplications } from './applicationSlice';
 
 export const loginUser = data =>
 	async (dispatch) => {
@@ -46,6 +47,16 @@ export const setTasks = urlRequest =>
 		dispatch(getTasks(res));
 	}
 
+	export const setTask = urlRequest =>
+	async (dispatch) => {
+		const res = await api.tasks.tasks(urlRequest)
+		.then(data => data.data)
+		console.log(res);
+		dispatch(putTask(res));
+	}
+
+
+
 export const getMyTasks = (user, url) =>
 	async (dispatch) => {
 
@@ -85,4 +96,11 @@ export const setNotifications = acces =>
 export const setTaskInfo = info =>
 	dispatch => {
 		dispatch(putTaskInfo(info));
+	}
+
+export const setMyApplications = (id, access) => 
+	async dispatch => {
+		const res = await api.applications.myApplications(id, access)
+		.then(data => data.data);
+		dispatch(putMyApplications(res));
 	}

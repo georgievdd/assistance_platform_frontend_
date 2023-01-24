@@ -31,6 +31,7 @@ const TODOtasksP = () => {
 		)))
 	}
 	const sortsParamsCheckHandler = value => {
+		setSortTitle(value);
 		setSort_type(getKeyByValue(value, sortsParams));
 	}
 	const sortDirectionHandler = () => {
@@ -45,6 +46,7 @@ const TODOtasksP = () => {
 	const [subjectsStateValue, setSubjectsStateValue] = useState(useInformational_endpoint().subjects.map(() => false));
 	const [grouping_type, setGrouping_type] = useState("or");
 	const [sort_type, setSort_type] = useState('');
+	const [sortTitle, setSortTitle] = useState('');
 	const [sortDirection, setSortDirection] = useState('');
   const searchTitle = 'My TODO Tasks';
 	const dataForCategories = {
@@ -55,6 +57,7 @@ const TODOtasksP = () => {
 		subjectsCheckHandler,
 		sortsParamsCheckHandler,
 		sortDirectionHandler,
+		sortTitle,
 	}
 	const dataForTasks = {
 		informational_endpoint: useInformational_endpoint(),

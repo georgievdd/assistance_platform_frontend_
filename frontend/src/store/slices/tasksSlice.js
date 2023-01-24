@@ -6,7 +6,8 @@ const initialState = {
 	filters: {
 		tags: [],
 		subjects: [],
-	}
+	},
+	task: {},
 }
 
 const tasksSlice = createSlice({
@@ -20,6 +21,9 @@ const tasksSlice = createSlice({
 			//console.log("payload filters: ", action.payload);
 			state.filters = action.payload.filters;
 		},
+		putTask(state, action) {
+			state.task = action.payload;
+		},
 		deleteTasks(state) {
 			state.tasks = initialState.tasks;
 			state.loadStatus = initialState.loadStatus;
@@ -27,6 +31,6 @@ const tasksSlice = createSlice({
 	},
 });
 
-export const { getTasks, deleteTasks } = tasksSlice.actions;
+export const { getTasks, deleteTasks, putTask } = tasksSlice.actions;
 
 export default tasksSlice.reducer;

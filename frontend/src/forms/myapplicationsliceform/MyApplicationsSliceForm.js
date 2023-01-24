@@ -3,18 +3,23 @@ import ApplicationForm from '../applicationform/ApplicationForm';
 
 const MyApplicationsSliceForm = props => {
   
-    const {
-      applicationsSlice,
-    } = props.data;
+  const {
+    applications,
+    chooseApplicationIndex,
+    applicationChooseHandler,
+  } = props.data;
 
-  
+  const {task} = props;
+
   return (
     
     <div className='slicer-scroll'>
       {
-        applicationsSlice.map(application => (
-          <div style={{marginBottom: "10px"}}>
-            <ApplicationForm data={application}/>
+        applications.map((application, index) => (
+          <div style={{marginBottom: "10px"}} onClick={() => applicationChooseHandler(index)}>
+            <div style={{padding: "3px"}}>
+              <ApplicationForm data={application} task={task}/>
+            </div>
           </div>
         ))
       }
