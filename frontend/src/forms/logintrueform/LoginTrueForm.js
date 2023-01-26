@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Container, Nav, Dropdown, Offcanvas, Badge } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './style.css';
 import profileImgDefault from '../../res/img/profileScreenDefault.png';
 import bellImg from '../../res/img/bell_dark.svg';
@@ -16,6 +16,7 @@ import { useAuth } from '../../hooks/useAuth';
 const LoginTrueForm = props => {
 
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const [showNotifications, setShowNotifications] = useState(false);
 	const closeNotifications = () => {
 		setShowNotifications(false);
@@ -44,7 +45,12 @@ const LoginTrueForm = props => {
 	if (!profileImg) profileImg = profileImgDefault;
 
 	const handler = () => {
+		navigate(TASKS);
 		dispatch(deleteUser());
+	}
+
+	const profileNavigate = () => {
+		navigate(PROFILE);
 	}
 
 	const notificationsHandler = () => {
@@ -54,11 +60,12 @@ const LoginTrueForm = props => {
 
 	return (
 		<div>
-			<Nav>
+			<Nav style={{width: "100%"}}>
+				<Nav.Link style={{paddingRight: "30px"}}><Link className='link-standart' to={TASKS}>Задания</Link></Nav.Link>
 				<Nav.Link style={{paddingRight: "30px"}}><Link className='link-standart' to={MYTASKS}>Мои задания</Link></Nav.Link>
 				<Nav.Link style={{paddingRight: "30px"}}><Link className='link-standart' to={TODOTASKS}>todo tasks</Link></Nav.Link>
 				<Nav.Link style={{paddingRight: "30px"}}><Link className='link-standart' to={MYAPPLICATIONS}>Мои заявки</Link></Nav.Link>
-				<img
+				{/* <img
 					style={{marginRight: "10px"}}
 					width="40px"
 					height="40px"
@@ -75,16 +82,16 @@ const LoginTrueForm = props => {
 						height="28px"
 						src={sircleImg}
 					/>
-				</div>
+				</div> */}
 				<Dropdown style={{display: "inline-block"}}>
 				<Dropdown.Toggle variant="dark" id="dropdown-basic">
-					<div className='nav-button'>{username}</div>
+					<div className='nav-button'>{username} <Badge bg="secondary">{notificationsHandler()}</Badge></div>
 				</Dropdown.Toggle>
 
 				<Dropdown.Menu>
-					<Dropdown.Item><Link to={PROFILE} className='nav-how-text'>Профиль</Link></Dropdown.Item>
-					{/* <Dropdown.Item href="/settings">Settings</Dropdown.Item> */}
-					<Dropdown.Item><Link onClick={handler} to={TASKS} className='nav-how-text'>Выйти</Link></Dropdown.Item>
+					<Dropdown.Item onClick={profileNavigate}>Профиль</Dropdown.Item>
+					<Dropdown.Item onClick={openShowNotifications}>Уведомления {`(${notificationsHandler()})`}</Dropdown.Item>
+					<Dropdown.Item onClick={handler} className='nav-how-text'>Выйти</Dropdown.Item>
 					</Dropdown.Menu>
 				</Dropdown>
 				<img

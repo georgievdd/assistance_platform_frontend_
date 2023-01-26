@@ -44,7 +44,7 @@ const Navibar = props => {
 
 	return (
 		<div>
-			<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" >
+			<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{paddingRight: "100px", paddingLeft: "100px"}}>
 					
 				
 
@@ -65,13 +65,21 @@ const Navibar = props => {
 								<h5 style={headerTextStyle}>Assistance Platform</h5>
 							</div>
 						</Col>
+						
+						{!isAuth ?
+							<Col md="auto" style={{margin: "0 auto"}}><Nav>
+								<Nav.Link><Link className='link-standart' to={TASKS}>Задания</Link></Nav.Link>
+							</Nav></Col> :
+							<Col md="auto" style={{margin: "0 auto", width: '10px'}}>
+							</Col>
+						}
 
-						<Col md="auto" style={{margin: "0 auto"}}><Nav>
-							<Nav.Link><Link className='link-standart' to={TASKS}>Задания</Link></Nav.Link>
-						</Nav></Col>
-
-						<Col md="auto"><Nav style={{float: "right"}}>
-							{isAuth ? <LoginTrueForm data={loginTrueFormData}/> :
+						<Col md="auto"><Nav>
+							{isAuth ? 
+							<div>
+								<LoginTrueForm data={loginTrueFormData}/>
+							</div>
+							:
 							<>
 								<Nav.Link><Link className='link-standart' to={LOGIN}>Войти</Link></Nav.Link>
 								<Nav.Link><Link className='link-standart' to={REGISTRATION}>Зарегистрироваться</Link></Nav.Link>

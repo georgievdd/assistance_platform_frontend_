@@ -16,6 +16,7 @@ const NewTaskForm = props => {
     descriptionHandler,
     dateHandler,
     postTaskHandler,
+    fileHandler,
   } = props.data;
 
   return (
@@ -71,9 +72,13 @@ const NewTaskForm = props => {
             onChange={e => descriptionHandler(e)}
           />
         </FloatingLabel>
-      <FloatingLabel controlId="floatingInputGrid" label="Окончание приема заявок" className="mb-3">
-        <Form.Control type="date" placeholder="description" onChange={e => dateHandler(e)}/>
-      </FloatingLabel>
+        <Form.Group controlId="formFileLg" className="mb-3">
+          {/* <Form.Label>Large file input example</Form.Label> */}
+          <Form.Control type="file" size="lg" onChange={e => fileHandler(e)}/>
+        </Form.Group>
+        <FloatingLabel controlId="floatingInputGrid" label="Окончание приема заявок" className="mb-3">
+          <Form.Control type="date" placeholder="description" onChange={e => dateHandler(e)}/>
+        </FloatingLabel>
       </div>
       <Button variant="success" style={{marginLeft: "40%"}} onClick={postTaskHandler}>
         <div className="new_task-button">Разместить задание</div>

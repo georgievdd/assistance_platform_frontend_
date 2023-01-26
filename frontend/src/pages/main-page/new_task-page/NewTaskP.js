@@ -10,6 +10,7 @@ import {MYTASKS} from '../../../components/routes/Routs';
 import axios from "axios";
 import { HOST, VARIANT } from "../../../api/instance";
 import EndPoints from "../../../api/endPoints";
+import { postTask } from "../../../api/tasks";
 
 const NewTaskP = () => {
 
@@ -24,12 +25,13 @@ const NewTaskP = () => {
   } = useInformational_endpoint();
   const course_array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   const [titleState, setTitleState] = useState("");
-  const [tagsState, setTagsState] = useState(tags.map(() => false));
+  const [tagsState, setTagsState] = useState(tags.map((e, i) => i ? true : false));
   const [stageOfStudy, setStageOfStudy] = useState(stage_of_study_choices_info[0][0]);
   const [courseOfStudy, setCourseOfStudy] = useState(1);
-  const [subjectState, setSubjectState] = useState(subjects[0]);
+  const [subjectState, setSubjectState] = useState(subjects_info[0][0]);
   const [descriptionState, setDescriptionState] = useState("");
   const [dateState, setDateState] = useState("");
+  const [file, setFile] = useState('');
 
   const tagsCheckHandler = index => {
 		setTagsState(tagsState => tagsState.map((e, i) => (
@@ -64,6 +66,10 @@ const NewTaskP = () => {
     setDateState(e.target.value);
   }
 
+  const fileHandler = e => {
+    console.log(e.target.value);
+  }
+
   const postTaskHandler = () => {
 
     let tagsIdArray = [];
@@ -82,19 +88,7 @@ const NewTaskP = () => {
       stop_accepting_applications_at: dateState,
     }
 
-    axios.interceptors.request.use(
-      config => {
-        config.headers.Authorization = "Bearer " + access;
-        return config;
-      });
-
-    const path = HOST + VARIANT + EndPoints.NEW_TASK;
-
-    axios({
-      method: "post",
-      url: path, 
-      data,
-    });
+    postTask(access, data);
     navigate(MYTASKS);
   }
 
@@ -111,6 +105,7 @@ const NewTaskP = () => {
     dateHandler,
     postTaskHandler,
     titleHandler,
+    fileHandler,
   };
 
   return (

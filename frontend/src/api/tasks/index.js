@@ -1,5 +1,5 @@
 import EndPoints from "../endPoints";
-import { axiosInstance } from "../instance";
+import { axiosInstance, axiosAccessRequest } from "../instance";
 
 export const tasks = urlParams => {
 	if (!urlParams) urlParams = '';
@@ -8,12 +8,5 @@ export const tasks = urlParams => {
 }
 
 
-export const postTask = (access, params) => {
-	axiosInstance.post(EndPoints.NEW_TASK, {
-		headers: new Headers({
-			'Authorization': 'Bearer ' + access,
-			'Content-Type': 'application/json'
-		}),
-		params
-	});
-}
+export const postTask = (access, data) =>
+	axiosAccessRequest("post", EndPoints.NEW_TASK, access, data);
