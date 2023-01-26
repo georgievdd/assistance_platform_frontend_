@@ -2,13 +2,13 @@ import './applicationform-style.css';
 import { Row, Col } from 'react-bootstrap';
 import DateForm from '../dateform/DateForm';
 
-const getImgPath = type => {
-  console.log(typeof type, type);
-	if (typeof type == null || typeof type == undefined) 
-  type = 'default';
-  console.log(typeof type);
-	return require('../../res/task_logo/rus/' + type + '.png');
-}
+// const getImgPath = type => {
+//   console.log(typeof type, type);
+// 	if (typeof type == null || typeof type == undefined) 
+//   type = 'default';
+//   console.log(typeof type);
+// 	return require('../../res/task_logo/rus/' + type + '.png');
+// }
 
 const ApplicationForm = props => {
 
@@ -34,7 +34,7 @@ const ApplicationForm = props => {
           </div>
         </Col>
         <Col>
-          <DateForm data={props.data.created_at}/>
+          {/* <DateForm data={props.data.created_at}/> */}
         </Col>
       </Row>
     </div>

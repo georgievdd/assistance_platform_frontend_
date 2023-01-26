@@ -25,10 +25,10 @@ const NewTaskP = () => {
   } = useInformational_endpoint();
   const course_array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
   const [titleState, setTitleState] = useState("");
-  const [tagsState, setTagsState] = useState(tags.map((e, i) => i ? true : false));
+  const [tagsState, setTagsState] = useState(tags.map((e, i) => (i ? false : true)));
   const [stageOfStudy, setStageOfStudy] = useState(stage_of_study_choices_info[0][0]);
   const [courseOfStudy, setCourseOfStudy] = useState(1);
-  const [subjectState, setSubjectState] = useState(subjects_info[0][0]);
+  const [subjectState, setSubjectState] = useState(getIdByEl(subjects[0], subjects_info));
   const [descriptionState, setDescriptionState] = useState("");
   const [dateState, setDateState] = useState("");
   const [file, setFile] = useState('');
@@ -87,7 +87,7 @@ const NewTaskP = () => {
       description: descriptionState,
       stop_accepting_applications_at: dateState,
     }
-
+    console.log(subjectState);
     postTask(access, data);
     navigate(MYTASKS);
   }

@@ -9,8 +9,10 @@ import { useDispatch } from 'react-redux';
 import { setTaskInfo } from '../../store/slices/actionCreators';
 import redactImg from '../../res/img/pencil.svg'; 
 
-const getImgPath = type => {
-	if (typeof type == null) type = 'default';
+const getImgPath = (type, id) => {
+	console.log("type: ", type, "id: ", id);
+	if (typeof type == undefined) 
+	type = 'default';
 	return require('../../res/task_logo/rus/' + type + '.png');
 }
 
@@ -50,7 +52,7 @@ const Task = props => {
 					<img
 						className='task-img'
 						alt='load false'
-						src={getImgPath(props.data.imgType)}
+						src={getImgPath(props.data.imgType, props.data.id)}
 					/>
 				</Col>
 				<Col md="auto" style={{padding: "8px", width: "83%"}}>
