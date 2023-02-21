@@ -59,6 +59,7 @@ export const getSumByName = (name, arr) => {
       return element[0];
 }
 
+
 const months = ["Январь",
                 "Февраль",
                 "Март",
@@ -70,16 +71,32 @@ const months = ["Январь",
                 "Сентябрь",
                 "Октябрь",
                 "Ноябрь",
-                "Декабрь",]
+                "Декабрь",];
 
-export const parseTime = date => {
-  const ymd = date.split('T')[0];
-  const time = date.split('T')[1];
-  const year = ymd.split('-')[0];
-  const month = months[parseInt(ymd.split('-')[1] - 1)];
-  const day = ymd.split('-')[2];
-  const hour = time.split(':')[0];
-  const minutes = time.split(':')[1];
+const monthsV2 = ["Января",
+                "Февраля",
+                "Марта",
+                "Апреля",
+                "Мая",
+                "Июня",
+                "Июля",
+                "Августа",
+                "Сентября",
+                "Октября",
+                "Ноября",
+                "Декабря",]
+
+export const parseTime = time => {
+  const date = new Date(time);
+
+  const year     = date.getFullYear().toString();
+  const day      = prettyDay((date.getDay() + 1).toString());
+  const month    = months[date.getMonth().toString()];
+  const inMonth  = monthsV2[date.getMonth().toString()];
+  const hour     = date.getHours().toString();
+  const minutes  = date.getMinutes().toString();
+
+  const inDMH = day + ' ' + inMonth + ' в ' + hour + ':' + minutes;
 
   return {
     year,
@@ -87,5 +104,14 @@ export const parseTime = date => {
     day,
     hour,
     minutes,
+    inDMH,
   }
 }
+
+
+export const write = value => {
+  console.log(Object.keys(value)[0] + ": " + value[Object.keys(value)[0]]);
+}
+
+const prettyDay = day => 
+  day.length === 1 ? "0" + day : day;

@@ -28,7 +28,7 @@ const Routs = () => {
 	return (
 		<div>
 			<Routes>
-				<Route exact path= {HOME}                 element={<DefaultP />} />
+				<Route exact path= {HOME}                 element={<TasksP />} />    {/* <DefaultP */}
 				<Route path=       {LOGIN}                element={<ComeInP />} />
 				<Route path=       {TASKS}                element={<TasksP />} />
 				<Route path=       {REGISTRATION}         element={<ToRegisterP />} />

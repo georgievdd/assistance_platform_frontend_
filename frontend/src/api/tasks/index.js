@@ -3,7 +3,7 @@ import { axiosInstance, axiosAccessRequest } from "../instance";
 
 export const tasks = urlParams => {
 	if (!urlParams) urlParams = '';
-	console.log("api.tasks -> url: ", EndPoints.TASKS + urlParams); 
+	// console.log("api.tasks -> url: ", EndPoints.TASKS + urlParams); 
 	return axiosInstance.get(EndPoints.TASKS + urlParams);
 }
 

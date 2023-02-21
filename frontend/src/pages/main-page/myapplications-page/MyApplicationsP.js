@@ -8,6 +8,8 @@ import { useApplications } from '../../../hooks/useApplications';
 import { useDispatch } from 'react-redux';
 import RedactMyApplicationsForm from '../../../forms/redactforms/RedactMyApplicationsForm';
 import {useTasks} from '../../../hooks/useTasks';
+import { write } from '../../../datafunc';
+import EmptyForm from '../../../forms/emptyform/EmptyForm';
 
 const MyApplicationsP = () => { 
 
@@ -19,21 +21,28 @@ const MyApplicationsP = () => {
   const [chooseApplicationState, setChooseApplicationState] = useState(applications.map(() => false));
   const [chooseApplication, setChooseApplication] = useState(null);
   const {task} = useTasks();
-  console.log(task);
+
+  const [redactMsg, setRedactMsg] = useState('');
+  const onChangeSetRedact = e => {
+    setRedactMsg(e.target.value);
+  }
 
   const applicationChooseHandler = index => {
-    console.log(index);
+    write({index});
     const newApplicationsState = chooseApplicationState.map(
       (e, i) => {
         if (i === index) {
           setChooseApplication(applications[i]);
-          dispatch(setTask(applications[i].task));
           return true;
         }
         return false;
       }
     )
-    setChooseApplicationState(newApplicationsState);
+    // console.log(newApplicationsState);
+  }
+
+  const redactApplicationsMessage = () => {
+    
   }
 
   const data = {
@@ -42,23 +51,35 @@ const MyApplicationsP = () => {
     setChooseApplication,
     applicationChooseHandler,
   }
+  const redactData = {
+    application: chooseApplication,
+    redactMsg,
+    onChangeSetRedact,
+    redactApplicationsMessage,
+  }
 
   useEffect(() => {
     dispatch(setMyApplications(user.id, access))
   }, []);
 
+  useEffect(() => {
+    setRedactMsg(chooseApplication != null ? chooseApplication.message : "");
+  }, [chooseApplication]);
+
+  if (applications.length === 0) 
+    return <EmptyForm id = {0} style={{marginTop: "300px"}}></EmptyForm>
   return (
     <div>
       <div className='main-container' style={{marginTop: "70px"}}>
         <div style={{marginBottom: "20px", color: "white", paddingLeft: "30px"}}>
-          <h2>Мои заявки</h2>
+          <h2>Мои заявки ({applications.length})</h2>
         </div>
         <Row>
           <Col md="auto" style={{width: "40%"}}>
             <MyApplicationsSliceForm data={data} task={task}/>
           </Col>
           <Col>
-            <RedactMyApplicationsForm data={chooseApplication} task={task}/>
+            <RedactMyApplicationsForm data={redactData} task={task}/>
           </Col>
         </Row>
 		  </div>

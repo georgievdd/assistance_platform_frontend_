@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { write } from '../../datafunc';
 
 const initialState = {
 	// my: {
@@ -20,6 +21,7 @@ const applications = createSlice({
 	reducers: {
 		putMyApplications(state, action) {
 			state.my = action.payload;
+      // write({applications: state.my})
 		},
 	},
 });

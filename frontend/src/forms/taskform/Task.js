@@ -10,7 +10,6 @@ import { setTaskInfo } from '../../store/slices/actionCreators';
 import redactImg from '../../res/img/pencil.svg'; 
 
 const getImgPath = (type, id) => {
-	console.log("type: ", type, "id: ", id);
 	if (typeof type == undefined) 
 	type = 'default';
 	return require('../../res/task_logo/rus/' + type + '.png');

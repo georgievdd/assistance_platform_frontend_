@@ -88,6 +88,9 @@ const NewTaskP = () => {
       stop_accepting_applications_at: dateState,
     }
     console.log(subjectState);
+
+    console.log(data.tags);
+
     postTask(access, data);
     navigate(MYTASKS);
   }

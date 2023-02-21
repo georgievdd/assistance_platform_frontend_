@@ -7,6 +7,7 @@ import { setTODOtasks } from './todoTasksSlice';
 import { putNotifications } from './notificationsSlice';
 import { putTaskInfo } from './taskInfoSlice';
 import { putMyApplications } from './applicationSlice';
+import { write } from '../../datafunc';
 
 export const loginUser = data =>
 	async (dispatch) => {
@@ -69,7 +70,8 @@ export const getTODOtasks = (user, url) =>
 	async (dispatch) => {
 
 		const res = await api.user.getTODOtasksAPI(user, url)
-		.then(data => data.data)
+		.then(data => data.data);
+		console.log("todo", res, url);
 		dispatch(setTODOtasks(res));
 	}
 
@@ -102,5 +104,6 @@ export const setMyApplications = (id, access) =>
 	async dispatch => {
 		const res = await api.applications.myApplications(id, access)
 		.then(data => data.data);
+		write({setMyApplications: res})
 		dispatch(putMyApplications(res));
 	}

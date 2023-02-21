@@ -10,6 +10,19 @@ import DateForm from '../dateform/DateForm';
 // 	return require('../../res/task_logo/rus/' + type + '.png');
 // }
 
+const getColorByStatus = status => {
+  switch (status) {
+    case 'A':
+      return "rgba(51, 196, 129, 1)";
+    case 'R':
+      return "rgba(255, 143, 107, 1)";
+    case 'S':
+      return "rgba(231, 237, 250, 1)";
+    default:
+      return "rgba(0, 0, 0, 0)";
+  }
+}
+
 const ApplicationForm = props => {
 
   const {
@@ -18,25 +31,19 @@ const ApplicationForm = props => {
     created_at,
     implementer_rating_normalized,
     message,
+    task,
     status,
     updated_at,
   } = props.data;
 
   return (
-    <div className="container-element application-container application" style={{width: "96%", margin: "0 auto"}}>
-      <Row>
-        <Col md="auto" >
-          <div className='mb-2' style={{ marginBottom: "0px" }}>
-            <h4 className='title'>title</h4>
-          </div>
-          <div className='descript'>
-            descript
-          </div>
-        </Col>
-        <Col>
-          {/* <DateForm data={props.data.created_at}/> */}
-        </Col>
-      </Row>
+    <div className="container-element application-container application" style={{
+      width: "96%", 
+      margin: "0 auto",
+      backgroundColor: getColorByStatus(status)}}>
+      <div className='mb-2' style={{ marginBottom: "0px" }}>
+        <h4 className='title'>{task.title}</h4>
+      </div>
     </div>
   )
 }
