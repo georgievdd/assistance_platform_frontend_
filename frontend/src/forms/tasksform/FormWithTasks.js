@@ -9,6 +9,7 @@ const FormWithTasks = props => {
 		searchValue, 
 		searchHandler,
 		taskMod,
+		redactTask,
 	} = props.data;
 
 	return (
@@ -34,9 +35,9 @@ const FormWithTasks = props => {
 					</Row>
 				</div>
 			</div>
-			{tasks.map(task =>
+			{tasks.map((task, index) =>
 				<div>
-					<Task data={task} mod={taskMod}/>
+					<Task data={task} mod={taskMod} redactTask={redactTask} index={index}/>
 				</div>
 			)}
 		</div>

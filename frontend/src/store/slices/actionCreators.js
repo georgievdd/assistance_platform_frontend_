@@ -1,6 +1,6 @@
 import api from '../../api';
 import { setUser, setUserInfo } from './userSlice';
-import { getTasks, putTask } from './tasksSlice';
+import { getTasks, putTask, putTaskForRedact } from './tasksSlice';
 import { setMyTasks } from './myTasksSlice';
 import { setProfile_choices_info, setFilters_info, setSubjects_info, setTags_info } from './informational_endpointSlice';
 import { setTODOtasks } from './todoTasksSlice';
@@ -48,7 +48,7 @@ export const setTasks = urlRequest =>
 		dispatch(getTasks(res));
 	}
 
-	export const setTask = urlRequest =>
+export const setTask = urlRequest =>
 	async (dispatch) => {
 		const res = await api.tasks.tasks(urlRequest)
 		.then(data => data.data)
@@ -56,7 +56,15 @@ export const setTasks = urlRequest =>
 		dispatch(putTask(res));
 	}
 
+export const redactMyTask = (access, id, data) =>
+	async dispatch => {
+		const res = api.tasks.redactMyTaskApi(access, id, data);
+	}
 
+export const deleteMyTask = (access, id) => 
+	async dispatch => {
+		const res = api.tasks.deleteMyTaskApi(access, id);
+	}
 
 export const getMyTasks = (user, url) =>
 	async (dispatch) => {
@@ -100,10 +108,27 @@ export const setTaskInfo = info =>
 		dispatch(putTaskInfo(info));
 	}
 
+export const setTaskForRedact = task =>
+	dispatch => {
+		dispatch(putTaskForRedact(task));
+	}
+
 export const setMyApplications = (id, access) => 
 	async dispatch => {
 		const res = await api.applications.myApplications(id, access)
 		.then(data => data.data);
 		write({setMyApplications: res})
 		dispatch(putMyApplications(res));
+	}
+
+export const redactMyApplication = (taskId, access, message) =>
+	async dispatch => {
+		const res = await api.applications.redactMyApplicationApi(taskId, access, {message})
+		.then(data => data.data);
+	}
+
+export const deleteMyApplication = (taskId, access) =>
+	async dispatch => {
+		const res = await api.applications.deleteMyApplicationApi(taskId, access)
+		.then(data => data.data);
 	}

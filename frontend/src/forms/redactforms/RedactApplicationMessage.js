@@ -1,6 +1,7 @@
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, FloatingLabel, Form, Modal } from "react-bootstrap";
 
 const RedactApplicationMessage = props => {
+
   return (
     <Modal
       show={props.show}
@@ -15,8 +16,14 @@ const RedactApplicationMessage = props => {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <Form.Control value={props.value} onChange={props.onChange}>
-        </Form.Control>
+      <FloatingLabel controlId="floatingTextarea2">
+        <Form.Control
+          as="textarea"
+          value={props.value} 
+          onChange={props.onChange}
+          style={{ height: '200px' }}
+        />
+      </FloatingLabel>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="success" onClick={props.redact}>

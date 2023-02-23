@@ -10,3 +10,9 @@ export const tasks = urlParams => {
 
 export const postTask = (access, data) =>
 	axiosAccessRequest("post", EndPoints.NEW_TASK, access, data);
+
+export const redactMyTaskApi = (access, id, data) => 
+	axiosAccessRequest("put", EndPoints.TASKS + id, access, data);
+
+export const deleteMyTaskApi = (access, id) => 
+	axiosAccessRequest("delete", EndPoints.TASKS + id, access);

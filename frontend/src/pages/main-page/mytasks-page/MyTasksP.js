@@ -4,22 +4,28 @@ import { Button, Col, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useUserData } from '../../../hooks/useUserData';
-import { getMyTasks } from '../../../store/slices/actionCreators';
+import { getMyTasks, setTaskForRedact } from '../../../store/slices/actionCreators';
 import { useMyTasks } from '../../../hooks/useMyTasks';
 import FormWithTasks from '../../../forms/tasksform/FormWithTasks';
 import CategoriesForm from '../../../forms/categoriesform/СategoriesForm';
 import { useInformational_endpoint } from '../../../hooks/useInformational_endpoint';
 import { getKeyByValue, getIdByEl, urlCreatePartOfPath, createTaskObject } from '../../../datafunc';
-import addLogo from '../../../res/img/addLogo.png';
 import { useNavigate } from 'react-router-dom';
-import { NEWTASK } from '../../../components/routes/Routs';
+import { NEWTASK, REDACTMYTASK } from '../../../components/routes/Routs';
+import { useTasks } from '../../../hooks/useTasks';
 
 const MyTasksP = () => {
 
   const dispatch = useDispatch();
 	const navigate = useNavigate();
   const user = useUserData();
-	const {subjects, tags, subjects_info, tags_info, sortsParams } = useInformational_endpoint();
+	const {subjects, 
+		tags, 
+		subjects_info, 
+		tags_info, 
+		sortsParams,
+		stage_of_study_choices_info, } = useInformational_endpoint();
+	const tasks = useMyTasks().tasks.map(task => createTaskObject(task, tags_info, subjects_info));
 
 	const tagCheckHandler = index => {
 		setTagsStateValue(tagsStateValue => tagsStateValue.map((e, i) => (
@@ -52,25 +58,7 @@ const MyTasksP = () => {
 	const [sort_type, setSort_type] = useState('');
 	const [sortTitle, setSortTitle] = useState('');
 	const [sortDirection, setSortDirection] = useState('');
-  const searchTitle = 'My Tasks';
-	const dataForCategories = {
-		informational_endpoint: useInformational_endpoint(),
-		sortDirection,
-		tagCheckHandler,
-		grouping_typeHandler,
-		subjectsCheckHandler,
-		sortsParamsCheckHandler,
-		sortDirectionHandler,
-		sortTitle,
-	}
-	const dataForTasks = {
-		informational_endpoint: useInformational_endpoint(),
-		tasks: useMyTasks().tasks.map(task => createTaskObject(task, tags_info, subjects_info)),
-		searchValue, setSeacrhValue,
-		searchHandler,
-    searchTitle,
-		taskMod: "taskRedact",
-	}
+  const searchTitle = 'Мои задания';
 	/// вставка в DOM
   useEffect(() => {
     dispatch(getMyTasks(user.id, ''));
@@ -118,8 +106,32 @@ const MyTasksP = () => {
 		navigate(NEWTASK);
 	}
 
+	//? редактирование задания
+	const redactTask = index => {
+		console.log("redact task N", index);
+		dispatch(setTaskForRedact(tasks[index]));
+		navigate(REDACTMYTASK);
+	}
 
-
+	const dataForCategories = {
+		informational_endpoint: useInformational_endpoint(),
+		sortDirection,
+		tagCheckHandler,
+		grouping_typeHandler,
+		subjectsCheckHandler,
+		sortsParamsCheckHandler,
+		sortDirectionHandler,
+		sortTitle,
+	}
+	const dataForTasks = {
+		informational_endpoint: useInformational_endpoint(),
+		tasks,
+		searchValue, setSeacrhValue,
+		searchHandler,
+    searchTitle,
+		taskMod: "taskRedact",
+		redactTask,
+	}
 
   return (
     <div className='main-container'>

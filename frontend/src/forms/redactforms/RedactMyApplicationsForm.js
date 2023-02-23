@@ -1,9 +1,10 @@
-import React from 'react'
-import './style.css';
-import { Button, Form, Nav } from 'react-bootstrap';
+import React from 'react';
+import './redactforms-style.css';
+import { Button, FloatingLabel, Form, Nav } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { parseTime, write } from '../../datafunc';
 import { useState } from 'react';
+import deleteImg from '../../res/img/delete.png';
 import RedactApplicationMessage from './RedactApplicationMessage';
 
 const getStatus = status => {
@@ -18,6 +19,14 @@ const getStatus = status => {
       break;
   }
 }
+
+
+const taskSeeLinkStyle = {
+  display: "inline-block",
+  marginLeft: "10px",
+  fontSize: "28px",
+}
+
 
 const RedactMyApplicationsForm = props => {
 
@@ -35,7 +44,8 @@ const RedactMyApplicationsForm = props => {
   const {
     redactMsg,
     onChangeSetRedact,
-    redactApplicationsMessage,
+    redactApplicationMessage,
+    deleteApplication,
   } = props.data;
 
   const redactMessage = () => {
@@ -50,7 +60,8 @@ const RedactMyApplicationsForm = props => {
     <div className='container-element shadow' style={{padding: "20px"}}>
       <div className='mb-3'>
         <h3 style={{display: "inline-block"}}>Просмотреть описание задания по </h3>
-        <Nav.Link className='taskSeeLink'><Link>ссылке</Link></Nav.Link>
+        <Nav.Link style={taskSeeLinkStyle}><Link>ссылке</Link></Nav.Link>
+        {/*//!перекидывает на страницу с заданием по id*/}
       </div>
       <div className='mb-3'>
         <h3>Статус заявки: {getStatus(status)}</h3>
@@ -66,15 +77,15 @@ const RedactMyApplicationsForm = props => {
               Сообщение автору
             </h3>
           </Form.Label>
-          <Form.Control
-            className='mb-2'
-            value={message}
-            type="text"
-            aria-label="Disabled input example"
-            disabled
-            readOnly
-          />
-          <Button variant="success" onClick={redactMessage}>редактировать</Button>
+          <FloatingLabel controlId="floatingTextarea2">
+            <Form.Control
+              as="textarea"
+              value={message} 
+              style={{ height: '150px' }}
+              disabled
+            />
+          </FloatingLabel>
+          <Button variant="success" className='mt-3' onClick={redactMessage}>Редактировать</Button>
         </Form>
       </div>
       <div>
@@ -82,12 +93,20 @@ const RedactMyApplicationsForm = props => {
         Последнее обновление: {parseTime(updated_at).inDMH}
         </h3>
       </div>
+      <div className='bottom-right' style={{marginTop: "-50px"}}>
+        <img 
+          src={deleteImg}
+          width = "60px"
+          className='defaultScale'
+          onClick={deleteApplication}
+        />
+      </div>
       <RedactApplicationMessage 
         show={showRedact} 
         onHide={onHideRedact} 
         value={redactMsg}
         onChange={onChangeSetRedact}
-        redact={redactApplicationsMessage}
+        redact={redactApplicationMessage}
       />
     </div>
   )

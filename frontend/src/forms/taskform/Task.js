@@ -21,7 +21,20 @@ const Task = props => {
 	const dispatch = useDispatch();
 	const {isAuth} = useAuth();
 
-	const {mod} = props;
+	const {
+		redactTask,
+		mod,
+		index,
+	} = props;
+
+	const {
+		id, 
+		imgType,
+		created_at,
+		title,
+		description,
+		tags,
+	} = props.data;
 
 	const taskOnClick = () => {
 		switch (mod) {
@@ -51,7 +64,7 @@ const Task = props => {
 					<img
 						className='task-img'
 						alt='load false'
-						src={getImgPath(props.data.imgType, props.data.id)}
+						src={getImgPath(imgType, id)}
 					/>
 				</Col>
 				<Col md="auto" style={{padding: "8px", width: "83%"}}>
@@ -59,15 +72,15 @@ const Task = props => {
 						<Row>
 							<Col md="auto"  style={{width: "80%", marginBottom: "10px"}} >
 								<div className='mb-2' style={{ marginBottom: "0px" }}>
-									<h4 className='title'>{props.data.title}</h4>
+									<h4 className='title'>{title}</h4>
 								</div>
 								<div className='descript'>
-									{props.data.description}
+									{description}
 								</div>
 							</Col>
 							<Col>
 								<div>
-									<DateForm data={props.data.created_at}/>
+									<DateForm data={created_at}/>
 								</div>
 							</Col>
 						</Row>
@@ -75,7 +88,7 @@ const Task = props => {
 					<div>
 						<div style={{display: "inline-block"}}>
 							<Row>
-								{props.data.tags.map(element =>
+								{tags.map(element =>
 									<p className='prioritystack-element' style={{ width: "auto", marginLeft: "10px"}}>{element}</p>
 								)}
 							</Row>
@@ -85,6 +98,7 @@ const Task = props => {
 								<img
 									src={redactImg}
 									width="50px"
+									onClick={() => redactTask(index)}
 								/>
 							</div>
 						}

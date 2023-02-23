@@ -5,6 +5,37 @@ export const getElById = (id, arr) => {
       return element.name;
 }
 
+export const sortArrayByFirstInArray = (value, arr) => {
+
+  const element = arr.filter(i => i[0] === value);
+  const newArr = arr.filter(i => i[0] !== value);
+  return element.concat(newArr);
+}
+
+export const sortArrayByNameInObject = (name, object) => {
+
+}
+
+export const contains = (e, arr) => {
+  for (let i = 0; i < arr.length; ++i) 
+    if (arr[i] === e) return true;
+  return false;
+}
+
+export const getOnlySecondInArray = arr => {
+  return arr.map(e => e[1]);
+}
+
+export const filterArrayByElement = (v, arr) => {
+  const element = arr.filter(i => i === v);
+  const newArr = arr.filter(i => i !== v);
+  return element.concat(newArr);
+}
+
+export const getOnlyFirstInArray = arr => {
+  return arr.map(e => e[0]);
+}
+
 export const getIdByEl = (name, arr) => {
   for (let element of arr)
     if (element.name === name)
@@ -51,6 +82,12 @@ export const createTaskObject = (task, tags_info, subjects_info) => ({
   price: task.price,
   imgType: getElById(task.subject, subjects_info),
   id: task.id,
+  stage_of_study: task.stage_of_study,
+  status: task.status,
+  implementer: task.implementer,
+  course_of_study: task.course_of_study,
+  expires_at: task.expires_at,
+  stop_accepting_applications_at: task.stop_accepting_applications_at,
 });
 
 export const getSumByName = (name, arr) => {

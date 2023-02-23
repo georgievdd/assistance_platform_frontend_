@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Row, Col, Form } from 'react-bootstrap';
 import MyApplicationsSliceForm from '../../../forms/myapplicationsliceform/MyApplicationsSliceForm';
-import { setMyApplications, setTask } from '../../../store/slices/actionCreators';
+import { deleteMyApplication, setMyApplications, setTask } from '../../../store/slices/actionCreators';
 import { useUserData } from '../../../hooks/useUserData';
 import { useAuth } from '../../../hooks/useAuth';
 import { useApplications } from '../../../hooks/useApplications';
@@ -10,6 +10,7 @@ import RedactMyApplicationsForm from '../../../forms/redactforms/RedactMyApplica
 import {useTasks} from '../../../hooks/useTasks';
 import { write } from '../../../datafunc';
 import EmptyForm from '../../../forms/emptyform/EmptyForm';
+import { redactMyApplication } from '../../../store/slices/actionCreators';
 
 const MyApplicationsP = () => { 
 
@@ -41,8 +42,17 @@ const MyApplicationsP = () => {
     // console.log(newApplicationsState);
   }
 
-  const redactApplicationsMessage = () => {
-    
+  const redactApplicationMessage = () => {
+    const taskId = chooseApplication.task.id;
+    console.log(taskId);
+    dispatch(redactMyApplication(taskId, access, redactMsg));
+    window.location.reload();
+  }
+
+  const deleteApplication = () => {
+    const taskId = chooseApplication.task.id;
+    dispatch(deleteMyApplication(taskId, access));
+    window.location.reload();
   }
 
   const data = {
@@ -55,7 +65,8 @@ const MyApplicationsP = () => {
     application: chooseApplication,
     redactMsg,
     onChangeSetRedact,
-    redactApplicationsMessage,
+    redactApplicationMessage,
+    deleteApplication,
   }
 
   useEffect(() => {

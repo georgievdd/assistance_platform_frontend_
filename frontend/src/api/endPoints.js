@@ -11,6 +11,8 @@ const EndPoints = {
 	NEW_TASK: '/tasks/new_task',
 	NOTIFICATIONS: '/notifications/',
 	MY_APPLICATIONS: '/applications',
+	MY_APPLICATION: '/my_application',
 }
 
 export default EndPoints;
+
