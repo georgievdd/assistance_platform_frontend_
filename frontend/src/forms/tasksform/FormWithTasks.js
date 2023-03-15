@@ -9,7 +9,7 @@ const FormWithTasks = props => {
 		searchValue, 
 		searchHandler,
 		taskMod,
-		redactTask,
+		taskModFunctions,
 	} = props.data;
 
 	return (
@@ -37,7 +37,12 @@ const FormWithTasks = props => {
 			</div>
 			{tasks.map((task, index) =>
 				<div>
-					<Task data={task} mod={taskMod} redactTask={redactTask} index={index}/>
+					<Task 
+						index={index}
+						data={task} 
+						mod={taskMod} 
+						modFunc={taskModFunctions}
+					/>
 				</div>
 			)}
 		</div>

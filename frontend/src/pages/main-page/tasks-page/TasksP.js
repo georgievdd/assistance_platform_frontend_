@@ -71,6 +71,7 @@ const TasksP = () => {
 		searchHandler,
 		searchTitle,
 		taskMod: "taskInfo",
+		taskModFunctions: {},
 	}
 	/// вставка в DOM
 	useEffect(() => {

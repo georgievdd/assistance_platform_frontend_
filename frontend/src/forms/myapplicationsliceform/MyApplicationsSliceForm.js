@@ -2,10 +2,11 @@ import './myapplicationssliceform-style.css';
 import ApplicationForm from '../applicationform/ApplicationForm';
 
 const MyApplicationsSliceForm = props => {
+
+  console.log("MyApplicationsSliceForm", props);
   
   const {
     applications,
-    chooseApplicationIndex,
     applicationChooseHandler,
   } = props.data;
 

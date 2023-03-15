@@ -25,6 +25,13 @@
 	background-color: rgba(245,245,245, 1);
 }
 
+.container-element-gray {
+	width: auto;
+	height: auto;
+	border-radius: 10px;
+	background-color: rgb(64,69,80);
+}
+
 .container-element-white {
 	width: auto;
 	height: auto;

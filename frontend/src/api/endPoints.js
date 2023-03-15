@@ -12,6 +12,7 @@ const EndPoints = {
 	NOTIFICATIONS: '/notifications/',
 	MY_APPLICATIONS: '/applications',
 	MY_APPLICATION: '/my_application',
+	SET_IMPLEMENTOR: '/set_implementer',
 }
 
 export default EndPoints;

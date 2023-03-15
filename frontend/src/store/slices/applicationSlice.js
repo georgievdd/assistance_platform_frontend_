@@ -12,7 +12,8 @@ const initialState = {
   //   created_at: null,
   //   updated_at: null
   // }
-  my: []
+  my: [],
+  chooseApplicationsInformation: []
 }
 
 const applications = createSlice({
@@ -23,9 +24,12 @@ const applications = createSlice({
 			state.my = action.payload;
       // write({applications: state.my})
 		},
+    putChooseApplicationsInformation(state, action) {
+      state.chooseApplicationsInformation = action.payload;
+    }
 	},
 });
 
-export const { putMyApplications } = applications.actions;
+export const { putMyApplications, putChooseApplicationsInformation } = applications.actions;
 
 export default applications.reducer;

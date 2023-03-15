@@ -30,6 +30,8 @@ const taskSeeLinkStyle = {
 
 const RedactMyApplicationsForm = props => {
 
+  console.log("RedactMyApplicationsForm", props);
+
   const [showRedact, setShowRedact] = useState(false);
 
   if (props.data.application == null) return <div></div>;

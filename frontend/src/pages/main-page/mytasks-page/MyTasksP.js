@@ -4,21 +4,23 @@ import { Button, Col, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useUserData } from '../../../hooks/useUserData';
-import { getMyTasks, setTaskForRedact } from '../../../store/slices/actionCreators';
+import { getMyTasks, setChooseApplicationsInformation, setTaskForRedact } from '../../../store/slices/actionCreators';
 import { useMyTasks } from '../../../hooks/useMyTasks';
 import FormWithTasks from '../../../forms/tasksform/FormWithTasks';
 import CategoriesForm from '../../../forms/categoriesform/СategoriesForm';
 import { useInformational_endpoint } from '../../../hooks/useInformational_endpoint';
 import { getKeyByValue, getIdByEl, urlCreatePartOfPath, createTaskObject } from '../../../datafunc';
 import { useNavigate } from 'react-router-dom';
-import { NEWTASK, REDACTMYTASK } from '../../../components/routes/Routs';
+import { NEWTASK, REDACTMYTASK, TASKAPLICATIONS } from '../../../components/routes/Routs';
 import { useTasks } from '../../../hooks/useTasks';
+import { useAuth } from '../../../hooks/useAuth';
 
 const MyTasksP = () => {
 
   const dispatch = useDispatch();
 	const navigate = useNavigate();
   const user = useUserData();
+	const { access } = useAuth();
 	const {subjects, 
 		tags, 
 		subjects_info, 
@@ -112,6 +114,11 @@ const MyTasksP = () => {
 		dispatch(setTaskForRedact(tasks[index]));
 		navigate(REDACTMYTASK);
 	}
+	//? просмотр заявок задания
+	const chooseApplicationsInformation = index => {
+		dispatch(setChooseApplicationsInformation(access, tasks[index].id));
+		navigate(TASKAPLICATIONS);
+	}
 
 	const dataForCategories = {
 		informational_endpoint: useInformational_endpoint(),
@@ -129,8 +136,11 @@ const MyTasksP = () => {
 		searchValue, setSeacrhValue,
 		searchHandler,
     searchTitle,
-		taskMod: "taskRedact",
-		redactTask,
+		taskMod: ["taskRedact", "taskApplicationsShow"],
+		taskModFunctions: {
+			redactTask,
+			chooseApplicationsInformation,
+		},
 	}
 
   return (

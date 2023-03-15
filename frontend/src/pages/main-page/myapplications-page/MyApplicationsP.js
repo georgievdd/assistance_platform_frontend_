@@ -81,16 +81,22 @@ const MyApplicationsP = () => {
     return <EmptyForm id = {0} style={{marginTop: "300px"}}></EmptyForm>
   return (
     <div>
-      <div className='main-container' style={{marginTop: "70px"}}>
+      <div className='main-container container-element-gray shadow' style={{
+        marginTop: "70px",
+        width: "1400px",
+        minHeight: "700px",
+        background: "rgba(",
+        padding: "50px",
+        }}>
         <div style={{marginBottom: "20px", color: "white", paddingLeft: "30px"}}>
           <h2>Мои заявки ({applications.length})</h2>
         </div>
-        <Row>
+        <Row >
           <Col md="auto" style={{width: "40%"}}>
-            <MyApplicationsSliceForm data={data} task={task}/>
+            <MyApplicationsSliceForm data={data} task={task} />
           </Col>
           <Col>
-            <RedactMyApplicationsForm data={redactData} task={task}/>
+            <RedactMyApplicationsForm data={redactData} task={task} />
           </Col>
         </Row>
 		  </div>

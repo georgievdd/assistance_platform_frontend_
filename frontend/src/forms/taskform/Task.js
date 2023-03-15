@@ -1,6 +1,5 @@
 import { Row, Col } from 'react-bootstrap';
 import '../taskform/taskform-style.css';
-import { useState } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import DateForm from '../dateform/DateForm';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +7,9 @@ import { LOGIN, TASKINFO } from '../../components/routes/Routs';
 import { useDispatch } from 'react-redux';
 import { setTaskInfo } from '../../store/slices/actionCreators';
 import redactImg from '../../res/img/pencil.svg'; 
+import bell from '../../res/img/sb-gurb.png';
+import { contains } from '../../datafunc';
+import CircleN from '../supportiveforms/CircleN';
 
 const getImgPath = (type, id) => {
 	if (typeof type == undefined) 
@@ -22,10 +24,13 @@ const Task = props => {
 	const {isAuth} = useAuth();
 
 	const {
-		redactTask,
 		mod,
 		index,
 	} = props;
+	const {
+		redactTask,
+		chooseApplicationsInformation,
+	} = props.modFunc;
 
 	const {
 		id, 
@@ -55,57 +60,74 @@ const Task = props => {
 	}
 
 	return (
-		<div 
-			className='shadow container-element task-container'
-			onClick={() => taskOnClick()}
-		>
-			<Row>
-				<Col md="auto" style={{padding: "16px", marginLeft: "15px"}}>
-					<img
-						className='task-img'
-						alt='load false'
-						src={getImgPath(imgType, id)}
-					/>
-				</Col>
-				<Col md="auto" style={{padding: "8px", width: "83%"}}>
-					<div>
-						<Row>
-							<Col md="auto"  style={{width: "80%", marginBottom: "10px"}} >
-								<div className='mb-2' style={{ marginBottom: "0px" }}>
-									<h4 className='title'>{title}</h4>
-								</div>
-								<div className='descript'>
-									{description}
-								</div>
-							</Col>
-							<Col>
-								<div>
-									<DateForm data={created_at}/>
-								</div>
-							</Col>
-						</Row>
-					</div>
-					<div>
-						<div style={{display: "inline-block"}}>
+			<div 
+				className='shadow container-element task-container'
+				onClick={() => taskOnClick()}
+			>	
+				{/* {
+					contains("taskApplicationsShow", mod) &&
+					<div className='task-move-win-container'>
+						<div className='task-move-win'>
+						
+						</div>
+					</div>	
+				} */}
+				<Row>
+					<Col md="auto" style={{padding: "16px", marginLeft: "15px"}}>
+						<img
+							className='task-img'
+							alt='load false'
+							src={getImgPath(imgType, id)}
+						/>
+					</Col>
+					<Col md="auto" style={{padding: "8px", width: "83%"}}>
+						<div>
 							<Row>
-								{tags.map(element =>
-									<p className='prioritystack-element' style={{ width: "auto", marginLeft: "10px"}}>{element}</p>
-								)}
+								<Col md="auto"  style={{width: "80%", marginBottom: "10px"}} >
+									<div className='mb-2' style={{ marginBottom: "0px" }}>
+										<h4 className='title'>{title}</h4>
+									</div>
+									<div className='descript'>
+										{description}
+									</div>
+								</Col>
+								<Col>
+									<div>
+										<DateForm data={created_at}/>
+									</div>
+								</Col>
 							</Row>
 						</div>
-						{mod === "taskRedact" &&
-							<div style={{display: "inline-block", float: "right", paddingRight: "15px"}}>
-								<img
-									src={redactImg}
-									width="50px"
-									onClick={() => redactTask(index)}
-								/>
+						<div>
+							<div style={{display: "inline-block"}}>
+								<Row>
+									{tags.map(element =>
+										<p className='prioritystack-element' style={{ width: "auto", marginLeft: "10px"}}>{element}</p>
+									)}
+								</Row>
 							</div>
-						}
-					</div>
-				</Col>
-			</Row>
-		</div>
+							{contains("taskRedact", mod) &&
+								<div style={{display: "inline-block", float: "right", paddingRight: "15px"}}>
+									<img
+										src={redactImg}
+										width="50px"
+										onClick={() => redactTask(index)}
+									/>
+								</div>
+							}
+							{contains("taskApplicationsShow", mod) &&
+								<div style={{display: "inline-block", float: "right", paddingRight: "15px"}}>
+									<img
+										src={bell}
+										width="50px"
+										onClick={() => chooseApplicationsInformation(index)}
+									/>
+								</div>
+							}
+						</div>
+					</Col>
+				</Row>
+			</div>
 	);
 }
 

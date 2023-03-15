@@ -6,7 +6,7 @@ import { setProfile_choices_info, setFilters_info, setSubjects_info, setTags_inf
 import { setTODOtasks } from './todoTasksSlice';
 import { putNotifications } from './notificationsSlice';
 import { putTaskInfo } from './taskInfoSlice';
-import { putMyApplications } from './applicationSlice';
+import { putChooseApplicationsInformation, putMyApplications } from './applicationSlice';
 import { write } from '../../datafunc';
 
 export const loginUser = data =>
@@ -65,7 +65,6 @@ export const deleteMyTask = (access, id) =>
 	async dispatch => {
 		const res = api.tasks.deleteMyTaskApi(access, id);
 	}
-
 export const getMyTasks = (user, url) =>
 	async (dispatch) => {
 
@@ -120,6 +119,19 @@ export const setMyApplications = (id, access) =>
 		write({setMyApplications: res})
 		dispatch(putMyApplications(res));
 	}
+
+export const setChooseApplicationsInformation = (access, id) => 
+	async dispatch => {
+		const res = await api.tasks.taskApplicationsInfo(access, id)
+		.then(res => res.data.applications);
+		dispatch(putChooseApplicationsInformation(res));
+	}
+
+export const setDoerStorage = (acces, id, username) => 
+	async dispatch => {
+		const res = await api.tasks.setImplementor(acces, id, username);
+	}
+
 
 export const redactMyApplication = (taskId, access, message) =>
 	async dispatch => {

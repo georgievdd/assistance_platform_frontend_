@@ -65,6 +65,8 @@ const TODOtasksP = () => {
 		searchValue, setSeacrhValue,
 		searchHandler,
     searchTitle,
+		taskMod: [],
+		taskModFunctions: {},
 	}
 	/// вставка в DOM
   useEffect(() => {

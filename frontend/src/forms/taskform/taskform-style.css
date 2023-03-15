@@ -1,8 +1,9 @@
 .task-container {
+  position: relative;
 	width: auto;
 	height: auto;
 	margin-bottom: 15px;
-
+  z-index: 2;
 	transition: all 0.5s;
 }
 
@@ -52,4 +53,30 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+
+.task-move-win-container {
+  z-index: 1;
+  position: absolute;
+  background-attachment: fixed;
+  background-origin: border-box;
+}
+
+.task-move-win {
+  position:relative;
+  left: -20px;
+  width: 200px;
+  height: 100px;
+  background: gray;
+  margin-top: 20px;
+  transition: left 0.6s linear;
+  border-radius: 10px 0 0 10px;
+  background-attachment: fixed;
+  background-position: 0;
+  background-origin: border-box;
+}
+
+.task-move-win:hover {
+  left: -100px;
 }

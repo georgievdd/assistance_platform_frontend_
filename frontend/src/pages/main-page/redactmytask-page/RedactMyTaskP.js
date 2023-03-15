@@ -11,6 +11,7 @@ import { deleteMyTask, redactMyTask } from "../../../store/slices/actionCreators
 
 const RedactMyTaskP = () => {
 
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -25,6 +26,10 @@ const RedactMyTaskP = () => {
     subjects_info,
     tags_info,
   } = useInformational_endpoint();
+
+  console.log("page");
+
+  // return <div></div>;
 
   //*новые начальные состояния; обращатся к кодам через них (желательно); 
   const stageOfStudyInfoList = sortArrayByFirstInArray(task.stage_of_study, stage_of_study_choices_info);
@@ -89,8 +94,8 @@ const RedactMyTaskP = () => {
 
     const data = {
       title: titleState,
-      difficulty_stage_of_study: stageOfStudy,
-      difficulty_course_of_study: courseOfStudy,
+      stage_of_study: stageOfStudy,
+      course_of_study: courseOfStudy,
       tags: tagsIdArray,
       subject: subjectState,
       description: descriptionState,
