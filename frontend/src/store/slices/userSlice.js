@@ -1,8 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { LOAD_INIT } from '../../datafunc';
 
 const initialState = {
 	access: null,
 	refresh: null,
+	authLoad: LOAD_INIT,
 	id: null,
 	username: null,
 	email: null,
@@ -47,8 +49,9 @@ const initialState = {
 						active: null,
 						total: null
 				}
-		}
-	}
+		},
+	},
+	authDataLoad: LOAD_INIT,
 }
 
 const userSlice = createSlice({
@@ -63,6 +66,12 @@ const userSlice = createSlice({
 			state.email = action.payload.email;
 			state.username = action.payload.username;
 			state.statistics = action.payload.statistics;
+		},
+		setAuthLoad(state, action) {
+			state.authLoad = action.payload;
+		},
+		setAuthDataLoad(state, action) {
+			state.authDataLoad = action.payload;
 		},
 		setUser(state, action) {
 			state.access  = action.payload.access;
@@ -81,6 +90,6 @@ const userSlice = createSlice({
 	},
 });
 
-export const { setUser, deleteUser, setUserInfo } = userSlice.actions;
+export const { setUser, deleteUser, setUserInfo, setAuthLoad, setAuthDataLoad } = userSlice.actions;
 
 export default userSlice.reducer;

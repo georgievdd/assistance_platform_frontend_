@@ -6,3 +6,31 @@
   border-radius: 5px;
   padding: 10px;
 }
+
+.notification-container {
+  width: auto;
+	border-radius: 10px;
+	background-color: rgba(4,136,100, 1);
+  border-radius: 5px;
+  padding: 10px;
+  position: relative;
+  right:-100%;
+}
+
+.notification-move {
+  animation: showRight 1.3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes showRight {
+
+  from {right:-100%;}
+  
+  to {right:0;}
+  
+}
+
+
+.notify-text {
+  font-size: 20px;
+}

@@ -1,3 +1,40 @@
 .main-background {
 	background: rgba(44,49,60, 1);
+	opacity: 1;
+}
+
+.notifications-background {
+	width: 600px !important;
+	background-color: rgba(34,39,40, 1) !important;
+}
+
+.spinner-on, .spinner-off {
+	transition: all 0.4s;
+	animation-fill-mode: forwards;
+}
+
+.spinner-off {
+	animation: unshow 0.5s 1;
+}
+
+.spinner-on {
+	animation: show 0.5s 1;
+}
+
+@keyframes show{
+	0% {
+		opacity:1;
+	}
+	100% {
+		opacity:0.95;
+	}
+}
+
+@keyframes unshow{
+	0% {
+		opacity:0.95;
+	}
+	100% {
+		opacity:1;
+	}
 }

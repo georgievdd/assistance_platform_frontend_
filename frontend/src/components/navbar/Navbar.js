@@ -12,6 +12,7 @@ const Navibar = props => {
 
 	const { isAuth,
 					notifications,
+					openNotifications,
 					New,
 					user } = props.data;
 
@@ -19,6 +20,7 @@ const Navibar = props => {
 		user,
 		notifications,
 		New,
+		openNotifications,
 	}
 
 	const navbarStyle = {

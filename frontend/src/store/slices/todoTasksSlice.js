@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { LOAD_INIT } from '../../datafunc';
 
 const initialState = {
 	tasks: [],
 	filters: {
 		tags: [],
 		subjects: [],
-	}
+	},
+	load: LOAD_INIT,
 }
 
 const todoTasksSlice = createSlice({
@@ -20,9 +22,12 @@ const todoTasksSlice = createSlice({
 			state.tasks = initialState.tasks;
 			state.filters = initialState.filters;
 		},
+		setTodoTasksLoad(state, action) {
+			state.load = action.payload;
+		},
 	},
 });
 
-export const { setTODOtasks, deleteTODOtasks } = todoTasksSlice.actions;
+export const { setTODOtasks, deleteTODOtasks, setTodoTasksLoad } = todoTasksSlice.actions;
 
 export default todoTasksSlice.reducer;

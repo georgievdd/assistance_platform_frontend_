@@ -95,3 +95,32 @@ input { border: none; outline: none; }
         transform: scale(1.03);
   }
 }
+
+
+.floathingLabel {
+  position: relative;
+  width: auto;
+}
+
+.floathingLabel span {
+	position: absolute;
+	left: 0;
+	margin-top: -5px;
+	padding: 10px;
+	pointer-events: none;
+	font-size: 20px;
+	transition: 0.3s;
+}
+
+.floathingLabel input {
+	font-size: 20px;
+	padding: 20px;
+}
+
+.floathingLabel input:focus ~span,
+.floathingLabel input:valid ~span {
+	transform: translateX(-5px) translateY(-20px);
+	font-size: 0.8em;
+	padding: 0 10px;
+	margin: 0;
+}

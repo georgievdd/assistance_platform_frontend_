@@ -1,11 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { LOAD_INIT } from '../../datafunc';
 
 const initialState = {
 	tasks: [],
 	filters: {
 		tags: [],
 		subjects: [],
-	}
+	},
+	load: LOAD_INIT,
 }
 
 const myTasksSlice = createSlice({
@@ -13,6 +15,7 @@ const myTasksSlice = createSlice({
 	initialState,
 	reducers: {
 		setMyTasks(state, action) {
+			console.log("action.payload", action.payload);
 			state.tasks = action.payload.tasks;
 			state.filters = action.payload.filters;
 		},
@@ -20,9 +23,12 @@ const myTasksSlice = createSlice({
 			state.tasks = initialState.tasks;
 			state.filters = initialState.filters;
 		},
+		setMyTasksLoad(state, action) {
+			state.load = action.payload;
+		},
 	},
 });
 
-export const { setMyTasks, deleteMyTasks } = myTasksSlice.actions;
+export const { setMyTasks, deleteMyTasks, setMyTasksLoad } = myTasksSlice.actions;
 
 export default myTasksSlice.reducer;

@@ -1,10 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { LOAD_BEGIN, LOAD_INIT } from '../../datafunc';
 
 const initialState = {
 	tags_info: [],
   subjects_info: [],
   filters_info: {},
   profile_choices_info: {},
+  load: LOAD_INIT,
 }
 
 const informational_endpoint = createSlice({
@@ -27,6 +29,9 @@ const informational_endpoint = createSlice({
 			state.tasks = initialState.tasks;
 			state.loadStatus = initialState.loadStatus;
 		},
+    setInformationalEndpointLoad(state, action) {
+			state.load = action.payload;
+		},
 	},
 });
 
@@ -36,6 +41,7 @@ export const {
   setFilters_info, 
   setSubjects_info,
   setTags_info,
+  setInformationalEndpointLoad,
   } = informational_endpoint.actions;
 
 export default informational_endpoint.reducer;

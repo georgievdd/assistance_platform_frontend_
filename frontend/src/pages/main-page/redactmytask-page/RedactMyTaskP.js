@@ -27,7 +27,7 @@ const RedactMyTaskP = () => {
     tags_info,
   } = useInformational_endpoint();
 
-  console.log("page");
+  // console.log("page");
 
   // return <div></div>;
 
@@ -37,11 +37,11 @@ const RedactMyTaskP = () => {
   const course_array         = filterArrayByElement(task.course_of_study, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]);
   const subjectsList         = filterArrayByElement(getElById(task.subject, subjects_info), subjects);
 
-  const [titleState, setTitleState] = useState(task.title);                                 //x
-  const [stageOfStudy, setStageOfStudy] = useState(stageOfStudyInfoList[0][0]);             //x
-  const [courseOfStudy, setCourseOfStudy] = useState(course_array[0]);                      //x
-  const [tagsState, setTagsState] = useState(tags.map(e => contains(e, task.tags)));        //x
-  const [subjectState, setSubjectState] = useState(getIdByEl(subjectsList[0], subjects_info));                        //x
+  const [titleState, setTitleState] = useState(task.title);                                    //x
+  const [stageOfStudy, setStageOfStudy] = useState(stageOfStudyInfoList[0][0]);                //x
+  const [courseOfStudy, setCourseOfStudy] = useState(course_array[0]);                         //x
+  const [tagsState, setTagsState] = useState(tags.map(e => contains(e, task.tags)));           //x
+  const [subjectState, setSubjectState] = useState(getIdByEl(subjectsList[0], subjects_info)); //x
   const [descriptionState, setDescriptionState] = useState(task.description);
   const [stop_accepting_applications_at, setStop_accepting_applications_at] = useState(
     new Date(task.stop_accepting_applications_at).toISOString().split('T')[0]

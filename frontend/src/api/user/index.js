@@ -1,18 +1,17 @@
 import EndPoints from "../endPoints";
-import { axiosInstance } from "../instance";
+import { axiosAccessRequest, axiosInstance } from "../instance";
 
-export const userInfo = params =>
+export const userInfo = (params) =>
 	axiosInstance.get(EndPoints.USERS + params);
+	// axiosAccessRequest("get", EndPoints.USERS + params, access);
 
-export const setProfile = params => {
-	console.log(EndPoints.USERS + params.username);
-	return axiosInstance.put(EndPoints.USERS + params.username, params.data);
-}
+export const setProfile = (access, params) =>
+	axiosAccessRequest("get", EndPoints.USERS + params.username, access, params.data);
 
-export const getMyTasksAPI = (user, urlParams) => {
-	return axiosInstance.get(EndPoints.USERS + user + '/tasks' + urlParams);
-}
+export const getMyTasksAPI = (access, user, urlParams) =>
+	// axiosInstance.get(EndPoints.USERS + user + '/tasks' + urlParams);
+	axiosAccessRequest("get", EndPoints.USERS + user + '/tasks' + urlParams, access);
 
-export const getTODOtasksAPI = (user, urlParams) => {
-	return axiosInstance.get(EndPoints.USERS + user + '/todo_tasks' + urlParams);
-}
+
+export const getTODOtasksAPI = (access, user, urlParams) =>
+	axiosAccessRequest("get", EndPoints.USERS + user + '/todo_tasks' + urlParams, access);

@@ -14,8 +14,7 @@ const getStatus = status => {
     case 'R': return 'отклонено';
     case 'S': return 'отправлено';
     case 'A': return 'принятo';
-    default:
-      break;
+    default: break;
   }
 }
 
@@ -114,6 +113,7 @@ const TaskApplicationsForm = props => {
               </Col>
               <Col md="auto" style={{margin: "0 auto"}}>
                 <Button 
+                 disabled
                  variant="danger"
                  style={{width: "250px", height: "60px"}}
                  onClick={recent}

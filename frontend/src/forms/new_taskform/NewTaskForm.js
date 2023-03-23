@@ -5,6 +5,7 @@ const NewTaskForm = props => {
 
   const {
     tags,
+    tagsState,
     stage_of_study_choices,
     course_array,
     subjects,
@@ -48,6 +49,7 @@ const NewTaskForm = props => {
           <div className="new_task-tag-header">Типы задач</div>
           {tags.map((tag, index) => (
             <Form.Check 
+              checked={tagsState[index]}
               type="checkbox"
               label={tag}
               onChange={() => tagsCheckHandler(index)}

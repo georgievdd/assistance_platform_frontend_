@@ -45,7 +45,7 @@ export const getIdByEl = (name, arr) => {
 export const urlCreatePartOfPath = (type, array) => {
   let path = "";
 
-  console.log(array);
+  // console.log(array);
 
   array.map(element => {
 
@@ -125,13 +125,16 @@ const monthsV2 = ["Января",
 
 export const parseTime = time => {
   const date = new Date(time);
-
   const year     = date.getFullYear().toString();
-  const day      = prettyDay((date.getDay() + 1).toString());
+  const day      = prettyDate((date.getDate()).toString());
   const month    = months[date.getMonth().toString()];
   const inMonth  = monthsV2[date.getMonth().toString()];
-  const hour     = date.getHours().toString();
-  const minutes  = date.getMinutes().toString();
+  const hour     = prettyDate(date.getHours().toString());
+  const minutes  = prettyDate(date.getMinutes().toString());
+
+  if (hour === "16") {
+    console.log(time);
+  }
 
   const inDMH = day + ' ' + inMonth + ' в ' + hour + ':' + minutes;
 
@@ -147,8 +150,56 @@ export const parseTime = time => {
 
 
 export const write = value => {
-  console.log(Object.keys(value)[0] + ": " + value[Object.keys(value)[0]]);
+
 }
 
-const prettyDay = day => 
+const prettyDate = day => 
   day.length === 1 ? "0" + day : day;
+
+
+export const LOAD_BEGIN = {
+  begin: true,
+  end: false,
+  error: "",
+};
+
+export const LOAD_END = {
+  begin: false,
+  end: true,
+  error: "",
+};
+
+export const LOAD_INIT = {
+  begin: false,
+  end: false,
+  error: "",
+};
+
+
+export const LOAD_ERROR = (error) => ({
+  begin: false,
+  end: true,
+  error,
+});
+
+export class Error {
+  constructor(text, priopity) {
+    this.text = text;
+    this.priopity = priopity;
+  }
+}
+
+export const priorityError = errorList => {
+  let minPriority = 10000, index;
+  errorList.map((e, i) => {
+    if (e != null)
+      if (e.priopity < minPriority) {
+        minPriority = e.priopity;
+        index = i;
+      }
+  });
+  return errorList[index];
+}
+
+
+export const time_sleep = delay => new Promise(res => setTimeout(res, delay));

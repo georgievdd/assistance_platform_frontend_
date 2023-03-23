@@ -6,27 +6,17 @@ import headerLogo from '../../res/img/headerLogo.svg';
 import { useDispatch } from 'react-redux';
 import { getUserData, loginUser } from '../../store/slices/actionCreators';
 import { REGISTRATION } from '../../components/routes/Routs';
+import { useAuth } from '../../hooks/useAuth';
+import useInput from '../../hooks/useInput';
+import InputV from '../validationforms/InputV';
 
-const Login = () => {
+const Login = props => {
 
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
-
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-
-	const emailOnChange = e => {
-		setEmail(e.target.value);
-	}
-	const passwordOnChange = e => {
-		setPassword(e.target.value);
-	}
-
-	const handler = () => {
-		dispatch(loginUser({ username: email, password }));
-		dispatch(getUserData(email));
-		navigate('/tasks');
-	}
+	const {
+		email,
+		password,
+		handler,
+	} = props.data;
 
 	return (
 		<div className='logform-container'>
@@ -46,13 +36,16 @@ const Login = () => {
 					/>
 					<h1 style={{display: "inline-block"}} className="login-text-header">Assistance Platform</h1>
 				</div>
+
+
+
 				<Form>
 
 					<div>
 						<h6 className="mb-4">Вход в аккаунт</h6>
 					</div>
 
-					<FloatingLabel
+					{/* <FloatingLabel
 						controlId="fromBasicEmail"
 						label="Username"
 						className="mb-4"
@@ -60,8 +53,9 @@ const Login = () => {
 						<Form.Control
 							type="email"
 							placeholder="name@example.com"
-							value={email}
-							onChange={emailOnChange}
+							value={email.value}
+							onChange={email.onChange}
+							onBlur={email.onBlur}
 						/>
 					</FloatingLabel>
 
@@ -73,16 +67,34 @@ const Login = () => {
 						<Form.Control
 							type="password"
 							placeholder="Password"
-							value={password}
-							onChange={passwordOnChange}
+							value={password.value}
+							onChange={password.onChange}
+							onBlur={password.onBlur}
 						/>
-					</FloatingLabel>
+					</FloatingLabel> */}
+
+					<div className='mb-4'>
+						<InputV
+							object={email}
+							type="text"
+							container="floathingLabel"
+							label="username"
+						/>
+					</div>
+
+					<div className='mb-4'>
+						<InputV
+							object={password}
+							type="password"
+							container="floathingLabel"
+							label="password"
+						/>
+					</div>
+
 
 					<Nav.Link className='mb-4'><Link className="link-default" to="">Забыли пароль?</Link></Nav.Link>
 
-					<Button variant="dark" className="login-button mb-5"
-						onClick={handler}
-					>Войти</Button>
+					<Button variant="dark" className="login-button mb-5" onClick={handler}>Войти</Button>
 
 				</Form>
 			</div>

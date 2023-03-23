@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { NEWTASK, REDACTMYTASK, TASKAPLICATIONS } from '../../../components/routes/Routs';
 import { useTasks } from '../../../hooks/useTasks';
 import { useAuth } from '../../../hooks/useAuth';
+import EmptyForm from '../../../forms/emptyform/EmptyForm';
 
 const MyTasksP = () => {
 
@@ -27,6 +28,7 @@ const MyTasksP = () => {
 		tags_info, 
 		sortsParams,
 		stage_of_study_choices_info, } = useInformational_endpoint();
+	
 	const tasks = useMyTasks().tasks.map(task => createTaskObject(task, tags_info, subjects_info));
 
 	const tagCheckHandler = index => {
@@ -63,8 +65,9 @@ const MyTasksP = () => {
   const searchTitle = 'Мои задания';
 	/// вставка в DOM
   useEffect(() => {
-    dispatch(getMyTasks(user.id, ''));
-  }, [])
+		console.log("вставка");
+    dispatch(getMyTasks(access, user.id, ''));
+  }, []);
 
 	/// запрос с фильтрами 
 	useEffect(() => {
@@ -88,7 +91,7 @@ const MyTasksP = () => {
 			["sort", [].concat(sortDirection + sort_type)]
 		]);
 
-		dispatch(getMyTasks(user.id, urlPath));
+		dispatch(getMyTasks(access, user.id, urlPath));
 
 	}, [tagsStateValue, subjectsStateValue, grouping_type, sort_type, sortDirection]);
 
@@ -99,7 +102,7 @@ const MyTasksP = () => {
 		]);
 
 		//console.log("urlPath:", urlPath);
-		dispatch(getMyTasks(user.id, urlPath));
+		dispatch(getMyTasks(access, user.id, urlPath));
 
 	}, [searchValue]);
 
@@ -110,7 +113,7 @@ const MyTasksP = () => {
 
 	//? редактирование задания
 	const redactTask = index => {
-		console.log("redact task N", index);
+		// console.log("redact task N", index);
 		dispatch(setTaskForRedact(tasks[index]));
 		navigate(REDACTMYTASK);
 	}

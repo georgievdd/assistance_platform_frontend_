@@ -9,11 +9,13 @@ import FormWithTasks from '../../../forms/tasksform/FormWithTasks';
 import CategoriesForm from '../../../forms/categoriesform/СategoriesForm';
 import { useInformational_endpoint } from '../../../hooks/useInformational_endpoint';
 import { getKeyByValue, getIdByEl, urlCreatePartOfPath, createTaskObject } from '../../../datafunc';
+import { useAuth } from '../../../hooks/useAuth';
 
 
 const TODOtasksP = () => {
 
   const dispatch = useDispatch();
+	const {access} = useAuth();
   const user = useUserData();
 	const {subjects, tags, subjects_info, tags_info, sortsParams } = useInformational_endpoint();
 
@@ -70,7 +72,9 @@ const TODOtasksP = () => {
 	}
 	/// вставка в DOM
   useEffect(() => {
-    dispatch(getTODOtasks(user.id, ''));
+		console.log("todoPage call");
+    dispatch(getTODOtasks(access, user.id, ''));
+		console.log("todoPage break");
   }, [])
 
 	/// запрос с фильтрами 
@@ -95,7 +99,7 @@ const TODOtasksP = () => {
 			["sort", [].concat(sortDirection + sort_type)]
 		]);
 
-		dispatch(getTODOtasks(user.id, urlPath));
+		dispatch(getTODOtasks(access, user.id, urlPath));
 
 	}, [tagsStateValue, subjectsStateValue, grouping_type, sort_type, sortDirection]);
 
@@ -106,7 +110,7 @@ const TODOtasksP = () => {
 		]);
 
 		//console.log("urlPath:", urlPath);
-		dispatch(getTODOtasks(user.id, urlPath));
+		dispatch(getTODOtasks(access, user.id, urlPath));
 
 	}, [searchValue])
 

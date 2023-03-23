@@ -1,9 +1,9 @@
 .task-container {
+  z-index: 9 !important;
   position: relative;
 	width: auto;
 	height: auto;
 	margin-bottom: 15px;
-  z-index: 2;
 	transition: all 0.5s;
 }
 
@@ -56,15 +56,9 @@
 }
 
 
-.task-move-win-container {
-  z-index: 1;
-  position: absolute;
-  background-attachment: fixed;
-  background-origin: border-box;
-}
-
 .task-move-win {
-  position:relative;
+  z-index: 7 !important;
+  position: absolute;
   left: -20px;
   width: 200px;
   height: 100px;

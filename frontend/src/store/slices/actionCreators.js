@@ -1,33 +1,52 @@
 import api from '../../api';
-import { setUser, setUserInfo } from './userSlice';
-import { getTasks, putTask, putTaskForRedact } from './tasksSlice';
-import { setMyTasks } from './myTasksSlice';
-import { setProfile_choices_info, setFilters_info, setSubjects_info, setTags_info } from './informational_endpointSlice';
-import { setTODOtasks } from './todoTasksSlice';
-import { putNotifications } from './notificationsSlice';
+import { setAuthDataLoad, setAuthLoad, setUser, setUserInfo } from './userSlice';
+import { getTasks, putTask, putTaskForRedact, setTasksLoad } from './tasksSlice';
+import { setMyTasks, setMyTasksLoad } from './myTasksSlice';
+import { setProfile_choices_info, setFilters_info, setSubjects_info, setTags_info, setInformationalEndpointLoad } from './informational_endpointSlice';
+import { setTODOtasks, setTodoTasksLoad } from './todoTasksSlice';
+import { putNotifications, setNotificationsLoad } from './notificationsSlice';
 import { putTaskInfo } from './taskInfoSlice';
-import { putChooseApplicationsInformation, putMyApplications } from './applicationSlice';
-import { write } from '../../datafunc';
+import { putChooseApplicationsInformation, putMyApplications, setApplicationsLoad } from './applicationsSlice';
+import { LOAD_BEGIN, LOAD_END, write } from '../../datafunc';
+import { setUsers, setUsersLoad } from './usersSlice';
 
-export const loginUser = data =>
+// export const loginUser = data =>
+// 	dispatch => {
+
+// 		// dispatch(setAuthLoad.begin());
+
+// 		return async () => {
+// 			const res = await api.auth.login(data)
+// 			.then(data => data.data);
+// 			console.log("AUTH RES", res);
+// 			dispatch(setUser(res));
+// 		}
+
+// 	}
+
+export const loginUser = data => 
+		async (dispatch) => {
+
+			dispatch(setAuthLoad(LOAD_BEGIN));
+
+			const res = await api.auth.login(data)
+			.then(data => data.data);
+			console.log(res);
+			dispatch(setAuthLoad(LOAD_END));
+			dispatch(setUser(res));
+		}
+
+export const getUserData = (data) =>
 	async (dispatch) => {
-		const res = await api.auth.login(data);
-		//console.log(res.data);
-		dispatch(setUser(res.data));
-	}
 
-export const getUserData = data => {
-	
-	console.log("getUserData: ", data);
+		dispatch(setAuthDataLoad(LOAD_BEGIN));
 
-	return async (dispatch) => {
 		const res = await api.user.userInfo(data);
-		console.log("user: ", res.data);
 
+		dispatch(setAuthDataLoad(LOAD_END));
 		dispatch(setUserInfo(res.data));
-
 	}
-}
+//! without load
 export const registrationUser = data => 
 	async (dispatch) => {
 		const res = await api.auth.registration(data)
@@ -40,52 +59,67 @@ export const registrationUser = data =>
 
 export const setTasks = urlRequest =>
 	async (dispatch) => {
-
-		console.log("setTasks->data: ", urlRequest);
+		dispatch(setTasksLoad(LOAD_BEGIN));
 
 		const res = await api.tasks.tasks(urlRequest)
 		.then(data => data.data)
+
+		dispatch(setTasksLoad(LOAD_END));
 		dispatch(getTasks(res));
 	}
 
 export const setTask = urlRequest =>
 	async (dispatch) => {
+		dispatch(setTasksLoad(LOAD_BEGIN));
+
 		const res = await api.tasks.tasks(urlRequest)
 		.then(data => data.data)
 		console.log(res);
+		dispatch(setTasksLoad(LOAD_END));
 		dispatch(putTask(res));
 	}
-
+//! without load
 export const redactMyTask = (access, id, data) =>
 	async dispatch => {
 		const res = api.tasks.redactMyTaskApi(access, id, data);
 	}
-
+//! without load
 export const deleteMyTask = (access, id) => 
 	async dispatch => {
 		const res = api.tasks.deleteMyTaskApi(access, id);
 	}
-export const getMyTasks = (user, url) =>
-	async (dispatch) => {
 
-		const res = await api.user.getMyTasksAPI(user, url)
+export const getMyTasks = (access, user, url) =>
+	async (dispatch) => {
+		dispatch(setMyTasksLoad(LOAD_BEGIN));
+
+		const res = await api.user.getMyTasksAPI(access, user, url)
 		.then(data => data.data)
+
+		dispatch(setMyTasksLoad(LOAD_END));
 		dispatch(setMyTasks(res));
 	}
 
-export const getTODOtasks = (user, url) =>
-	async (dispatch) => {
-
-		const res = await api.user.getTODOtasksAPI(user, url)
+export const getTODOtasks = (access, user, url) => {
+	console.log("todo call body");
+	return async (dispatch) => {
+		console.log("todo call async start");
+		dispatch(setTodoTasksLoad(LOAD_BEGIN));
+		const res = await api.user.getTODOtasksAPI(access, user, url)
 		.then(data => data.data);
-		console.log("todo", res, url);
+		console.log("todo call async end");
+		dispatch(setTodoTasksLoad(LOAD_END));
 		dispatch(setTODOtasks(res));
 	}
+}
 
 export const setInformational_endpoint = () =>
 	async (dispatch) => {
+		dispatch(setInformationalEndpointLoad(LOAD_BEGIN));
 		const res = await api.informational_endpoint.informational_endpoint()
 			.then(data => data.data);
+		dispatch(setInformationalEndpointLoad(LOAD_END));
+
 		dispatch(setProfile_choices_info(res.profile_choices_info));
 		dispatch(setFilters_info(res.task_filters_info));
 		dispatch(setSubjects_info(res.subjects_info));
@@ -93,10 +127,15 @@ export const setInformational_endpoint = () =>
 	}
 
 
-export const setNotifications = acces => 
+export const setNotifications = access => 
 	async dispatch => {
-		const res = await api.notifications.notifications(acces)
+
+		dispatch(setNotificationsLoad(LOAD_BEGIN));
+
+		const res = await api.notifications.notifications(access)
 			.then(data => data.data);
+		
+		dispatch(setNotificationsLoad(LOAD_END));
 		dispatch(putNotifications(res));
 		console.log("res: ", res);
 	}
@@ -114,33 +153,45 @@ export const setTaskForRedact = task =>
 
 export const setMyApplications = (id, access) => 
 	async dispatch => {
+		dispatch(setApplicationsLoad(LOAD_BEGIN));
 		const res = await api.applications.myApplications(id, access)
 		.then(data => data.data);
-		write({setMyApplications: res})
+		dispatch(setApplicationsLoad(LOAD_END));
 		dispatch(putMyApplications(res));
 	}
 
 export const setChooseApplicationsInformation = (access, id) => 
 	async dispatch => {
+		dispatch(setApplicationsLoad(LOAD_BEGIN));
 		const res = await api.tasks.taskApplicationsInfo(access, id)
 		.then(res => res.data.applications);
+		dispatch(setApplicationsLoad(LOAD_END));
 		dispatch(putChooseApplicationsInformation(res));
 	}
-
+//! without load
 export const setDoerStorage = (acces, id, username) => 
 	async dispatch => {
 		const res = await api.tasks.setImplementor(acces, id, username);
 	}
 
-
+//! without load
 export const redactMyApplication = (taskId, access, message) =>
 	async dispatch => {
 		const res = await api.applications.redactMyApplicationApi(taskId, access, {message})
 		.then(data => data.data);
 	}
-
+//! without load
 export const deleteMyApplication = (taskId, access) =>
 	async dispatch => {
 		const res = await api.applications.deleteMyApplicationApi(taskId, access)
 		.then(data => data.data);
+	}
+
+export const getUsers = access => 
+	async dispatch => {
+		dispatch(setUsersLoad(LOAD_BEGIN));
+		const res = await api.users.getUsersApi(access)
+		.then(data => data.data);
+		dispatch(setUsersLoad(LOAD_END));
+		dispatch(setUsers(res));
 	}

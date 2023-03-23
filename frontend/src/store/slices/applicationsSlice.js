@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { write } from '../../datafunc';
+import { LOAD_INIT, write } from '../../datafunc';
 
 const initialState = {
 	// my: {
@@ -13,7 +13,8 @@ const initialState = {
   //   updated_at: null
   // }
   my: [],
-  chooseApplicationsInformation: []
+  chooseApplicationsInformation: [],
+  load: LOAD_INIT,
 }
 
 const applications = createSlice({
@@ -26,10 +27,13 @@ const applications = createSlice({
 		},
     putChooseApplicationsInformation(state, action) {
       state.chooseApplicationsInformation = action.payload;
-    }
+    },
+    setApplicationsLoad(state, action) {
+			state.load = action.payload;
+		},
 	},
 });
 
-export const { putMyApplications, putChooseApplicationsInformation } = applications.actions;
+export const { putMyApplications, putChooseApplicationsInformation, setApplicationsLoad } = applications.actions;
 
 export default applications.reducer;

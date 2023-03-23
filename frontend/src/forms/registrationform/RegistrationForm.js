@@ -7,21 +7,16 @@ import { useDispatch } from 'react-redux';
 import { setUserInfo } from '../../store/slices/userSlice';
 import { loginUser, registrationUser } from '../../store/slices/actionCreators';
 import { LOGIN } from '../../components/routes/Routs';
+import InputV from '../validationforms/InputV';
+import useInput from '../../hooks/useInput';
+import LabelV from '../validationforms/LabelV';
 
 const RegistrationForm = () => {
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const [username, setUsername] = useState('');
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [repeatPassword, setRepeatPassword] = useState('');
-
-	const Handler = () => {
-		dispatch(registrationUser({username, password, email}));
-		navigate('/profile');
-	}
+	const msg = useInput('', {minLength: 5, maxLength: 30, isEmpty: "", isEmail: ""}); 
 
 	return (
 		<div className='regform-container'>
@@ -42,7 +37,7 @@ const RegistrationForm = () => {
 					<h1 style={{display: "inline-block"}} className="reg-text-header">Assistance Platform</h1>
 				</div>
 
-				<Form noValidate validated={true} onSubmit={null}>
+				{/* <Form noValidate validated={validated} onSubmit={Handler}>
 
 					<div>
 						<h6 className="mb-4">Регистрация</h6>
@@ -60,9 +55,6 @@ const RegistrationForm = () => {
 						<Form.Control.Feedback type="invalid" style={{marginTop: "0px"}}>
               Пожалуйста, введите username.
 						</Form.Control.Feedback>
-						{/* <Form.Control.Feedback type="valid">
-            	OK.
-            </Form.Control.Feedback> */}
 					</Form.Group>
 
 					<Form.Group controlId="email" className='mt-3'>
@@ -77,9 +69,6 @@ const RegistrationForm = () => {
 						<Form.Control.Feedback type="invalid" style={{marginTop: "0px"}}>
               Неверный формат.
 						</Form.Control.Feedback>
-						{/* <Form.Control.Feedback type="valid">
-						хорошо.
-            </Form.Control.Feedback> */}
 					</Form.Group>
 
 					<Form.Group controlId="password" className='mt-3'>
@@ -99,7 +88,7 @@ const RegistrationForm = () => {
 							required
 							type="password"
 							placeholder="123456789"
-							value={repeatPassword.value}
+							value={repeatPassword}
 							onChange={e => setRepeatPassword(e.target.value)}
 						/>
 					</Form.Group>
@@ -110,14 +99,23 @@ const RegistrationForm = () => {
 							required
 							label="Регистрируясь, вы принимаете Пользовательское соглашение,
 							а также даёте согласие на обработку персональных данных на условиях Политики конфиденциальности."
-							feedback="Вы должны согласиться перед отправкой."
-							feedbackType="invalid"
+							// feedback="Вы должны согласиться перед отправкой."
+							// feedbackType="invalid"
 						/>
 					</Form.Group>
 
 					<Button variant="dark" className="reg-button mt-5" onClick={Handler}>Зарегестрироваться</Button>
 
-				</Form>
+				</Form> */}
+
+				<InputV
+					type={"text"}
+					object={msg}
+				/>
+				<LabelV 
+					object={msg}
+				/>
+
 			</div>
 		</div>
 	);

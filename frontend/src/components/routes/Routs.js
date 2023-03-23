@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom';
 import DefaultP from '../../pages/main-page/default-page/DefaultP';
-import ComeInP from '../../pages/main-page/comein-page/ComeInP';
+import LoginP from '../../pages/main-page/comein-page/LoginP';
 import ServicesP from '../../pages/main-page/services-page/ServicesP';
 import TasksP from '../../pages/main-page/tasks-page/TasksP';
 import ToRegisterP from '../../pages/main-page/toregister-page/ToRegisterP';
@@ -13,19 +13,21 @@ import NewTaskP from '../../pages/main-page/new_task-page/NewTaskP';
 import TaskInfoP from '../../pages/main-page/taskinfo-page/TaskInfoP';
 import RedactMyTaskP from '../../pages/main-page/redactmytask-page/RedactMyTaskP';
 import TaskApplicationsP from '../../pages/main-page/taskapplications-page/TaskApplicationsP';
+import UsersP from '../../pages/main-page/users-page/UsersP';
 
 
 export const HOME            = "/";
 export const LOGIN           = "/login";
 export const TASKS           = "/tasks";
-export const REGISTRATION    = "/registration";
+export const USERS           = "/users";
 export const PROFILE         = "/profile";
 export const MYTASKS         = "/mytasks";
 export const TODOTASKS       = "/todotasks";
+export const REGISTRATION    = "/registration";
 export const MYAPPLICATIONS  = "/myapplications";
-export const NEWTASK         = MYTASKS + "/new_task";
-export const TASKINFO        = TASKS + "/info";
+export const TASKINFO        = TASKS   + "/info";
 export const REDACTMYTASK    = MYTASKS + "/redact";
+export const NEWTASK         = MYTASKS + "/new_task";
 export const TASKAPLICATIONS = MYTASKS + "/applications";
 
 const Routs = () => {
@@ -33,7 +35,7 @@ const Routs = () => {
 		<div>
 			<Routes>
 				<Route exact path= {HOME}                 element={<TasksP />} />    {/* <DefaultP */}
-				<Route path=       {LOGIN}                element={<ComeInP />} />
+				<Route path=       {LOGIN}                element={<LoginP />} />
 				<Route path=       {TASKS}                element={<TasksP />} />
 				<Route path=       {REGISTRATION}         element={<ToRegisterP />} />
 				<Route path=       {PROFILE}              element={<ProfileP />} />
@@ -44,6 +46,7 @@ const Routs = () => {
 				<Route path=       {TASKINFO}             element={<TaskInfoP />} />
 				<Route path=       {REDACTMYTASK}         element={<RedactMyTaskP />} />
 				<Route path=       {TASKAPLICATIONS}      element={<TaskApplicationsP />} />
+				<Route path=       {USERS}                element={<UsersP />} />
 			</Routes>
 		</div>
 	)

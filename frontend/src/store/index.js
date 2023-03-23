@@ -1,12 +1,13 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import userReducer from './slices/userSlice';
+import usersReduser from './slices/usersSlice';
 import tasksReduser from './slices/tasksSlice';
 import informational_endpointReducer from './slices/informational_endpointSlice';
 import myTasksReducer from './slices/myTasksSlice';
 import todoTasksReducer from './slices/todoTasksSlice';
 import notificationsReducer from './slices/notificationsSlice';
 import taskInfoReducer from './slices/taskInfoSlice';
-import applicationReducer from './slices/applicationSlice';
+import applicationReducer from './slices/applicationsSlice';
 import {
 	persistReducer,
 	persistStore,
@@ -21,6 +22,7 @@ import storage from 'redux-persist/lib/storage';
 
 const rootReducer = combineReducers({
 	user: userReducer,
+  users: usersReduser,
   mytasks: myTasksReducer,
   todotasks: todoTasksReducer,
   tasks: tasksReduser,

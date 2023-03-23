@@ -1,28 +1,10 @@
 import EndPoints from "../endPoints";
-import { HOST, VARIANT } from '../instance';
+import { axiosAccessRequest, HOST, VARIANT } from '../instance';
 import axios from "axios";
 
-export const notifications = access => {
-    const path = HOST + VARIANT + EndPoints.NOTIFICATIONS;
-
-    axios.interceptors.request.use(
-      config => {
-        config.headers.Authorization = "Bearer " + access;
-        return config;
-      });
-
-    return axios({ method: "get", url: path });
-  }
+export const notifications = access => 
+  axiosAccessRequest("get", EndPoints.NOTIFICATIONS, access);
 
 
-export const notificationsClear = access => {
-    const path = HOST + VARIANT + EndPoints.NOTIFICATIONS;
-
-    axios.interceptors.request.use(
-      config => {
-        config.headers.Authorization = "Bearer " + access;
-        return config;
-      });
-
-    return axios({ method: "put", url: path });
-  }
+export const notificationsClear = access =>
+  axiosAccessRequest("put", EndPoints.NOTIFICATIONS, access);

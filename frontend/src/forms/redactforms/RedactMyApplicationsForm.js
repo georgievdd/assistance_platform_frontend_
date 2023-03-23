@@ -30,7 +30,7 @@ const taskSeeLinkStyle = {
 
 const RedactMyApplicationsForm = props => {
 
-  console.log("RedactMyApplicationsForm", props);
+  // console.log("RedactMyApplicationsForm", props);
 
   const [showRedact, setShowRedact] = useState(false);
 
@@ -43,6 +43,7 @@ const RedactMyApplicationsForm = props => {
     message,
     updated_at,
   } = props.data.application;
+  const {author} = task;
   const {
     redactMsg,
     onChangeSetRedact,
@@ -60,9 +61,14 @@ const RedactMyApplicationsForm = props => {
 
   return (
     <div className='container-element shadow' style={{padding: "20px"}}>
-      <div className='mb-3'>
+      <div className='mb-2'>
         <h3 style={{display: "inline-block"}}>Просмотреть описание задания по </h3>
         <Nav.Link style={taskSeeLinkStyle}><Link>ссылке</Link></Nav.Link>
+        {/*//!перекидывает на страницу с заданием по id*/}
+      </div>
+      <div className='mb-2'>
+        <h3 style={{display: "inline-block"}}>Просмотреть профиль пользователя </h3>
+        <Nav.Link style={taskSeeLinkStyle}><Link>{author}</Link></Nav.Link>
         {/*//!перекидывает на страницу с заданием по id*/}
       </div>
       <div className='mb-3'>
