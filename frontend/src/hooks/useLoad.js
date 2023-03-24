@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { LOAD_INIT } from '../datafunc';
 
 export const useLoad = () => {
 	const authLoad                            = useSelector(state => state.user).authLoad;
@@ -14,8 +15,8 @@ export const useLoad = () => {
   const applicationsLoad                    = useSelector(state => state.applications).load;
 	const stateArray = [
     authLoad,
-    usersLoad,
     authDataLoad,
+    usersLoad,
     mytasksLoad,
     todotasksLoad,
     tasksLoad,

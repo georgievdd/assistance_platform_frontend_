@@ -24,7 +24,7 @@ export const useUserData = () => {
     vk,
   } = contacts;
 
-  // console.log(statistics);
+  // // console.log(statistics);
 
   const {
     author, 

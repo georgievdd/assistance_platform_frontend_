@@ -17,7 +17,7 @@ export const useInformational_endpoint = () => {
     stage_of_study_choices_info: profile_choices_info.stage_of_study_choices,
     stage_of_study_choices: Object.keys(profile_choices_info).length !== 0 ? 
     profile_choices_info.stage_of_study_choices.map(i => i[1]) : [],
-    sortsParams: Object.keys(filters_info).length === 0 ? [] :
-    filters_info.sort,
+    sortsParams: filters_info ? (Object.keys(filters_info).length === 0 ? [] :
+    filters_info.sort) : [],
 	}
 }
