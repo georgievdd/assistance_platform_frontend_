@@ -10,6 +10,8 @@
     "@types/axios": "^0.14.0",
     "axios": "^1.2.2",
     "bootstrap": "^5.2.3",
+    "dotenv": "^16.0.3",
+    "env-cmd": "^10.1.0",
     "mobx": "^6.7.0",
     "mobx-react-lite": "^3.4.0",
     "react": "^18.2.0",
@@ -44,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "dotenv-webpack": "^8.0.1"
   }
 }

@@ -6,7 +6,7 @@ import './main-page-style.css';
 import '../../styles/containers.css';
 import { useUserData } from '../../hooks/useUserData';
 import { useAuth } from '../../hooks/useAuth';
-import { setNotifications } from '../../store/slices/actionCreators';
+import { getUserData, setNotifications } from '../../store/slices/actionCreators';
 import { useDispatch } from 'react-redux';
 import { useNotifications } from '../../hooks/useNotifications';
 import Spinner from '../../forms/spinnerform/Spinner';
@@ -22,7 +22,7 @@ const MainPage = () => {
 
 	const user = useUserData();
 	const dispatch = useDispatch();
-	const {isAuth, access} = useAuth();
+	const { isAuth, access } = useAuth();
 	const { New, notifications } = useNotifications();
 	console.log(notifications);
 	const [moveNotify, setMoveNotify] = useState(notifications.map(() => ' '));
@@ -63,6 +63,9 @@ const MainPage = () => {
 
 	useEffect(() => {
 		//! КАК ТОЛЬКО ПОЯВИТЯ access ДЕЛАТЬ ЗАПРОС НА ДАННЫЕ ПОЛЬЗОВАТЕЛЯ
+		if (isAuth) {
+			dispatch(getUserData(user.username));	
+		}
 	}, [access])
 
 	useEffect(() => {

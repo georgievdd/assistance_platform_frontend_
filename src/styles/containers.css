@@ -114,13 +114,13 @@ input { border: none; outline: none; }
 
 .floathingLabel input {
 	font-size: 20px;
-	padding: 20px;
+	padding: 20px 10px;
 }
 
 .floathingLabel input:focus ~span,
 .floathingLabel input:valid ~span {
-	transform: translateX(-5px) translateY(-20px);
-	font-size: 0.8em;
+	transform: translateX(-5px) translateY(-24px);
+	font-size: 17px;
 	padding: 0 10px;
 	margin: 0;
 }

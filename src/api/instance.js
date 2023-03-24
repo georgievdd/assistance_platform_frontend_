@@ -1,10 +1,14 @@
 import axios from "axios";
 
-
+// require('dotenv').config();
 
 
 const HOST = "http://127.0.0.1:8000";
 const VARIANT = '/api/v1';
+
+
+
+// console.log("process", process.env);
 
 export const axiosInstance = axios.create({
 	baseURL: HOST + VARIANT,

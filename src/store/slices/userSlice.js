@@ -77,6 +77,9 @@ const userSlice = createSlice({
 			state.access  = action.payload.access;
 			state.refresh = action.payload.refresh;
 		},
+		setUsername(state, action) {
+			state.username = action.payload;
+		},
 		deleteUser(state) {
 			state.access                  = initialState.access;
 			state.refresh                 = initialState.refresh;
@@ -90,6 +93,6 @@ const userSlice = createSlice({
 	},
 });
 
-export const { setUser, deleteUser, setUserInfo, setAuthLoad, setAuthDataLoad } = userSlice.actions;
+export const { setUser, deleteUser, setUserInfo, setAuthLoad, setAuthDataLoad, setUsername } = userSlice.actions;
 
 export default userSlice.reducer;

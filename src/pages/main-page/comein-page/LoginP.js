@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import useInput from '../../../hooks/useInput';
 import { useAuth } from '../../../hooks/useAuth';
 import { getUserData, loginUser } from '../../../store/slices/actionCreators';
+import { setUsername } from '../../../store/slices/userSlice';
+import { useUserData } from '../../../hooks/useUserData';
 
 
 
@@ -15,10 +17,12 @@ const LoginP = () => {
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const {access} = useAuth();
 
 	const handler = () => {
 		dispatch(loginUser({ username: email.value, password: password.value }));
+
+		dispatch(setUsername(email.value));
+
 		setTimeout(() => {
 			dispatch(getUserData(email.value))
 		}, 900);

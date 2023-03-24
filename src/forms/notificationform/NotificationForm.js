@@ -98,7 +98,7 @@ const NotificationForm = props => {
           </div>
           <Row>
             <Col>
-              {props.data.checked && 
+              {!props.data.checked && 
                 <img
                   width="50px"
                   src={newIm}
