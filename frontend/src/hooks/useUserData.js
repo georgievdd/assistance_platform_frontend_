@@ -8,53 +8,57 @@ export const useUserData = () => {
           contacts,
           statistics,
         } = useSelector(state => state.user);
+  
+  if (profile) {
+    const {
+      first_name,
+      last_name,
+      profile_image,
+      biography,
+      stage_of_study,
+      course_of_study,
+    } = profile;
+  
+    const {
+      phone,
+      telegram,
+      vk,
+    } = contacts;
+  
+    // // console.log(statistics);
+  
+    const {
+      author, 
+      implementer,
+    } = statistics.ratings;
+    const {
+      authored,
+      implementered,
+      applications,
+    } = statistics.tasks;
+    
+    return {
+      id,
+      username,
+      email,
+      first_name,
+      last_name,
+      profile_image,
+      biography,
+      stage_of_study,
+      course_of_study,
+  
+      phone,
+      telegram,
+      vk,
+  
+      author,
+      implementer,
+      authored,
+      implementered,
+      applications,
+    }
+  }
 
-  const {
-    first_name,
-    last_name,
-    profile_image,
-    biography,
-    stage_of_study,
-    course_of_study,
-  } = profile;
-
-  const {
-    phone,
-    telegram,
-    vk,
-  } = contacts;
-
-  // // console.log(statistics);
-
-  const {
-    author, 
-    implementer,
-  } = statistics.ratings;
-  const {
-    authored,
-    implementered,
-    applications,
-  } = statistics.tasks;
-	
-	return {
-		id,
-    username,
-    email,
-    first_name,
-    last_name,
-    profile_image,
-    biography,
-    stage_of_study,
-    course_of_study,
-
-    phone,
-    telegram,
-    vk,
-
-    author,
-    implementer,
-    authored,
-    implementered,
-    applications,
-	}
+  return {}
 }
