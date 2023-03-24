@@ -11,9 +11,15 @@ const taskInfo = createSlice({
 		putTaskInfo(state, action) {
 			state.task = action.payload;
 		},
+		clearTaskInfoSlice(state) {
+			state.task = initialState.task;
+		}
 	},
 });
 
-export const { putTaskInfo } = taskInfo.actions;
+export const { 
+	putTaskInfo, 
+	clearTaskInfoSlice
+ } = taskInfo.actions;
 
 export default taskInfo.reducer;

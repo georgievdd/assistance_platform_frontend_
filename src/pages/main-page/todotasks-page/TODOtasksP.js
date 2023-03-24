@@ -10,6 +10,7 @@ import CategoriesForm from '../../../forms/categoriesform/СategoriesForm';
 import { useInformational_endpoint } from '../../../hooks/useInformational_endpoint';
 import { getKeyByValue, getIdByEl, urlCreatePartOfPath, createTaskObject } from '../../../datafunc';
 import { useAuth } from '../../../hooks/useAuth';
+import { useTasks } from '../../../hooks/useTasks';
 
 
 const TODOtasksP = () => {
@@ -50,6 +51,8 @@ const TODOtasksP = () => {
 	const [sort_type, setSort_type] = useState('');
 	const [sortTitle, setSortTitle] = useState('');
 	const [sortDirection, setSortDirection] = useState('');
+	const tasksProp = useTODOtasks().tasks;
+	const [tasks, setTasks] = useState([]);
   const searchTitle = 'My TODO Tasks';
 	const dataForCategories = {
 		informational_endpoint: useInformational_endpoint(),
@@ -63,7 +66,7 @@ const TODOtasksP = () => {
 	}
 	const dataForTasks = {
 		informational_endpoint: useInformational_endpoint(),
-		tasks: useTODOtasks().tasks.map(task => createTaskObject(task, tags_info, subjects_info)),
+		tasks,  //: tasks, // useTODOtasks().tasks.map(task => createTaskObject(task, tags_info, subjects_info)),
 		searchValue, setSeacrhValue,
 		searchHandler,
     searchTitle,
@@ -75,7 +78,13 @@ const TODOtasksP = () => {
 		console.log("todoPage call");
     dispatch(getTODOtasks(access, user.id, ''));
 		console.log("todoPage break");
-  }, [])
+  }, []);
+
+	useEffect(() => {
+		if (tasksProp.length) {
+			setTasks(tasksProp.map(task => createTaskObject(task, tags_info, subjects_info)));
+		}
+	}, [tasksProp]);
 
 	/// запрос с фильтрами 
 	useEffect(() => {

@@ -26,8 +26,11 @@ const informational_endpoint = createSlice({
       state.profile_choices_info = action.payload;
     },
 		clearInformational_endpoint(state) {
-			state.tasks = initialState.tasks;
-			state.loadStatus = initialState.loadStatus;
+			state.tags_info = initialState.tags_info;
+      state.subjects_info = initialState.subjects_info;
+      state.filters_info = initialState.filters_info;
+      state.profile_choices_info = initialState.profile_choices_info;
+      state.load = initialState.load;
 		},
     setInformationalEndpointLoad(state, action) {
 			state.load = action.payload;

@@ -15,16 +15,15 @@ import { useAuth } from '../../hooks/useAuth';
 
 const LoginTrueForm = props => {
 
-	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
 	const {
 		New,
 		openNotifications,
 		user,
+		clearAccount,
 	} = props.data;
-
-	const {access} = useAuth();
+	console.log("props.data", props.data);
 
 	const {
 		username,
@@ -35,8 +34,9 @@ const LoginTrueForm = props => {
 	if (!profileImg) profileImg = profileImgDefault;
 
 	const outHandler = () => {
+		// console.log("out");
 		navigate(TASKS);
-		dispatch(deleteUser());
+		clearAccount();
 	}
 
 	const profileNavigate = () => {
@@ -79,7 +79,7 @@ const LoginTrueForm = props => {
 				</div> */}
 				<Dropdown style={{display: "inline-block"}}>
 				<Dropdown.Toggle variant="dark" id="dropdown-basic">
-					<div className='nav-button'>{username} <Badge bg="secondary">{notificationsHandler()}</Badge></div>
+					<div className='nav-button'>{username}<Badge bg="secondary">{notificationsHandler()}</Badge></div>
 				</Dropdown.Toggle>
 
 				<Dropdown.Menu>

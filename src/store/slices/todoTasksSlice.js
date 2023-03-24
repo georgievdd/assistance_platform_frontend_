@@ -18,9 +18,10 @@ const todoTasksSlice = createSlice({
 			state.tasks = action.payload.tasks;
 			state.filters = action.payload.filters;
 		},
-		deleteTODOtasks(state) {
-			state.tasks = initialState.tasks;
+		clearTODOtasksSlice(state) {
+			state.tasks = initialState;
 			state.filters = initialState.filters;
+			state.load = initialState.load;
 		},
 		setTodoTasksLoad(state, action) {
 			state.load = action.payload;
@@ -28,6 +29,10 @@ const todoTasksSlice = createSlice({
 	},
 });
 
-export const { setTODOtasks, deleteTODOtasks, setTodoTasksLoad } = todoTasksSlice.actions;
+export const { 
+	setTODOtasks, 
+	clearTODOtasksSlice, 
+	setTodoTasksLoad 
+} = todoTasksSlice.actions;
 
 export default todoTasksSlice.reducer;

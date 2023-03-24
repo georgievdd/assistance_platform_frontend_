@@ -90,9 +90,28 @@ const userSlice = createSlice({
 			state.username                = initialState.username;
 			state.statistics              = initialState.statistics;
 		},
+		clearUserSlice(state) {
+			state.access = initialState.access;
+			state.refresh = initialState.refresh;
+			state.authDataLoad = initialState.authDataLoad;
+			state.authLoad = initialState.authLoad;
+			state.contacts = initialState.contacts;
+			state.email = initialState.email;
+			state.id = initialState.id;
+			state.profile = initialState.profile;
+			state.statistics = initialState.statistics;
+			state.username = initialState.username;
+		},
 	},
 });
 
-export const { setUser, deleteUser, setUserInfo, setAuthLoad, setAuthDataLoad, setUsername } = userSlice.actions;
+export const { 
+	setUser, 
+	clearUserSlice, 
+	setUserInfo,
+	setAuthLoad, 
+	setAuthDataLoad,
+	setUsername,
+ } = userSlice.actions;
 
 export default userSlice.reducer;

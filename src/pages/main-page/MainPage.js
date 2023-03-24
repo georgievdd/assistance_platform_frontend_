@@ -15,6 +15,15 @@ import NotificationForm from '../../forms/notificationform/NotificationForm';
 import { Offcanvas } from 'react-bootstrap';
 import api from '../../api';
 import { time_sleep } from '../../datafunc';
+import { clearApplicationsSlice } from '../../store/slices/applicationsSlice';
+import { clearInformational_endpoint } from '../../store/slices/informational_endpointSlice';
+import { clearMyTasksSlice } from '../../store/slices/myTasksSlice';
+import { clearNotificationsSlice } from '../../store/slices/notificationsSlice';
+import { clearTODOtasksSlice } from '../../store/slices/todoTasksSlice';
+import { clearTaskInfoSlice } from '../../store/slices/taskInfoSlice';
+import { clearTasksSlice } from '../../store/slices/tasksSlice';
+import { clearUserSlice, deleteUser } from '../../store/slices/userSlice';
+import { clearUsersSlice } from '../../store/slices/usersSlice';
 
 const MainPage = () => {
 
@@ -52,6 +61,21 @@ const MainPage = () => {
 	}
 
 
+	const clearAccount = () => {
+		console.log("clear");
+		dispatch(clearUserSlice());
+		dispatch(clearApplicationsSlice());
+		// dispatch(clearInformational_endpoint());
+		dispatch(clearMyTasksSlice());
+		dispatch(clearNotificationsSlice());
+		dispatch(clearTaskInfoSlice());
+		// dispatch(clearTasksSlice());
+		dispatch(clearTODOtasksSlice());
+		dispatch(clearUserSlice());
+		dispatch(clearUsersSlice());
+	}
+
+
 
 	const navData = {
 		New, 
@@ -59,12 +83,15 @@ const MainPage = () => {
 		user,
 		isAuth,
 		openNotifications,
+		clearAccount,
 	}
 
 	useEffect(() => {
 		//! КАК ТОЛЬКО ПОЯВИТЯ access ДЕЛАТЬ ЗАПРОС НА ДАННЫЕ ПОЛЬЗОВАТЕЛЯ
 		if (isAuth) {
-			dispatch(getUserData(user.username));	
+			console.log("auth", access, user.username);
+			dispatch(getUserData(user.username));
+			dispatch(setNotifications(access));
 		}
 	}, [access])
 
@@ -79,12 +106,6 @@ const MainPage = () => {
 			}
 		}
 	}, [loading]);
-
-	useEffect(() => {
-		// console.log("dispatch(setNotifications(access));");
-		if (access) 
-			dispatch(setNotifications(access));
-	}, []);
 
 	useEffect(() => {
 		if (showNotifications) {

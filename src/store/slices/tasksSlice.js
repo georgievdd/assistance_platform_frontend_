@@ -18,10 +18,8 @@ const tasksSlice = createSlice({
 	initialState,
 	reducers: {
 		getTasks(state, action) {
-			// console.log("srv", action.payload.tasks);
 			state.tasks = action.payload.tasks;
 			state.loadStatus = true;
-			//console.log("payload filters: ", action.payload);
 			state.filters = action.payload.filters;
 		},
 		putTask(state, action) {
@@ -30,16 +28,26 @@ const tasksSlice = createSlice({
 		putTaskForRedact(state, action) {
 			state.taskForRedact = action.payload;
 		},
-		deleteTasks(state) {
-			state.tasks = initialState.tasks;
-			state.loadStatus = initialState.loadStatus;
-		},
 		setTasksLoad(state, action) {
 			state.load = action.payload;
 		},
+		clearTasksSlice(state) {
+			state.tasks = initialState.tasks;
+			state.loadStatus = initialState.loadStatus;
+			state.filters = initialState.filters;
+			state.load = initialState.load;
+			state.task = initialState.task;
+			state.taskForRedact = initialState.taskForRedact;
+		}
 	},
 });
 
-export const { getTasks, deleteTasks, putTask, putTaskForRedact, setTasksLoad } = tasksSlice.actions;
+export const { 
+	getTasks, 
+	clearTasksSlice, 
+	putTask, 
+	putTaskForRedact, 
+	setTasksLoad 
+} = tasksSlice.actions;
 
 export default tasksSlice.reducer;

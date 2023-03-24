@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { priorityError } from "../datafunc";
+import { priorityError } from "../errors/validation/index";
 import { isEmailE, isEmptyE, maxLengthE, minLengthE } from "../errors/validation";
 
 const useValidation = (value, validations) => {

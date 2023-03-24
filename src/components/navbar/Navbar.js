@@ -14,13 +14,16 @@ const Navibar = props => {
 					notifications,
 					openNotifications,
 					New,
-					user } = props.data;
+					user,
+					clearAccount,
+				} = props.data;
 
 	const loginTrueFormData = {
 		user,
 		notifications,
 		New,
 		openNotifications,
+		clearAccount,
 	}
 
 	const navbarStyle = {

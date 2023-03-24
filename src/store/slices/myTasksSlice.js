@@ -19,16 +19,21 @@ const myTasksSlice = createSlice({
 			state.tasks = action.payload.tasks;
 			state.filters = action.payload.filters;
 		},
-		deleteMyTasks(state) {
-			state.tasks = initialState.tasks;
-			state.filters = initialState.filters;
-		},
 		setMyTasksLoad(state, action) {
 			state.load = action.payload;
 		},
+		clearMyTasksSlice(state) {
+			state.tasks = initialState.tasks;
+			state.load = initialState.load;
+			state.filters = initialState.filters;
+		}
 	},
 });
 
-export const { setMyTasks, deleteMyTasks, setMyTasksLoad } = myTasksSlice.actions;
+export const { 
+	setMyTasks, 
+	clearMyTasksSlice, 
+	setMyTasksLoad 
+} = myTasksSlice.actions;
 
 export default myTasksSlice.reducer;

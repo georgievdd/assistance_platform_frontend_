@@ -31,9 +31,14 @@ const applications = createSlice({
     setApplicationsLoad(state, action) {
 			state.load = action.payload;
 		},
+    clearApplicationsSlice(state) {
+      state.my = initialState.my;
+      state.load = initialState.load;
+      state.chooseApplicationsInformation = initialState.chooseApplicationsInformation;
+    },
 	},
 });
 
-export const { putMyApplications, putChooseApplicationsInformation, setApplicationsLoad } = applications.actions;
+export const { putMyApplications, putChooseApplicationsInformation, setApplicationsLoad, clearApplicationsSlice } = applications.actions;
 
 export default applications.reducer;
