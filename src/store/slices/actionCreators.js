@@ -78,15 +78,23 @@ export const setTask = urlRequest =>
 		dispatch(setTasksLoad(LOAD_END));
 		dispatch(putTask(res));
 	}
+
 //! without load
 export const redactMyTask = (access, id, data) =>
 	async dispatch => {
 		const res = api.tasks.redactMyTaskApi(access, id, data);
 	}
+
 //! without load
 export const deleteMyTask = (access, id) => 
 	async dispatch => {
 		const res = api.tasks.deleteMyTaskApi(access, id);
+	}
+
+	//! without load
+export const sendApplication = (access, id, message) => 
+	async dispatch => {
+		const res = api.applications.sendApplicationApi(id, message, access);
 	}
 
 export const getMyTasks = (access, user, url) =>

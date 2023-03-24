@@ -6,6 +6,8 @@ import { HOST, VARIANT } from '../../api/instance';
 import EndPoints from '../../api/endPoints';
 import { useAuth } from '../../hooks/useAuth';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { sendApplication } from '../../store/slices/actionCreators';
 
 
 const IMG = type => {
@@ -16,6 +18,7 @@ const TaskInfoForm = props => {
 
 	const [message, setMessage] = useState('');
 	const {access} = useAuth();
+	const dispatch = useDispatch();
 
 	const date = t => {
 		const {
@@ -40,22 +43,7 @@ const TaskInfoForm = props => {
 	];
 
 	const buttonHandler = () => {
-		const path = HOST + VARIANT + EndPoints.TASKS + props.data.id + EndPoints.APPLY;
-		console.log(path);
-
-		axios.interceptors.request.use(
-      config => {
-        config.headers.Authorization = "Bearer " + access;
-        return config;
-      });
-
-    axios({
-      method: "post",
-      url: path, 
-      data: {
-        message
-      }
-    })
+		dispatch(sendApplication(access, props.data.id, message));
 	}
 
 	return (

@@ -8,4 +8,7 @@ export const redactMyApplicationApi = (taskId, access, data) =>
 	axiosAccessRequest("put", EndPoints.TASKS + taskId + EndPoints.MY_APPLICATION, access, data);
 
 export const deleteMyApplicationApi = (taskId, access) => 
-axiosAccessRequest("delete", EndPoints.TASKS + taskId + EndPoints.MY_APPLICATION, access);
+	axiosAccessRequest("delete", EndPoints.TASKS + taskId + EndPoints.MY_APPLICATION, access);
+
+export const sendApplicationApi = (id, data, access) => 
+	axiosInstance("put", EndPoints.TASKS + id + EndPoints.APPLY, access, data);
