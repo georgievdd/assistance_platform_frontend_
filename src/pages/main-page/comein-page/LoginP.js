@@ -7,6 +7,7 @@ import { useAuth } from '../../../hooks/useAuth';
 import { getUserData, loginUser } from '../../../store/slices/actionCreators';
 import { setUsername } from '../../../store/slices/userSlice';
 import { useUserData } from '../../../hooks/useUserData';
+import { TASKS } from '../../../components/routes/Routs';
 
 
 
@@ -23,11 +24,12 @@ const LoginP = () => {
 
 		dispatch(setUsername(email.value));
 
-		setTimeout(() => {
-			dispatch(getUserData(email.value))
-		}, 900);
+		// setTimeout(() => {
+		// 	dispatch(getUserData(email.value))
+		// }, 900);
 		// dispatch(getUserData(email.value));
-		navigate('/tasks');
+		navigate(TASKS);
+		// window.location.reload();
 	}
 
 	const data = {

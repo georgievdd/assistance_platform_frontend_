@@ -33,7 +33,7 @@ const MainPage = () => {
 	const dispatch = useDispatch();
 	const { isAuth, access } = useAuth();
 	const { New, notifications } = useNotifications();
-	console.log(notifications);
+	// console.log(notifications);
 	const [moveNotify, setMoveNotify] = useState(notifications.map(() => ' '));
 
 	const [spinnerClass, setSpinnerClass] = useState('');
@@ -73,6 +73,9 @@ const MainPage = () => {
 		dispatch(clearTODOtasksSlice());
 		dispatch(clearUserSlice());
 		dispatch(clearUsersSlice());
+
+		// console.log("isAuthisAuthisAuthisAuth", isAuth);
+		// window.location.reload();
 	}
 
 
@@ -87,13 +90,16 @@ const MainPage = () => {
 	}
 
 	useEffect(() => {
-		//! КАК ТОЛЬКО ПОЯВИТЯ access ДЕЛАТЬ ЗАПРОС НА ДАННЫЕ ПОЛЬЗОВАТЕЛЯ
 		if (isAuth) {
-			console.log("auth", access, user.username);
 			dispatch(getUserData(user.username));
 			dispatch(setNotifications(access));
+			// window.location.reload();
 		}
-	}, [access])
+	}, [isAuth]);
+
+	useEffect(() => {
+		console.log("notificationsnotifications", notifications);
+	}, [notifications]);
 
 	useEffect(() => {
 		if (loading) {
@@ -113,7 +119,7 @@ const MainPage = () => {
 		} else {
 			setMoveNotify(notifications.map(() => ''));
 		}
-	}, [showNotifications])
+	}, [showNotifications]);
 
 	return (
 		<div>

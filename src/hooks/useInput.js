@@ -33,7 +33,7 @@ const useInput = (initValue, validations) => {
     }
 
 
-  }, [valid.noValid, onBlurState, value])
+  }, [valid.noValid, onBlurState, value]);
 
 
   //value
@@ -57,6 +57,10 @@ const useInput = (initValue, validations) => {
     setOnBlur(true);
   }
 
+  const setOnBlurForced = () => {
+    setOnBlur(true);
+  }
+
   const onChange = e => {
     setValue(e.target.value);
   }
@@ -66,6 +70,7 @@ const useInput = (initValue, validations) => {
     onChange,
     mod,
     onBlur,
+    setOnBlurForced,
     ...valid,
   }
 

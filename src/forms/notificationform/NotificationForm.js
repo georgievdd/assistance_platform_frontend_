@@ -30,7 +30,6 @@ const {
 
 const NotificationForm = props => {
 
-  console.log(props);
   const d = 30;
   const getInfoByType = () => {
     switch (props.data.type) {

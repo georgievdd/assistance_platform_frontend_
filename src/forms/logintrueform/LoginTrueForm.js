@@ -23,7 +23,7 @@ const LoginTrueForm = props => {
 		user,
 		clearAccount,
 	} = props.data;
-	console.log("props.data", props.data);
+	// console.log("props.data", props.data);	
 
 	const {
 		username,
@@ -79,7 +79,9 @@ const LoginTrueForm = props => {
 				</div> */}
 				<Dropdown style={{display: "inline-block"}}>
 				<Dropdown.Toggle variant="dark" id="dropdown-basic">
-					<div className='nav-button'>{username}<Badge bg="secondary">{notificationsHandler()}</Badge></div>
+					<div className='nav-button'>{username}<Badge style={{
+						marginLeft: "5px"
+					}} bg="secondary">{notificationsHandler()}</Badge></div>
 				</Dropdown.Toggle>
 
 				<Dropdown.Menu>

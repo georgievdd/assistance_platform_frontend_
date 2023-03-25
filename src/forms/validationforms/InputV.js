@@ -16,8 +16,9 @@ const InputV = props => {
     type,
     label,
     container,
+    style,
   } = props;
-  console.log(label);
+  // console.log(label);
 
   const {
     mod,
@@ -34,6 +35,7 @@ const InputV = props => {
         value={value}
         required
         onBlur={onBlur}
+        style={{...style}}
         onChange={e => onChange(e)}/>
       {label && <span>{label}</span>}
     </div>

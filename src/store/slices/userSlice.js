@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { LOAD_INIT } from '../../datafunc';
 
 const initialState = {
-	access: null,
+	access: false,
 	refresh: null,
 	authLoad: LOAD_INIT,
 	id: null,
@@ -59,7 +59,7 @@ const userSlice = createSlice({
 	initialState,
 	reducers: {
 		setUserInfo(state, action) {
-			console.log("user: ", action.payload);
+			// console.log("user: ", action.payload);
 			state.profile = action.payload.profile;
 			state.contacts = action.payload.contacts;
 			state.id = action.payload.id;

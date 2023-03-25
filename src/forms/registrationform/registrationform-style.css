@@ -11,6 +11,13 @@
 	vertical-align: middle;
 }
 
+.reg-text-title {
+	padding-left: 10px;
+	vertical-align: middle;
+	font-size: 17px;
+	margin-bottom: 5px;
+}
+
 .reg-button {
 	width: 50%;
 	margin-left: 25%;

@@ -10,13 +10,22 @@ import { LOGIN } from '../../components/routes/Routs';
 import InputV from '../validationforms/InputV';
 import useInput from '../../hooks/useInput';
 import LabelV from '../validationforms/LabelV';
+import CheckBoxV from '../validationforms/CheckBoxV';
+import useCheckBox from '../../hooks/useCheckBox';
 
-const RegistrationForm = () => {
+const RegistrationForm = props => {
 
-	const dispatch = useDispatch();
-	const navigate = useNavigate();
 
-	const msg = useInput('', {minLength: 5, maxLength: 30, isEmpty: "", isEmail: ""}); 
+	const {
+		email,
+		username,
+		password,
+		repeatPassword,
+		checkbox,
+		register,
+	} = props.data;
+
+
 
 	return (
 		<div className='regform-container'>
@@ -37,27 +46,60 @@ const RegistrationForm = () => {
 					<h1 style={{display: "inline-block"}} className="reg-text-header">Assistance Platform</h1>
 				</div>
 
-				{/* <Form noValidate validated={validated} onSubmit={Handler}>
+
 
 					<div>
 						<h6 className="mb-4">Регистрация</h6>
 					</div>
-
-					<Form.Group controlId="username">
-						<Form.Label>Имя пользователя</Form.Label>
-						<Form.Control
-							required
-							placeholder="username"
-							className=''
-							value={username}
-							onChange={e => setUsername(e.target.value)}
+					<div className='mb-2'>
+						<div className='reg-text-title'>Username</div>
+						<InputV
+							type={"text"}
+							object={username}
+						/> <LabelV 
+							object={username}
 						/>
-						<Form.Control.Feedback type="invalid" style={{marginTop: "0px"}}>
-              Пожалуйста, введите username.
-						</Form.Control.Feedback>
-					</Form.Group>
+					</div>
+					<div className='mb-2'>
+						<div className='reg-text-title'>Email</div>
+						<InputV
+							type={"email"}
+							object={email}
+						/> <LabelV 
+							object={email}
+						/>
+					</div>
+					<div className='mb-2'>
+						<div className='reg-text-title'>Password</div>
+						<InputV
+							type={"password"}
+							object={password}
+						/> <LabelV 
+							object={password}
+						/>
+					</div>
+					<div className='mb-3'>
+						<div className='reg-text-title'>Repeat password</div>
+						<InputV
+							type={"password"}
+							object={repeatPassword}
+						/> <LabelV 
+							object={repeatPassword}
+						/>
+					</div>
 
-					<Form.Group controlId="email" className='mt-3'>
+						<CheckBoxV object={checkbox} />
+						<LabelV 
+							object={checkbox}
+							stat={true}
+							ok="Регистрируясь, вы принимаете Пользовательское соглашение,
+							а также даёте согласие на обработку персональных данных на условиях Политики конфиденциальности."
+							error="Вы должнысогласиться перед отправкой"
+						/>
+
+					<Button variant="dark" className="reg-button mt-5" onClick={register}>Зарегестрироваться</Button>
+
+					{/* <Form.Group controlId="email" className='mt-3'>
 						<Form.Label>Почта</Form.Label>
 						<Form.Control
 							required
@@ -104,17 +146,27 @@ const RegistrationForm = () => {
 						/>
 					</Form.Group>
 
-					<Button variant="dark" className="reg-button mt-5" onClick={Handler}>Зарегестрироваться</Button>
+					<Button variant="dark" className="reg-button mt-5" onClick={Handler}>Зарегестрироваться</Button> */}
 
-				</Form> */}
 
-				<InputV
+				{/* <InputV
 					type={"text"}
 					object={msg}
-				/>
-				<LabelV 
+				/> <LabelV 
 					object={msg}
+					error="переделай"
+					ok="ok"
 				/>
+
+				<CheckBoxV 
+					object={checkbox}
+					id={1}
+					style={{display: "inline-block"}}
+				/> <LabelV 
+					object={checkbox}
+					error="плохо"
+					ok="хорошо"
+				/> */}
 
 			</div>
 		</div>

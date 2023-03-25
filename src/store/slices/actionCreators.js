@@ -31,7 +31,7 @@ export const loginUser = data =>
 
 			const res = await api.auth.login(data)
 			.then(data => data.data);
-			console.log(res);
+			// console.log(res);
 			dispatch(setAuthLoad(LOAD_END));
 			dispatch(setUser(res));
 		}
@@ -53,7 +53,7 @@ export const registrationUser = data =>
 		.then(data => data.data);
 
 		dispatch(loginUser({username: data.username, password: data.password}));
-		dispatch(getUserData( data.username));
+		dispatch(getUserData( data.username ));
 
 	}
 
@@ -145,7 +145,7 @@ export const setNotifications = access =>
 		
 		dispatch(setNotificationsLoad(LOAD_END));
 		dispatch(putNotifications(res));
-		console.log("res: ", res);
+		// console.log("notificationsDateDateDate: ", res, new Date());
 	}
 
 

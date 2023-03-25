@@ -17,6 +17,7 @@ export const sortArrayByNameInObject = (name, object) => {
 }
 
 export const contains = (e, arr) => {
+  if (!arr) return false;
   for (let i = 0; i < arr.length; ++i) 
     if (arr[i] === e) return true;
   return false;
@@ -133,7 +134,7 @@ export const parseTime = time => {
   const minutes  = prettyDate(date.getMinutes().toString());
 
   if (hour === "16") {
-    console.log(time);
+    // console.log(time);
   }
 
   const inDMH = day + ' ' + inMonth + ' в ' + hour + ':' + minutes;

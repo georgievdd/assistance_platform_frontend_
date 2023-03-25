@@ -4,13 +4,30 @@ const LabelV = props => {
 
   const {
     object,
+    error,
+    ok,
+    style,
+    stat,
   } = props;
 
-  if (object.mod !== 'invalid') return <div></div>
+  const getText = () => {
+    switch (object.mod) {
+      case "valid":
+        return ok ? ok : '';
+    
+      case "invalid":
+        return error ? error : object.noValid;
+
+      case "simple":
+        if (stat) return ok;
+    }
+  }
+
+  if (!stat && object.mod === 'simple') return <div></div>
   
   return (
-    <div className={"label-" + object.mod}>
-      {object.noValid}
+    <div className={"label-" + object.mod} style={{...style}}>
+      {getText()}
     </div>
   )
 }

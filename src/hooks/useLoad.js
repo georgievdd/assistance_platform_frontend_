@@ -25,7 +25,7 @@ export const useLoad = () => {
     applicationsLoad,
   ];
 
-  console.log(stateArray);
+  // console.log(stateArray);
 
   const [loading, setLoading] = useState(false);
   const [loadingPrev, setLoadingPrev] = useState(false);
