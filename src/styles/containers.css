@@ -124,3 +124,20 @@ input { border: none; outline: none; }
 	padding: 0 10px;
 	margin: 0;
 }
+
+
+.alert-danger {
+	height: 55px;
+	transition: all 1s;
+	animation: to_down 1s;
+	animation-fill-mode: forwards ;
+}
+
+@keyframes to_down {
+	0% {
+		top: -55px
+	}
+	100% {
+		top: 20px
+	}
+}

@@ -13,6 +13,7 @@ import { useLoad } from '../../../hooks/useLoad';
 import { getErrorTextByKey } from '../../../errors/validation';
 import { setSendApplicationLoad } from '../../../store/slices/sendApplicationSlice';
 import { LOAD_END } from '../../../datafunc';
+import '../../../styles/containers.css';
 
 const TaskInformationP = () => {
 
@@ -29,6 +30,8 @@ const TaskInformationP = () => {
   const [isDirty, setIsDirty] = useState(false);
 
   const [errorText, setErrorText] = useState(false);
+
+  // const [timer, setTimer] = useState(false);
 
   const message = useInput('');
   
@@ -59,15 +62,24 @@ const TaskInformationP = () => {
 
   useEffect(() => {
     if (error === '' && isDirty && end) {
-      dispatch(setSendApplicationLoad(LOAD_END));
-      navigate(TASKS)
+      navigate(TASKS);
     } else {
       setErrorText(getErrorTextByKey(error));
-      setTimeout(() => {
-        setErrorText('');
-      }, 5000)
+      // if (!timer) {
+      //   setTimer(true);
+      //   setTimeout(() => {
+      //     setErrorText('');
+      //     setTimer(false);
+      //   }, 10000)
+      // }
     }
   }, [error]);
+
+  useEffect(() => {
+    if (error) {
+      dispatch(setSendApplicationLoad(LOAD_END));
+    }
+  }, [])
 
 
 
@@ -76,10 +88,24 @@ const TaskInformationP = () => {
   if (!conditionToSend) return <div></div>;
   return (
     <div className='main-container mt-3'>
-      {errorText && 
-        <Alert variant='danger' style={{position: "fixed", top: '0'}}>
-          {errorText}
-        </Alert>
+      {errorText &&
+      <div style={{
+        position: "fixed",
+        top: "20px",
+        textAlign: "center",
+        left: "0",
+        right: "0",
+      }} className="alert-danger">
+        <Row>
+          <Col/>
+          <Col>
+            <Alert variant='danger' className='alert-danger'>
+              {errorText}
+            </Alert>
+            </Col>
+          <Col/>
+        </Row>
+      </div>
       }
 			<TaskInfoForm data={{
         ...task, 

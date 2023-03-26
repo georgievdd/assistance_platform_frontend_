@@ -33,7 +33,8 @@ export const getErrorTextByKey = key => {
   switch (key) {
     case 'application_already_exists':
       return "Ваша заявка уже отправлена, ее можно настроить в разделе 'Мои заявки'";
-  
+    case 'creator_cant_be_implementer':
+      return "Нельзя отправить заявку на собственное задание";
     default:
       break;
   }
