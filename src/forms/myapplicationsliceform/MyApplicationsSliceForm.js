@@ -3,7 +3,7 @@ import ApplicationForm from '../applicationform/ApplicationForm';
 
 const MyApplicationsSliceForm = props => {
 
-  console.log("MyApplicationsSliceForm", props);
+  // console.log("MyApplicationsSliceForm", props);
   
   const {
     applications,

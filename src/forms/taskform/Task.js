@@ -44,12 +44,6 @@ const Task = props => {
 	const taskOnClick = () => {
 		switch (mod) {
 			case "taskInfo":
-				if (!!!isAuth) {
-					navigate(LOGIN);
-					alert("Need to log in!");
-					break;
-				}
-
 				// dispatch(setTaskInfo(props.data));
 				navigate(createRoute([TASKS, id]));
 				break;

@@ -25,3 +25,17 @@ export const maxLengthE   = new Error("Слишком много символо�
 export const isEmailE     = new Error("Это не email",                  103);
 export const isCheckedE   = new Error("Нужно согласиться",             100);
 export const compareE     = new Error("Пароли не совпадают",           101);
+
+
+
+export const getErrorTextByKey = key => {
+
+  switch (key) {
+    case 'application_already_exists':
+      return "Ваша заявка уже отправлена, ее можно настроить в разделе 'Мои заявки'";
+  
+    default:
+      break;
+  }
+
+}

@@ -8,6 +8,7 @@ import todoTasksReducer from './slices/todoTasksSlice';
 import notificationsReducer from './slices/notificationsSlice';
 import taskInfoReducer from './slices/taskInformationSlice';
 import applicationReducer from './slices/applicationsSlice';
+import sendApplicationReducer from './slices/sendApplicationSlice';
 import {
 	persistReducer,
 	persistStore,
@@ -30,6 +31,7 @@ const rootReducer = combineReducers({
   notifications: notificationsReducer,
   taskinfo: taskInfoReducer,
   applications: applicationReducer,
+  sendapplication: sendApplicationReducer,
 });
 
 const persistConfig = {

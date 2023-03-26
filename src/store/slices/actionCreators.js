@@ -6,9 +6,12 @@ import { setProfile_choices_info, setFilters_info, setSubjects_info, setTags_inf
 import { setTODOtasks, setTodoTasksLoad } from './todoTasksSlice';
 import { putNotifications, setNotificationsLoad } from './notificationsSlice';
 import { putChooseApplicationsInformation, putMyApplications, setApplicationsLoad } from './applicationsSlice';
-import { LOAD_BEGIN, LOAD_END, write } from '../../datafunc';
+import { LOAD_BEGIN, LOAD_END, LOAD_ERROR } from '../../datafunc';
 import { setUsers, setUsersLoad } from './usersSlice';
 import { putTasInfo, setTaskInfoLoad } from './taskInformationSlice';
+import { setSendApplicationLoad } from './sendApplicationSlice';
+import { useNavigate } from 'react-router-dom';
+import { TASKS } from '../../components/routes/Routs';
 
 // export const loginUser = data =>
 // 	dispatch => {
@@ -102,9 +105,22 @@ export const deleteMyTask = (access, id) =>
 	}
 
 	//! without load
+
+//? rederect in this place
+
 export const sendApplication = (access, id, message) => 
 	async dispatch => {
-		const res = api.applications.sendApplicationApi(id, message, access);
+
+			dispatch(setSendApplicationLoad(LOAD_BEGIN));
+
+			const res = api.applications.sendApplicationApi(id, {message}, access)
+			.then(() => {
+				dispatch(setSendApplicationLoad(LOAD_END));
+			})
+			.catch(error => {
+				const {error_code} = error.response.data;
+				dispatch(setSendApplicationLoad(LOAD_ERROR(error_code)));
+			});
 	}
 
 export const getMyTasks = (access, user, url) =>

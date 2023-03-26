@@ -13,6 +13,7 @@ export const useLoad = () => {
   const notificationsLoad                   = useSelector(state => state.notifications).load;
   const applicationsLoad                    = useSelector(state => state.applications).load;
   const tasInforamationLoad                 = useSelector(state => state.taskinfo).load;
+  const sendApplicationLoad                 = useSelector(state => state.sendapplication).load;
 	const stateArray = [
     authLoad,
     authDataLoad,
@@ -24,10 +25,11 @@ export const useLoad = () => {
     notificationsLoad,
     applicationsLoad,
     tasInforamationLoad,
+    sendApplicationLoad,
   ];
 
 
-  console.log("useLoad", stateArray);
+  // console.log("useLoad", stateArray);
 
   // console.log(stateArray);
 
@@ -52,5 +54,17 @@ export const useLoad = () => {
 	return {
     loading,
     loadingPrev,
+
+    authLoad,
+    authDataLoad,
+    usersLoad,
+    mytasksLoad,
+    todotasksLoad,
+    tasksLoad,
+    informational_endpointLoad,
+    notificationsLoad,
+    applicationsLoad,
+    tasInforamationLoad,
+    sendApplicationLoad,
 	}
 }
