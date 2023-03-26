@@ -6,6 +6,7 @@ import TaskInfoForm from '../../../forms/taskinfoform/TaskInfoForm';
 import { useAuth } from '../../../hooks/useAuth';
 import { getTaskById } from '../../../store/slices/actionCreators';
 import { useTaskInformation } from '../../../hooks/useTaskInformation';
+import { useInformational_endpoint } from '../../../hooks/useInformational_endpoint';
 
 const TaskInformationP = () => {
 
@@ -14,6 +15,7 @@ const TaskInformationP = () => {
   const dispatch = useDispatch();
   const {task} = useTaskInformation();
   const [conditionToSend, setCondition] = useState(false);
+  const {tags_info} = useInformational_endpoint();
   console.log(task);
   useEffect(() => {
     dispatch(getTaskById(access, id));
@@ -30,7 +32,7 @@ const TaskInformationP = () => {
   if (!conditionToSend) return <div></div>;
   return (
     <div className='main-container mt-3'>
-			<TaskInfoForm data={task} />
+			<TaskInfoForm data={task} tags_info={tags_info}/>
 		</div>
   )
 }

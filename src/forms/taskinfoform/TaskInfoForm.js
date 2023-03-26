@@ -1,6 +1,6 @@
 import './taskforminfo-style.css';
 import { Row, Col, Button, Modal, Form, FloatingLabel } from 'react-bootstrap';
-import { parseTime } from '../../datafunc';
+import { getElById, parseTime } from '../../datafunc';
 import { useState } from 'react';
 import { HOST, VARIANT } from '../../api/instance';
 import EndPoints from '../../api/endPoints';
@@ -64,7 +64,7 @@ const TaskInfoForm = props => {
 						<div style={{width: "200px", paddingLeft: "15px", marginBottom: "25px"}}>
 							{props.data.tags.map(element => 
 								<div className='prioritystack-element' style={{width: "auto", marginBottom: "10px"}}>
-									<p>{ element }</p>
+									<p>{ getElById(element, props.tags_info) }</p>
 								</div>	
 							)}
 						</div>

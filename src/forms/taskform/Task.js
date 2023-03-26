@@ -11,7 +11,7 @@ import { contains } from '../../datafunc';
 import CircleN from '../supportiveforms/CircleN';
 
 const getImgPath = (type, id) => {
-	if (type === 'undefined' || type == undefined) 
+	if (type === 'undefined' || typeof type == undefined) 
 	type = 'default';
 	return require('../../res/task_logo/rus/' + type + '.png');
 }
@@ -26,6 +26,7 @@ const Task = props => {
 		mod,
 		index,
 	} = props;
+	
 	const {
 		redactTask,
 		chooseApplicationsInformation,
