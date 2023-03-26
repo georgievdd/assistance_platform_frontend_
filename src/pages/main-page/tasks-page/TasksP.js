@@ -3,7 +3,7 @@ import FormWithTasks from '../../../forms/tasksform/FormWithTasks';
 import СategoriesForm from '../../../forms/categoriesform/СategoriesForm';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { setInformational_endpoint } from '../../../store/slices/actionCreators';
+import { setInformational_endpoint, setTasksAuth } from '../../../store/slices/actionCreators';
 import { useTasks } from '../../../hooks/useTasks';
 import { useInformational_endpoint } from '../../../hooks/useInformational_endpoint';
 import { useState } from 'react';
@@ -11,11 +11,14 @@ import { setTasks } from '../../../store/slices/actionCreators';
 import { getKeyByValue, getIdByEl, urlCreatePartOfPath, createTaskObject } from '../../../datafunc';
 import { useNavigate } from 'react-router-dom';
 import { NEWTASK } from '../../../components/routes/Routs';
+import { useAuth } from '../../../hooks/useAuth';
 
 const TasksP = () => {
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+
+	const {access, isAuth} = useAuth();
 
 	const {subjects, tags, subjects_info, tags_info, sortsParams } = useInformational_endpoint();
 
@@ -74,9 +77,10 @@ const TasksP = () => {
 		taskModFunctions: {},
 	}
 	/// вставка в DOM
-	// useEffect(() => {
-	// 	dispatch(setInformational_endpoint());
-	// }, []);
+	useEffect(() => {
+		if (isAuth) dispatch(setTasksAuth(access));
+		else dispatch(setTasks());
+	}, []);
 
 	/// запрос с фильтрами 
 	useEffect(() => {
@@ -99,8 +103,8 @@ const TasksP = () => {
 			["tags_grouping_type", [].concat(grouping_type)],
 			["sort", [].concat(sortDirection + sort_type)]
 		]);
-
-		dispatch(setTasks(urlPath));
+		if (isAuth) dispatch(setTasksAuth(access, urlPath));
+		else dispatch(setTasks(urlPath));
 
 	}, [tagsStateValue, subjectsStateValue, grouping_type, sort_type, sortDirection]);
 
@@ -111,7 +115,8 @@ const TasksP = () => {
 		]);
 
 		//console.log("urlPath:", urlPath);
-		dispatch(setTasks(urlPath));
+		if (isAuth) dispatch(setTasksAuth(access, urlPath));
+		else dispatch(setTasks(urlPath));
 
 	}, [searchValue])
 

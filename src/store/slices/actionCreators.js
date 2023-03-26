@@ -60,11 +60,22 @@ export const registrationUser = data =>
 
 	}
 
-export const setTasks = urlRequest =>
+export const setTasks = (urlRequest) =>
 	async (dispatch) => {
 		dispatch(setTasksLoad(LOAD_BEGIN));
 
 		const res = await api.tasks.tasks(urlRequest)
+		.then(data => data.data)
+
+		dispatch(setTasksLoad(LOAD_END));
+		dispatch(getTasks(res));
+	}
+
+export const setTasksAuth = (access, urlRequest) =>
+	async (dispatch) => {
+		dispatch(setTasksLoad(LOAD_BEGIN));
+
+		const res = await api.tasks.tasksA(access, urlRequest)
 		.then(data => data.data)
 
 		dispatch(setTasksLoad(LOAD_END));
