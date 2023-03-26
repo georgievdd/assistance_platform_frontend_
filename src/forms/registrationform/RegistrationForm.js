@@ -87,15 +87,17 @@ const RegistrationForm = props => {
 							object={repeatPassword}
 						/>
 					</div>
-
-						<CheckBoxV object={checkbox} />
-						<LabelV 
-							object={checkbox}
-							stat={true}
-							ok="Регистрируясь, вы принимаете Пользовательское соглашение,
-							а также даёте согласие на обработку персональных данных на условиях Политики конфиденциальности."
-							error="Вы должны согласиться перед отправкой"
-						/>
+					<Row>
+						<Col md="auto">
+							<div style={{marginLeft: "10px"}}>
+								<CheckBoxV object={checkbox}/>
+							</div>
+						</Col>
+						<Col style={{fontSize: "15px", marginLeft: "-12px"}}>
+							Регистрируясь, вы принимаете Пользовательское соглашение,
+							а также даёте согласие на обработку персональных данных на условиях Политики конфиденциальности.
+						</Col>
+					</Row>
 
 					<Button variant="dark" className="reg-button mt-5" onClick={register}>Зарегестрироваться</Button>
 
