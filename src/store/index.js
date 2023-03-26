@@ -6,7 +6,7 @@ import informational_endpointReducer from './slices/informational_endpointSlice'
 import myTasksReducer from './slices/myTasksSlice';
 import todoTasksReducer from './slices/todoTasksSlice';
 import notificationsReducer from './slices/notificationsSlice';
-import taskInfoReducer from './slices/taskInfoSlice';
+import taskInfoReducer from './slices/taskInformationSlice';
 import applicationReducer from './slices/applicationsSlice';
 import {
 	persistReducer,

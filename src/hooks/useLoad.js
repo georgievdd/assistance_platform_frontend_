@@ -11,8 +11,8 @@ export const useLoad = () => {
   const tasksLoad                           = useSelector(state => state.tasks).load;
   const informational_endpointLoad          = useSelector(state => state.informational_endpoint).load;
   const notificationsLoad                   = useSelector(state => state.notifications).load;
-  // const taskinfoLoad                        = useSelector(state => state.taskinfo);
   const applicationsLoad                    = useSelector(state => state.applications).load;
+  const tasInforamationLoad                 = useSelector(state => state.taskinfo).load;
 	const stateArray = [
     authLoad,
     authDataLoad,
@@ -23,6 +23,7 @@ export const useLoad = () => {
     informational_endpointLoad,
     notificationsLoad,
     applicationsLoad,
+    tasInforamationLoad,
   ];
 
   // console.log(stateArray);

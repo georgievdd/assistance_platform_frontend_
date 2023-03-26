@@ -6,7 +6,7 @@ import './main-page-style.css';
 import '../../styles/containers.css';
 import { useUserData } from '../../hooks/useUserData';
 import { useAuth } from '../../hooks/useAuth';
-import { getUserData, setNotifications } from '../../store/slices/actionCreators';
+import { getUserData, setInformational_endpoint, setNotifications } from '../../store/slices/actionCreators';
 import { useDispatch } from 'react-redux';
 import { useNotifications } from '../../hooks/useNotifications';
 import Spinner from '../../forms/spinnerform/Spinner';
@@ -20,10 +20,10 @@ import { clearInformational_endpoint } from '../../store/slices/informational_en
 import { clearMyTasksSlice } from '../../store/slices/myTasksSlice';
 import { clearNotificationsSlice } from '../../store/slices/notificationsSlice';
 import { clearTODOtasksSlice } from '../../store/slices/todoTasksSlice';
-import { clearTaskInfoSlice } from '../../store/slices/taskInfoSlice';
 import { clearTasksSlice } from '../../store/slices/tasksSlice';
 import { clearUserSlice, deleteUser } from '../../store/slices/userSlice';
 import { clearUsersSlice } from '../../store/slices/usersSlice';
+import { clearTaskInfoSlice } from '../../store/slices/taskInformationSlice';
 
 const MainPage = () => {
 
@@ -68,9 +68,9 @@ const MainPage = () => {
 		// dispatch(clearInformational_endpoint());
 		dispatch(clearMyTasksSlice());
 		dispatch(clearNotificationsSlice());
-		dispatch(clearTaskInfoSlice());
 		// dispatch(clearTasksSlice());
 		dispatch(clearTODOtasksSlice());
+		dispatch(clearTaskInfoSlice());
 		dispatch(clearUserSlice());
 		dispatch(clearUsersSlice());
 
@@ -120,6 +120,10 @@ const MainPage = () => {
 			setMoveNotify(notifications.map(() => ''));
 		}
 	}, [showNotifications]);
+
+	useEffect(() => {
+		dispatch(setInformational_endpoint());
+	}, []);
 
 	return (
 		<div>

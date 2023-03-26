@@ -74,9 +74,9 @@ const TasksP = () => {
 		taskModFunctions: {},
 	}
 	/// вставка в DOM
-	useEffect(() => {
-		dispatch(setInformational_endpoint());
-	}, []);
+	// useEffect(() => {
+	// 	dispatch(setInformational_endpoint());
+	// }, []);
 
 	/// запрос с фильтрами 
 	useEffect(() => {

@@ -7,6 +7,14 @@ export const tasks = urlParams => {
 	return axiosInstance.get(EndPoints.TASKS + urlParams);
 }
 
+export const tasksA = (access, urlParams) => {
+	if (!urlParams) urlParams = '';
+	// console.log("api.tasks -> url: ", EndPoints.TASKS + urlParams); 
+	// console.log(EndPoints.TASKS + urlParams);
+	return axiosAccessRequest("get", EndPoints.TASKS + urlParams, access);
+}
+
+
 export const taskApplicationsInfo = (access, id) =>
 	axiosAccessRequest("get", EndPoints.TASKS + id + EndPoints.SET_IMPLEMENTOR, access);
 

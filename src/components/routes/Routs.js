@@ -10,11 +10,14 @@ import MyTasksP from '../../pages/main-page/mytasks-page/MyTasksP';
 import TODOtaskP from '../../pages/main-page/todotasks-page/TODOtasksP';
 import MyApplicationsP from '../../pages/main-page/myapplications-page/MyApplicationsP';
 import NewTaskP from '../../pages/main-page/new_task-page/NewTaskP';
-import TaskInfoP from '../../pages/main-page/taskinfo-page/TaskInfoP';
+import TaskInformationP from '../../pages/main-page/taskinformation-page/TaskInformationP';
 import RedactMyTaskP from '../../pages/main-page/redactmytask-page/RedactMyTaskP';
 import TaskApplicationsP from '../../pages/main-page/taskapplications-page/TaskApplicationsP';
 import UsersP from '../../pages/main-page/users-page/UsersP';
 
+export const rConfig = {
+	id: "/:id",
+}
 
 export const HOME            = "/";
 export const LOGIN           = "/login";
@@ -25,7 +28,7 @@ export const MYTASKS         = "/mytasks";
 export const TODOTASKS       = "/todotasks";
 export const REGISTRATION    = "/registration";
 export const MYAPPLICATIONS  = "/myapplications";
-export const TASKINFO        = TASKS   + "/info";
+export const TASKINFORMATION = TASKS   + rConfig.id;
 export const REDACTMYTASK    = MYTASKS + "/redact";
 export const NEWTASK         = MYTASKS + "/new_task";
 export const TASKAPLICATIONS = MYTASKS + "/applications";
@@ -43,7 +46,7 @@ const Routs = () => {
 				<Route path=       {TODOTASKS}            element={<TODOtaskP />} />
 				<Route path=       {MYAPPLICATIONS}       element={<MyApplicationsP />} />
 				<Route path=       {NEWTASK}              element={<NewTaskP />} />
-				<Route path=       {TASKINFO}             element={<TaskInfoP />} />
+				<Route path=       {TASKINFORMATION}      element={<TaskInformationP />} />
 				<Route path=       {REDACTMYTASK}         element={<RedactMyTaskP />} />
 				<Route path=       {TASKAPLICATIONS}      element={<TaskApplicationsP />} />
 				<Route path=       {USERS}                element={<UsersP />} />
@@ -52,4 +55,14 @@ const Routs = () => {
 	)
 }
 
-export default Routs
+export default Routs;
+
+
+
+export const createRoute = arr => {
+	let path = '';
+	arr.map(e => {
+		path += e + '/';
+	});
+	return path;
+}

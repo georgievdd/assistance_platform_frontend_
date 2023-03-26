@@ -16,6 +16,8 @@ const IMG = type => {
 
 const TaskInfoForm = props => {
 
+	// console.log(props);
+
 	const [message, setMessage] = useState('');
 	const {access} = useAuth();
 	const dispatch = useDispatch();

@@ -36,7 +36,7 @@ const FormWithTasks = props => {
 				</div>
 			</div>
 			{tasks.length && tasks.map((task, index) =>
-				<div style={{zIndex: 10}}>
+				<div>
 					<Task 
 						index={index}
 						data={task} 

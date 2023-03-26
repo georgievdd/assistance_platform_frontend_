@@ -10,7 +10,6 @@ import CategoriesForm from '../../../forms/categoriesform/СategoriesForm';
 import { useInformational_endpoint } from '../../../hooks/useInformational_endpoint';
 import { getKeyByValue, getIdByEl, urlCreatePartOfPath, createTaskObject } from '../../../datafunc';
 import { useAuth } from '../../../hooks/useAuth';
-import { useTasks } from '../../../hooks/useTasks';
 
 
 const TODOtasksP = () => {
@@ -53,7 +52,7 @@ const TODOtasksP = () => {
 	const [sortDirection, setSortDirection] = useState('');
 	const tasksProp = useTODOtasks().tasks;
 	const [tasks, setTasks] = useState([]);
-  const searchTitle = 'My TODO Tasks';
+  const searchTitle = 'Делаю сейчас';
 	const dataForCategories = {
 		informational_endpoint: useInformational_endpoint(),
 		sortDirection,
@@ -75,9 +74,9 @@ const TODOtasksP = () => {
 	}
 	/// вставка в DOM
   useEffect(() => {
-		console.log("todoPage call");
+		// console.log("todoPage call");
     dispatch(getTODOtasks(access, user.id, ''));
-		console.log("todoPage break");
+		// console.log("todoPage break");
   }, []);
 
 	useEffect(() => {

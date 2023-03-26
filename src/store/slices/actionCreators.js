@@ -5,10 +5,10 @@ import { setMyTasks, setMyTasksLoad } from './myTasksSlice';
 import { setProfile_choices_info, setFilters_info, setSubjects_info, setTags_info, setInformationalEndpointLoad } from './informational_endpointSlice';
 import { setTODOtasks, setTodoTasksLoad } from './todoTasksSlice';
 import { putNotifications, setNotificationsLoad } from './notificationsSlice';
-import { putTaskInfo } from './taskInfoSlice';
 import { putChooseApplicationsInformation, putMyApplications, setApplicationsLoad } from './applicationsSlice';
 import { LOAD_BEGIN, LOAD_END, write } from '../../datafunc';
 import { setUsers, setUsersLoad } from './usersSlice';
+import { putTasInfo, setTaskInfoLoad } from './taskInformationSlice';
 
 // export const loginUser = data =>
 // 	dispatch => {
@@ -77,6 +77,16 @@ export const setTask = urlRequest =>
 		console.log(res);
 		dispatch(setTasksLoad(LOAD_END));
 		dispatch(putTask(res));
+	}
+
+
+export const getTaskById = (access, id) => 
+	async dispatch => {
+		dispatch(setTaskInfoLoad(LOAD_BEGIN));
+		const res = await api.tasks.tasksA(access, id)
+		.then(data => data.data);
+		dispatch(putTasInfo(res));
+		dispatch(setTaskInfoLoad(LOAD_END));
 	}
 
 //! without load
@@ -149,10 +159,6 @@ export const setNotifications = access =>
 	}
 
 
-export const setTaskInfo = info =>
-	dispatch => {
-		dispatch(putTaskInfo(info));
-	}
 
 export const setTaskForRedact = task =>
 	dispatch => {

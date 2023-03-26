@@ -3,9 +3,8 @@ import '../taskform/taskform-style.css';
 import { useAuth } from '../../hooks/useAuth';
 import DateForm from '../dateform/DateForm';
 import { useNavigate } from 'react-router-dom';
-import { LOGIN, TASKINFO } from '../../components/routes/Routs';
+import { createRoute, LOGIN, TASKS } from '../../components/routes/Routs';
 import { useDispatch } from 'react-redux';
-import { setTaskInfo } from '../../store/slices/actionCreators';
 import redactImg from '../../res/img/pencil.svg'; 
 import bell from '../../res/img/sb-gurb.png';
 import { contains } from '../../datafunc';
@@ -50,8 +49,8 @@ const Task = props => {
 					break;
 				}
 
-				dispatch(setTaskInfo(props.data));
-				navigate(TASKINFO);
+				// dispatch(setTaskInfo(props.data));
+				navigate(createRoute([TASKS, id]));
 				break;
 		
 			default:
