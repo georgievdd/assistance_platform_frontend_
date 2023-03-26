@@ -59,12 +59,13 @@ const TaskInformationP = () => {
 
   useEffect(() => {
     if (error === '' && isDirty && end) {
+      dispatch(setSendApplicationLoad(LOAD_END));
       navigate(TASKS)
     } else {
       setErrorText(getErrorTextByKey(error));
       setTimeout(() => {
         setErrorText('');
-      }, 2000)
+      }, 5000)
     }
   }, [error]);
 
@@ -76,7 +77,7 @@ const TaskInformationP = () => {
   return (
     <div className='main-container mt-3'>
       {errorText && 
-        <Alert variant='danger' style={{position: "absolute", top: '0'}}>
+        <Alert variant='danger' style={{position: "fixed", top: '0'}}>
           {errorText}
         </Alert>
       }
