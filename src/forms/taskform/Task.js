@@ -11,7 +11,7 @@ import { contains } from '../../datafunc';
 import CircleN from '../supportiveforms/CircleN';
 
 const getImgPath = (type, id) => {
-	if (typeof type == undefined) 
+	if (type === 'undefined' || type == undefined) 
 	type = 'default';
 	return require('../../res/task_logo/rus/' + type + '.png');
 }

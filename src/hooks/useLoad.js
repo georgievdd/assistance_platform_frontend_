@@ -26,6 +26,9 @@ export const useLoad = () => {
     tasInforamationLoad,
   ];
 
+
+  console.log("useLoad", stateArray);
+
   // console.log(stateArray);
 
   const [loading, setLoading] = useState(false);
@@ -35,6 +38,7 @@ export const useLoad = () => {
 
 
     for (let load of stateArray) {
+      if (!load) return;
       if (!load.end && load.begin) {
         setLoading(true);
         setLoadingPrev(false);
