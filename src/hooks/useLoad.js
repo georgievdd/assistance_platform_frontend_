@@ -16,18 +16,18 @@ export const useLoad = () => {
   const sendApplicationLoad                 = useSelector(state => state.sendapplication).load;
   const sendEditProfileLoad                 = useSelector(state => state.editprofile).load;
 	const stateArray = [
-    authLoad,
-    authDataLoad,
-    usersLoad,
-    mytasksLoad,
-    todotasksLoad,
-    tasksLoad,
-    informational_endpointLoad,
-    notificationsLoad,
-    applicationsLoad,
-    tasInforamationLoad,
+    // authLoad,
+    // authDataLoad,
+    // usersLoad,
+    // mytasksLoad,
+    // todotasksLoad,
+    // tasksLoad,
+    // informational_endpointLoad,
+    // notificationsLoad,
+    // applicationsLoad,
+    // tasInforamationLoad,
     sendApplicationLoad,
-    sendEditProfileLoad,
+    // sendEditProfileLoad,
   ];
 
   // console.log("useLoad", stateArray);
