@@ -75,13 +75,13 @@ const ProfileP = () => {
 
 		dispatch(editProfileAndContacts(access, user.id, contacts, profile));
 
-		// window.location.reload();
+		window.location.reload();
     
   }
 
 	useEffect(() => {
 		dispatch(getProfileData(access, user.id));
-	}, [])
+	}, []);
 
 	const [showReadactAboutMe, setShowReadactAboutMe] = useState(false);
 
