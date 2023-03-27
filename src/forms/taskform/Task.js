@@ -11,9 +11,20 @@ import { contains } from '../../datafunc';
 import CircleN from '../supportiveforms/CircleN';
 
 const getImgPath = (type, id) => {
-	if (type === 'undefined' || typeof type == undefined) 
-	type = 'default';
-	return require('../../res/task_logo/rus/' + type + '.png');
+
+	try {
+		return require('../../res/task_logo/rus/' + type + '.png');
+	} catch (e) {
+		try {
+			return require('../../res/task_logo/rus/' + type.toLowerCase() + '.png');
+		} catch (e) {
+			return require('../../res/task_logo/rus/' + 'default' + '.png');
+		}
+	}
+
+	// let type = typeIn;
+	// if (typeof type === 'undefined') type = 'default';
+	// return require('../../res/task_logo/rus/' + type + '.png');
 }
 
 const Task = props => {

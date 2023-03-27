@@ -67,6 +67,8 @@ export const editProfileAndContacts = (acces, id, contacts, profile) =>
 	async dispatch => {
 		dispatch(setEditProfileLoad(LOAD_BEGIN));
 
+		// console.log("profile", profile);
+
 		const contactsAnswer = api.user.editContactsApi(acces, id, contacts);
 		const profileAnswer  = api.user.editProfileApi(acces, id, profile);
 		

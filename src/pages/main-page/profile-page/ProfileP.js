@@ -18,6 +18,7 @@ const ProfileP = () => {
 
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const fileReader = new FileReader();
 
 	const user = useUserData();
 	const {access} = useAuth();
@@ -38,6 +39,15 @@ const ProfileP = () => {
 		setStage_of_study(getFirstElBySecondElInArray(e.target.value, choosesArray));
 	}
 
+	fileReader.onloadend = () => {
+		setProfile_image(fileReader.result);
+	};
+
+	const fileOnChange = e => {
+		e.preventDefault();
+		fileReader.readAsDataURL(e.target.files[0]);
+	}
+
 
 	const redactHandler = () => {
 
@@ -45,7 +55,7 @@ const ProfileP = () => {
 			first_name,
 			last_name,
 			biography,
-			profile_image,
+			profile_image: null,
 			stage_of_study,
 			course_of_study,
 		};
@@ -58,11 +68,14 @@ const ProfileP = () => {
 			vk,
 		};
 
+
+		// console.log("profile", profile);
+
 		// console.log(contacts);
 
 		dispatch(editProfileAndContacts(access, user.id, contacts, profile));
 
-		window.location.reload();
+		// window.location.reload();
     
   }
 
@@ -110,7 +123,7 @@ const ProfileP = () => {
 				setPhone,
 				setBiography,
 				setEmail,
-				setProfile_image,
+				fileOnChange,
 				setTelegram,
 				setVk,
 		};

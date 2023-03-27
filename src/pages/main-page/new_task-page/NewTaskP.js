@@ -11,11 +11,13 @@ import axios from "axios";
 import { HOST, VARIANT } from "../../../api/instance";
 import EndPoints from "../../../api/endPoints";
 import { postTask } from "../../../api/tasks";
+import { useDispatch } from "react-redux";
 
 const NewTaskP = () => {
 
   const {access} = useAuth();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { tags, 
     stage_of_study_choices, 
     subjects,
@@ -31,7 +33,7 @@ const NewTaskP = () => {
   const [subjectState, setSubjectState] = useState(getIdByEl(subjects[0], subjects_info));
   const [descriptionState, setDescriptionState] = useState("");
   const [dateState, setDateState] = useState("");
-  const [file, setFile] = useState('');
+  const [file, setFile] = useState(null);
 
   const tagsCheckHandler = index => {
 		setTagsState(tagsState => tagsState.map((e, i) => (
@@ -87,9 +89,10 @@ const NewTaskP = () => {
       subject: subjectState,
       description: descriptionState,
       stop_accepting_applications_at: dateState,
+      // file,
     }
 
-    postTask(access, data);
+    postTask(access, data);   //! обернуть в диспатч; создать action
     navigate(MYTASKS);
   }
 

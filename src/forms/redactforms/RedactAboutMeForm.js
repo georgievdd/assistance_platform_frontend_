@@ -11,7 +11,6 @@ const RedactAboutMeForm = props => {
     email,
     first_name,
     last_name,
-    profile_image,
     stage_of_study,
     vk,
     telegram,
@@ -24,7 +23,7 @@ const RedactAboutMeForm = props => {
     setPhone,
     setBiography,
     setEmail,
-    setProfile_image,
+    fileOnChange,
     setTelegram,
     setVk,
 
@@ -65,9 +64,9 @@ const RedactAboutMeForm = props => {
 				<Form.Control type='text' value={telegram} onChange={e => setTelegram(e.target.value)}/>
         <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Биография</h5>
 				<Form.Control as="textarea" value={biography} onChange={e => setBiography(e.target.value)}/>
-        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Иконка профиля</h5>
+        <h5 style={{marginLeft: "10px", marginTop: "10px"}}>Сменить иконку профиля</h5>
 				<Form.Group controlId="formFileLg" className="mb-3">
-          <Form.Control type="file" size="lg" />
+          <Form.Control type="file" size="lg" onChange={e => fileOnChange(e)} accept='image/*,.png,.jpg,.gif,.web'/>
         </Form.Group>
       </Modal.Body>
       <Modal.Footer>

@@ -31,7 +31,7 @@ const TaskInformationP = () => {
 
   const [errorText, setErrorText] = useState(false);
 
-  // const [timer, setTimer] = useState(false);
+  const [timer, setTimer] = useState(false);
 
   const message = useInput('');
   
@@ -65,13 +65,13 @@ const TaskInformationP = () => {
       navigate(TASKS);
     } else {
       setErrorText(getErrorTextByKey(error));
-      // if (!timer) {
-      //   setTimer(true);
-      //   setTimeout(() => {
-      //     setErrorText('');
-      //     setTimer(false);
-      //   }, 10000)
-      // }
+      if (!timer) {
+        setTimer(true);
+        setTimeout(() => {
+          setErrorText('');
+          setTimer(false);
+        }, 2000)
+      }
     }
   }, [error]);
 
