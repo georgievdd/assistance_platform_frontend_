@@ -57,7 +57,7 @@ const LoginTrueForm = props => {
 			<Nav style={{width: "100%"}}>
 				<Nav.Link style={{paddingRight: "30px"}}><Link className='link-standart' to={TASKS}>Задания</Link></Nav.Link>
 				<Nav.Link style={{paddingRight: "30px"}}><Link className='link-standart' to={MYTASKS}>Мои задания</Link></Nav.Link>
-				<Nav.Link style={{paddingRight: "30px"}}><Link className='link-standart' to={TODOTASKS}>todo tasks</Link></Nav.Link>
+				<Nav.Link style={{paddingRight: "30px"}}><Link className='link-standart' to={TODOTASKS}>Делаю сейчас</Link></Nav.Link>
 				<Nav.Link style={{paddingRight: "30px"}}><Link className='link-standart' to={MYAPPLICATIONS}>Мои заявки</Link></Nav.Link>
 				{/* <img
 					style={{marginRight: "10px"}}

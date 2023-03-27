@@ -12,6 +12,7 @@ import { putTasInfo, setTaskInfoLoad } from './taskInformationSlice';
 import { setSendApplicationLoad } from './sendApplicationSlice';
 import { useNavigate } from 'react-router-dom';
 import { TASKS } from '../../components/routes/Routs';
+import { setEditProfileLoad } from './editProfileSlice';
 
 // export const loginUser = data =>
 // 	dispatch => {
@@ -44,11 +45,35 @@ export const getUserData = (data) =>
 
 		dispatch(setAuthDataLoad(LOAD_BEGIN));
 
-		const res = await api.user.userInfo(data);
+		const res = await api.user.userInfo(data)
+		.then(data => data.data);;
 
 		dispatch(setAuthDataLoad(LOAD_END));
-		dispatch(setUserInfo(res.data));
+		dispatch(setUserInfo(res));
 	}
+
+export const getProfileData = (access, data) => 
+	async dispatch => {
+		dispatch(setAuthDataLoad(LOAD_BEGIN));
+
+		const res = await api.user.userInfoA(access, data)
+		.then(data => data.data);
+
+		dispatch(setAuthDataLoad(LOAD_END));
+		dispatch(setUserInfo(res));
+	}
+
+export const editProfileAndContacts = (acces, id, contacts, profile) => 
+	async dispatch => {
+		dispatch(setEditProfileLoad(LOAD_BEGIN));
+
+		const contactsAnswer = api.user.editContactsApi(acces, id, contacts);
+		const profileAnswer  = api.user.editProfileApi(acces, id, profile);
+		
+		dispatch(setEditProfileLoad(LOAD_END));
+	}
+
+
 //! without load
 export const registrationUser = data => 
 	async (dispatch) => {
@@ -88,7 +113,6 @@ export const setTask = urlRequest =>
 
 		const res = await api.tasks.tasks(urlRequest)
 		.then(data => data.data)
-		console.log(res);
 		dispatch(setTasksLoad(LOAD_END));
 		dispatch(putTask(res));
 	}
@@ -146,13 +170,10 @@ export const getMyTasks = (access, user, url) =>
 	}
 
 export const getTODOtasks = (access, user, url) => {
-	console.log("todo call body");
 	return async (dispatch) => {
-		console.log("todo call async start");
 		dispatch(setTodoTasksLoad(LOAD_BEGIN));
 		const res = await api.user.getTODOtasksAPI(access, user, url)
 		.then(data => data.data);
-		console.log("todo call async end");
 		dispatch(setTodoTasksLoad(LOAD_END));
 		dispatch(setTODOtasks(res));
 	}

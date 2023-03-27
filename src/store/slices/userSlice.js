@@ -7,7 +7,6 @@ const initialState = {
 	authLoad: LOAD_INIT,
 	id: null,
 	username: null,
-	email: null,
 	profile: {
 			first_name: null,
 			last_name: null,
@@ -59,7 +58,6 @@ const userSlice = createSlice({
 	initialState,
 	reducers: {
 		setUserInfo(state, action) {
-			// console.log("user: ", action.payload);
 			state.profile = action.payload.profile;
 			state.contacts = action.payload.contacts;
 			state.id = action.payload.id;
@@ -101,6 +99,7 @@ const userSlice = createSlice({
 			state.profile = initialState.profile;
 			state.statistics = initialState.statistics;
 			state.username = initialState.username;
+			state.email = initialState.email;
 		},
 	},
 });

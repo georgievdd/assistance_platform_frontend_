@@ -9,6 +9,9 @@ import notificationsReducer from './slices/notificationsSlice';
 import taskInfoReducer from './slices/taskInformationSlice';
 import applicationReducer from './slices/applicationsSlice';
 import sendApplicationReducer from './slices/sendApplicationSlice';
+import editProfileReducer from './slices/editProfileSlice';
+
+
 import {
 	persistReducer,
 	persistStore,
@@ -32,6 +35,7 @@ const rootReducer = combineReducers({
   taskinfo: taskInfoReducer,
   applications: applicationReducer,
   sendapplication: sendApplicationReducer,
+  editprofile: editProfileReducer,
 });
 
 const persistConfig = {

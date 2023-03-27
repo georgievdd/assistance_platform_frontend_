@@ -14,6 +14,7 @@ export const useLoad = () => {
   const applicationsLoad                    = useSelector(state => state.applications).load;
   const tasInforamationLoad                 = useSelector(state => state.taskinfo).load;
   const sendApplicationLoad                 = useSelector(state => state.sendapplication).load;
+  const sendEditProfileLoad                 = useSelector(state => state.editprofile).load;
 	const stateArray = [
     authLoad,
     authDataLoad,
@@ -26,8 +27,8 @@ export const useLoad = () => {
     applicationsLoad,
     tasInforamationLoad,
     sendApplicationLoad,
+    sendEditProfileLoad,
   ];
-
 
   // console.log("useLoad", stateArray);
 
@@ -66,5 +67,6 @@ export const useLoad = () => {
     applicationsLoad,
     tasInforamationLoad,
     sendApplicationLoad,
+    sendEditProfileLoad,
 	}
 }

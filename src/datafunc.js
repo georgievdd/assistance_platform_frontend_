@@ -43,6 +43,20 @@ export const getIdByEl = (name, arr) => {
       return element.id;
 }
 
+export const getSecondElByFirstElInArray = (e, arr) => {
+  for (let i = 0; i < arr.length; ++i) {
+    if (arr[i][0] === e) return arr[i][1];
+  }
+  return undefined;
+}
+
+export const getFirstElBySecondElInArray = (e, arr) => {
+  for (let i = 0; i < arr.length; ++i) {
+    if (arr[i][1] === e) return arr[i][0];
+  }
+  return undefined;
+}
+
 export const urlCreatePartOfPath = (type, array) => {
   let path = "";
 

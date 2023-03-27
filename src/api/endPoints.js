@@ -13,6 +13,8 @@ const EndPoints = {
 	MY_APPLICATIONS: '/applications',
 	MY_APPLICATION: '/my_application',
 	SET_IMPLEMENTOR: '/set_implementer',
+	EDIT_CONTACTS: '/edit_contacts',
+	EDIT_PROFILE: '/edit_profile',
 }
 
 export default EndPoints;
