@@ -22,7 +22,14 @@ export const axiosAccessRequest = (method, path, access, data) => {
 		config => {
 			config.headers.Authorization = "Bearer " + access;
 			return config;
-		});
+		}
+		///что то для cors == хрома
+		// (req, res, next) => {
+		// 		res.header("Access-Control-Allow-Origin", "*");
+		// 		res.header("Access-Control-Allow-Headers", "X-Requested-With");
+		// 		next();
+		// 	}
+	);
 
 	return axios({
 		method,

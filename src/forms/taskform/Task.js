@@ -111,11 +111,14 @@ const Task = props => {
 							}
 							{contains("taskApplicationsShow", mod) &&
 								<div style={{display: "inline-block", float: "right", paddingRight: "15px"}}>
-									<img
-										src={bell}
-										width="50px"
-										onClick={() => chooseApplicationsInformation(index)}
-									/>
+									<div onClick={() => chooseApplicationsInformation(index)} style={{
+										border: "2px solid",
+										padding: "8px",
+										borderRadius: "10px",
+										backgroundColor: "rgb(250,244,234)"
+									}}>
+										Просмотреть заявки
+									</div>
 								</div>
 							}
 						</div>
