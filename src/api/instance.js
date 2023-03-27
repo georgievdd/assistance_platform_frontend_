@@ -1,13 +1,18 @@
 import axios from "axios";
 
+
+
+
 // require('dotenv').config();
-
-
-const HOST = "http://127.0.0.1:8000";
-const VARIANT = '/api/v1';
 
 // const HOST = "http://BACKEND_HOST:BACKEND_PORT";
 // const HOST = "http://161.35.66.125:8000";
+const HOST = "http://127.0.0.1:8000";
+
+const VARIANT = '/api/v1';
+
+// const v = process.env;
+// console.log("env", v);
 
 
 // console.log("process", process.env);

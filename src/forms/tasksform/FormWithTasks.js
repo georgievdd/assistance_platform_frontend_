@@ -18,7 +18,7 @@ const FormWithTasks = props => {
 				<Row>
 					<Col xs><h4 className='tasks-search-header'>{props.data.searchTitle} ({tasks.length})</h4></Col>
 				</Row>
-				<div >
+				<div style={{padding: "10px"}}>
 					<Row style={{width: "100%"}}>
 						<Col style={{width: "100%", paddingLeft: "30px"}}><input
 							id="search"

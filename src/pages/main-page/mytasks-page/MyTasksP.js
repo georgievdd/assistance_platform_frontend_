@@ -153,8 +153,8 @@ const MyTasksP = () => {
         <FormWithTasks data={dataForTasks}/>
       </Col>
       <Col>
-				<div className='container-element shadow mb-3' style={{padding: "10px", height: "125px"}}>
-					<h5 style={{marginBottom: "28px"}}>Создать публикацию</h5>
+				<div className='container-element shadow mb-3' style={{padding: "10px 10px"}}>
+					{/* <h5 style={{marginBottom: "28px"}}>Создать публикацию</h5> */}
 					<Button style={{width: "100%", height: "50px"}} variant="success" onClick={addTask}>
 						Новое задание
 					</Button>
