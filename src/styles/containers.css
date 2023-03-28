@@ -71,6 +71,18 @@ input { border: none; outline: none; }
   border-radius: 7px;
 }
 
+.prioritysubject-element {
+	width: auto;
+	height: 25px;
+	padding: 1px;
+	text-align: center;
+	border: 1px solid  rgba(19,87,102, 1);
+	background-color: #b6ebbd;
+  color: black;
+  font-size: 14px;
+  border-radius: 7px;
+}
+
 
 .defaultScale {
 	transition: all 0.5s;

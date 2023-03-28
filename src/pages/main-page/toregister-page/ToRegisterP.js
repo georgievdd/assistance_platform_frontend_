@@ -10,7 +10,7 @@ import { TASKS } from '../../../components/routes/Routs';
 const ToRegisterP = () => {
 
 	const email          = useInput('', {isEmail: '', isEmpty: ''});
-	const username       = useInput('', {maxLength: 10, minLength: 5, isEmpty: ''});
+	const username       = useInput('', {maxLength: 10, minLength: 4, isEmpty: ''});
 	const password       = useInput('', {minLength: 8, isEmpty: ''});
 	const repeatPassword = useInput('', {compare: password.value, isEmpty: ''});
 	const checkbox       = useCheckBox(false);

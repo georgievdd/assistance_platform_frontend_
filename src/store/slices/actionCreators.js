@@ -120,10 +120,19 @@ export const setTask = urlRequest =>
 	}
 
 
-export const getTaskById = (access, id) => 
+export const getTaskByIdAccess = (access, id) => 
 	async dispatch => {
 		dispatch(setTaskInfoLoad(LOAD_BEGIN));
 		const res = await api.tasks.tasksA(access, id)
+		.then(data => data.data);
+		dispatch(putTasInfo(res));
+		dispatch(setTaskInfoLoad(LOAD_END));
+	}
+
+export const getTaskById = id => 
+	async dispatch => {
+		dispatch(setTaskInfoLoad(LOAD_BEGIN));
+		const res = await api.tasks.tasks(id)
 		.then(data => data.data);
 		dispatch(putTasInfo(res));
 		dispatch(setTaskInfoLoad(LOAD_END));

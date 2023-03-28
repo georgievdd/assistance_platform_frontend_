@@ -144,6 +144,7 @@ const MyTasksP = () => {
 			redactTask,
 			chooseApplicationsInformation,
 		},
+		subjects_info,
 	}
 
   return (

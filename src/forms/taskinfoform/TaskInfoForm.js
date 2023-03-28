@@ -25,10 +25,12 @@ const TaskInfoForm = props => {
 		tags,
 		price,
 		title,
+		subject,
 		description,
 	} = props.data;
 	const { 
 		tags_info,
+		subjects_info,
 	} = props;
 
 	const date = t => {
@@ -68,11 +70,19 @@ const TaskInfoForm = props => {
 							<div className='price'>Вознаграждение: {price}</div>
 						</div>
 						<div style={{width: "200px", paddingLeft: "15px", marginBottom: "25px"}}>
+							
+							<div className='prioritysubject-element' style={{ width: "auto", marginBottom: "10px"}}>
+								<div style={{marginTop: "-2px"}}>
+									{getElById(subject, subjects_info)}
+								</div>
+							</div>
+
 							{tags.map(element => 
 								<div className='prioritystack-element' style={{width: "auto", marginBottom: "10px"}}>
 									<p>{ getElById(element, tags_info) }</p>
 								</div>	
 							)}
+
 						</div>
 					</Col>
 					<Col md="auto" style={{width: "70%"}}>

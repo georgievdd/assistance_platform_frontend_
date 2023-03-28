@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import TaskInfoForm from '../../../forms/taskinfoform/TaskInfoForm';
 import { useAuth } from '../../../hooks/useAuth';
-import { getTaskById, sendApplication } from '../../../store/slices/actionCreators';
+import { getTaskById, getTaskByIdAccess, sendApplication, setTask } from '../../../store/slices/actionCreators';
 import { useTaskInformation } from '../../../hooks/useTaskInformation';
 import { useInformational_endpoint } from '../../../hooks/useInformational_endpoint';
 import useInput from '../../../hooks/useInput';
@@ -23,7 +23,7 @@ const TaskInformationP = () => {
   const navigate = useNavigate();
   const {task} = useTaskInformation();
   const [conditionToSend, setCondition] = useState(false);
-  const {tags_info} = useInformational_endpoint();
+  const {tags_info, subjects_info} = useInformational_endpoint();
 
   const { error, end } = useLoad().sendApplicationLoad;
 
@@ -37,7 +37,8 @@ const TaskInformationP = () => {
   
   
   useEffect(() => {
-    dispatch(getTaskById(access, id));
+    if (isAuth) dispatch(getTaskByIdAccess(access, id));
+    else dispatch(getTaskById(id));
   }, []);
 
   useEffect(() => {
@@ -97,13 +98,13 @@ const TaskInformationP = () => {
         right: "0",
       }} className="alert-danger">
         <Row>
-          <Col/>
+          <Col style={{width: "25%"}} md="auto"/>
           <Col>
             <Alert variant='danger' className='alert-danger'>
               {errorText}
             </Alert>
             </Col>
-          <Col/>
+          <Col  md="auto" style={{width: "25%"}}/>
         </Row>
       </div>
       }
@@ -112,7 +113,8 @@ const TaskInformationP = () => {
         sendApply,
         message,
         }} tags_info={tags_info}
-        errorText={errorText}/>
+        errorText={errorText}
+        subjects_info={subjects_info}/>
 		</div>
   )
 }

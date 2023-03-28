@@ -10,8 +10,8 @@ const FormWithTasks = props => {
 		searchHandler,
 		taskMod,
 		taskModFunctions,
+		subjects_info,
 	} = props.data;
-
 	return (
 		<div>
 			<div className='container-element shadow' style={{height: "125px", marginBottom: "15px"}}>
@@ -42,6 +42,7 @@ const FormWithTasks = props => {
 						data={task} 
 						mod={taskMod} 
 						modFunc={taskModFunctions}
+						subjects_info={subjects_info}
 					/>
 				</div>
 			)}

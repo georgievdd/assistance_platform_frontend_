@@ -71,6 +71,7 @@ const TODOtasksP = () => {
     searchTitle,
 		taskMod: [],
 		taskModFunctions: {},
+		subjects_info,
 	}
 	/// вставка в DOM
   useEffect(() => {

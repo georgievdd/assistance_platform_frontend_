@@ -7,7 +7,7 @@ import { createRoute, LOGIN, TASKS } from '../../components/routes/Routs';
 import { useDispatch } from 'react-redux';
 import redactImg from '../../res/img/pencil.svg'; 
 import bell from '../../res/img/sb-gurb.png';
-import { contains } from '../../datafunc';
+import { contains, getElById, getSecondElByFirstElInArray } from '../../datafunc';
 import CircleN from '../supportiveforms/CircleN';
 
 const getImgPath = (type, id) => {
@@ -49,8 +49,12 @@ const Task = props => {
 		created_at,
 		title,
 		description,
+		subject,
 		tags,
 	} = props.data;
+
+	const {subjects_info} = props;
+
 
 	const taskOnClick = () => {
 		switch (mod) {
@@ -106,8 +110,18 @@ const Task = props => {
 						<div>
 							<div style={{display: "inline-block"}}>
 								<Row>
-									{tags.map(element =>
-										<p className='prioritystack-element' style={{ width: "auto", marginLeft: "10px"}}>{element}</p>
+									<div className='prioritysubject-element' style={{ width: "auto", marginLeft: "10px"}}>
+										<div style={{marginTop: "-2px"}}>
+											{subjects_info && getElById(subject, subjects_info)}
+										</div>
+									</div>
+									{
+									tags.map(element =>
+											<div className='prioritystack-element' style={{ width: "auto", marginLeft: "10px"}}>
+												<div style={{marginTop: "-2px"}}>
+													{element}
+												</div>
+											</div>
 									)}
 								</Row>
 							</div>

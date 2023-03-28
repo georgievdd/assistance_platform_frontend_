@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { setTasks } from '../../../store/slices/actionCreators';
 import { getKeyByValue, getIdByEl, urlCreatePartOfPath, createTaskObject } from '../../../datafunc';
 import { useNavigate } from 'react-router-dom';
-import { NEWTASK } from '../../../components/routes/Routs';
+import { LOGIN, NEWTASK } from '../../../components/routes/Routs';
 import { useAuth } from '../../../hooks/useAuth';
 
 const TasksP = () => {
@@ -75,6 +75,7 @@ const TasksP = () => {
 		searchTitle,
 		taskMod: "taskInfo",
 		taskModFunctions: {},
+		subjects_info,
 	}
 	/// вставка в DOM
 	useEffect(() => {
@@ -122,7 +123,12 @@ const TasksP = () => {
 
 
 	const addTask = () => {
-		navigate(NEWTASK);
+		if (isAuth) navigate(NEWTASK);
+		else {
+			navigate(LOGIN);
+      alert("Need to log in!");
+      return;
+		}
 	}
 
 
