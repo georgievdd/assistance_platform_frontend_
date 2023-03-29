@@ -31,3 +31,6 @@ export const redactMyTaskApi = (access, id, data) =>
 
 export const deleteMyTaskApi = (access, id) =>
 	axiosAccessRequest("delete", EndPoints.TASKS + id, access);
+
+export const closeTaskApi = (access, id, data) => 
+	axiosAccessRequest("put", EndPoints.CLOSE_TASK(id), access, data);

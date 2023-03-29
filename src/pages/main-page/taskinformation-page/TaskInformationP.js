@@ -22,6 +22,7 @@ const TaskInformationP = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {task} = useTaskInformation();
+  // console.log(task);
   const [conditionToSend, setCondition] = useState(false);
   const {tags_info, subjects_info} = useInformational_endpoint();
 

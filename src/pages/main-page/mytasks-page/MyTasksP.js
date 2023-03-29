@@ -4,7 +4,7 @@ import { Button, Col, Row } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 import { useUserData } from '../../../hooks/useUserData';
-import { getMyTasks, setChooseApplicationsInformation, setTaskForRedact } from '../../../store/slices/actionCreators';
+import { closeTaskStore, getMyTasks, setChooseApplicationsInformation, setTaskForRedact } from '../../../store/slices/actionCreators';
 import { useMyTasks } from '../../../hooks/useMyTasks';
 import FormWithTasks from '../../../forms/tasksform/FormWithTasks';
 import CategoriesForm from '../../../forms/categoriesform/СategoriesForm';
@@ -30,7 +30,7 @@ const MyTasksP = () => {
 		stage_of_study_choices_info, } = useInformational_endpoint();
 	
 	const tasks = useMyTasks().tasks.map(task => createTaskObject(task, tags_info, subjects_info));
-
+	console.log(tasks);
 	const tagCheckHandler = index => {
 		setTagsStateValue(tagsStateValue => tagsStateValue.map((e, i) => (
 			i === index ? !e : e
@@ -111,6 +111,13 @@ const MyTasksP = () => {
 		navigate(NEWTASK);
 	}
 
+	const closeTask = index => {
+
+		const confirm = "Я подтверждаю, что хочу закрыть задачу";
+
+		dispatch(closeTaskStore(access, tasks[index].id, {confirm}));
+	}
+
 	//? редактирование задания
 	const redactTask = index => {
 		// console.log("redact task N", index);
@@ -143,6 +150,7 @@ const MyTasksP = () => {
 		taskModFunctions: {
 			redactTask,
 			chooseApplicationsInformation,
+			closeTask,
 		},
 		subjects_info,
 	}

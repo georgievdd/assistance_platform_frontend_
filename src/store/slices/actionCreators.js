@@ -141,13 +141,18 @@ export const getTaskById = id =>
 //! without load
 export const redactMyTask = (access, id, data) =>
 	async dispatch => {
-		const res = api.tasks.redactMyTaskApi(access, id, data);
+		const res = await api.tasks.redactMyTaskApi(access, id, data);
 	}
 
 //! without load
 export const deleteMyTask = (access, id) => 
 	async dispatch => {
-		const res = api.tasks.deleteMyTaskApi(access, id);
+		const res = await api.tasks.deleteMyTaskApi(access, id);
+	}
+
+export const closeTaskStore = (acces, id, data) => 
+	async dispatch => {
+		const res = await api.tasks.closeTaskApi(acces, id, data);
 	}
 
 	//! without load
@@ -159,7 +164,7 @@ export const sendApplication = (access, id, message) =>
 
 			dispatch(setSendApplicationLoad(LOAD_BEGIN));
 
-			const res = api.applications.sendApplicationApi(id, {message}, access)
+			const res = await api.applications.sendApplicationApi(id, {message}, access)
 			.then(() => {
 				dispatch(setSendApplicationLoad(LOAD_END));
 			})
@@ -175,7 +180,7 @@ export const getMyTasks = (access, user, url) =>
 
 		const res = await api.user.getMyTasksAPI(access, user, url)
 		.then(data => data.data)
-
+		// console.log(res);
 		dispatch(setMyTasksLoad(LOAD_END));
 		dispatch(setMyTasks(res));
 	}

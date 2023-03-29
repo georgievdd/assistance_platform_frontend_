@@ -41,6 +41,7 @@ const Task = props => {
 	const {
 		redactTask,
 		chooseApplicationsInformation,
+		closeTask,
 	} = props.modFunc;
 
 	const {
@@ -51,6 +52,8 @@ const Task = props => {
 		description,
 		subject,
 		tags,
+		implementer,
+		status,
 	} = props.data;
 
 	const {subjects_info} = props;
@@ -125,7 +128,29 @@ const Task = props => {
 									)}
 								</Row>
 							</div>
-							{contains("taskRedact", mod) &&
+
+
+
+						
+							{status === 'C' && 
+
+								<div style={{display: "inline-block", float: "right", paddingRight: "15px"}}>
+									<div style={{
+										border: "2px solid",
+										padding: "8px",
+										borderRadius: "10px",
+										backgroundColor: "rgb(45,185,104)",
+										width: "250px",
+										textAlign: "center",
+									}}>
+										Закрыто
+									</div>
+								</div>
+							}
+
+
+
+							{contains("taskRedact", mod) && status !== 'C' &&
 								<div style={{display: "inline-block", float: "right", paddingRight: "15px"}}>
 									<img
 										src={redactImg}
@@ -134,17 +159,35 @@ const Task = props => {
 									/>
 								</div>
 							}
-							{contains("taskApplicationsShow", mod) &&
+							{contains("taskApplicationsShow", mod) && status !== 'C' &&
+								(
+								implementer ? 
+								<div style={{display: "inline-block", float: "right", paddingRight: "15px"}}>
+									<div onClick={() => closeTask(index)} style={{
+										border: "2px solid",
+										padding: "8px",
+										borderRadius: "10px",
+										backgroundColor: "rgb(230,224,214)",
+										width: "180px",
+										textAlign: "center",
+									}}>
+										Закрыть задание
+									</div>
+								</div>
+								: 
 								<div style={{display: "inline-block", float: "right", paddingRight: "15px"}}>
 									<div onClick={() => chooseApplicationsInformation(index)} style={{
 										border: "2px solid",
 										padding: "8px",
 										borderRadius: "10px",
-										backgroundColor: "rgb(250,244,234)"
+										backgroundColor: "rgb(250,244,234)",
+										width: "180px",
+										textAlign: "center",
 									}}>
 										Просмотреть заявки
 									</div>
 								</div>
+								)
 							}
 						</div>
 					</Col>

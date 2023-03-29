@@ -15,6 +15,7 @@ const EndPoints = {
 	SET_IMPLEMENTOR: '/set_implementer',
 	EDIT_CONTACTS: '/edit_contacts',
 	EDIT_PROFILE: '/edit_profile',
+	CLOSE_TASK: (id) => `/tasks/${id}/close_task`,
 }
 
 export default EndPoints;
